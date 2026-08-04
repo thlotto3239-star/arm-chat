@@ -139,7 +139,7 @@ export default function TestSuitePage() {
       environment: {
         app_name: 'Arm Chat',
         domain: 'https://arm-chat.vercel.app/',
-        database: 'Supabase Realtime (haxzbmlgbumziefqowok)',
+        database: 'Supabase Realtime',
       },
       checks_detail: results.map((r) => ({
         id: r.id,
