@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>สร้างโพล - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e8e2d8",
+                    "inverse-primary": "#3de273",
+                    "surface-dim": "#e0d9d0",
+                    "on-primary-fixed": "#002109",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#d1eac6",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1e1b16",
+                    "surface-container": "#f4ede3",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-tint": "#006d2f",
+                    "primary-container": "#25d366",
+                    "on-tertiary-container": "#004694",
+                    "surface-container-highest": "#e8e2d8",
+                    "background": "#fff8f0",
+                    "on-primary-container": "#005523",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "outline-variant": "#bbcbb9",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#001b3f",
+                    "inverse-surface": "#33302a",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#d1eac6",
+                    "surface-dark": "#000000",
+                    "primary": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "outline": "#6c7b6b",
+                    "error": "#ba1a1a",
+                    "ink-muted": "#5e5e5e",
+                    "secondary": "#4f6448",
+                    "on-background": "#1e1b16",
+                    "tertiary": "#005cbd",
+                    "surface": "#fff8f0",
+                    "surface-container-high": "#eee7dd",
+                    "surface-container-lowest": "#ffffff",
+                    "ink": "#1c1e21",
+                    "tertiary-fixed": "#d7e2ff",
+                    "primary-fixed-dim": "#3de273",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "on-secondary-container": "#556a4d",
+                    "surface-white": "#ffffff",
+                    "on-primary-fixed-variant": "#005322",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#93b8ff",
+                    "on-secondary-fixed": "#0d200a",
+                    "surface-bright": "#fff8f0",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "huge": "80px",
+                    "xxl": "32px",
+                    "xs": "8px",
+                    "xl": "24px",
+                    "md": "16px",
+                    "lg": "20px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "display-md": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "button-md": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"]
+            },
+            "fontSize": {
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #fff8f0;
+            color: #1c1e21;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        /* Custom Switch Styling */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #1c1e21;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #25d366;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center">
+<!-- TopNavBar (Fixed Header) -->
+<nav class="bg-background dark:bg-surface-dark w-full h-16 fixed top-0 z-50 flex justify-between items-center px-xl">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant text-2xl cursor-pointer active:scale-95 transition-transform">close</span>
+<h1 class="font-display-md text-display-md-mobile text-primary dark:text-primary-fixed-dim">สร้างโพล - Arm Chat</h1>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-high transition-colors p-xs rounded-full">security</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-high transition-colors p-xs rounded-full">more_vert</span>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-2xl mt-16 px-xl py-huge space-y-xxl">
+<!-- Header Story Component -->
+<section class="space-y-md">
+<div class="h-24 w-24 bg-primary-container rounded-full flex items-center justify-center mb-xl border border-ink">
+<span class="material-symbols-outlined text-4xl text-on-primary-container">poll</span>
+</div>
+<h2 class="font-display-lg text-display-xl-mobile leading-tight">รวบรวมความคิดเห็นจากสมาชิก</h2>
+<p class="font-body-lg text-ink-muted">ตั้งคำถามที่น่าสนใจเพื่อให้ทุกคนในกลุ่ม Arm Chat ได้มีส่วนร่วมในการตัดสินใจร่วมกัน</p>
+</section>
+<!-- Form Section -->
+<form class="space-y-xxl bg-surface-white border border-ink p-xl rounded-lg">
+<!-- Question Input -->
+<div class="space-y-sm">
+<label class="font-button-md text-ink block ml-sm">คำถาม</label>
+<input class="w-full h-[50px] px-xl py-sm rounded-full border border-ink bg-surface-white focus:ring-2 focus:ring-primary-container outline-none transition-all placeholder:text-ink-muted" placeholder="ระบุคำถามของคุณที่นี่..." type="text"/>
+</div>
+<!-- Options Grid -->
+<div class="space-y-sm" id="options-container">
+<label class="font-button-md text-ink block ml-sm">ตัวเลือก</label>
+<div class="space-y-md" id="options-list">
+<div class="flex items-center gap-sm group">
+<input class="flex-1 h-[50px] px-xl py-sm rounded-full border border-ink bg-surface-white focus:ring-2 focus:ring-primary-container outline-none transition-all" placeholder="ตัวเลือกที่ 1" type="text"/>
+<button class="material-symbols-outlined text-ink-muted hover:text-error transition-colors" type="button">cancel</button>
+</div>
+<div class="flex items-center gap-sm group">
+<input class="flex-1 h-[50px] px-xl py-sm rounded-full border border-ink bg-surface-white focus:ring-2 focus:ring-primary-container outline-none transition-all" placeholder="ตัวเลือกที่ 2" type="text"/>
+<button class="material-symbols-outlined text-ink-muted hover:text-error transition-colors" type="button">cancel</button>
+</div>
+</div>
+<button class="mt-md flex items-center gap-xs font-button-md text-primary hover:underline ml-sm transition-all active:scale-95" onclick="addOption()" type="button">
+<span class="material-symbols-outlined">add_circle</span>
+                    เพิ่มตัวเลือก
+                </button>
+</div>
+<!-- Toggles & Settings -->
+<div class="pt-md border-t border-surface-variant flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-body-md text-ink">อนุญาตให้เลือกหลายคำตอบ</span>
+<span class="font-label-sm text-ink-muted">ผู้ใช้สามารถเลือกได้มากกว่า 1 ข้อ</span>
+</div>
+<div class="relative inline-block w-12 h-6 transition duration-200 ease-in-out">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-ink appearance-none cursor-pointer z-10 transition-all duration-300 transform translate-x-0 checked:translate-x-6" id="toggle-multiple" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-variant cursor-pointer border border-ink" for="toggle-multiple"></label>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-md pt-xl">
+<button class="flex-1 bg-primary-container text-ink h-14 rounded-full border border-ink font-button-md hover:bg-opacity-90 active:scale-95 transition-all" type="submit">
+                    Create
+                </button>
+<button class="flex-1 bg-transparent text-ink h-14 rounded-full border border-ink font-button-md hover:bg-surface-container transition-all active:scale-95" type="button">
+                    Cancel
+                </button>
+</div>
+</form>
+<!-- Aesthetic Info Section (Bento Inspired) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="bg-secondary-container p-xl rounded-lg border border-ink space-y-sm">
+<span class="material-symbols-outlined text-on-secondary-container">group</span>
+<p class="font-label-sm uppercase tracking-wider text-on-secondary-container">ความโปร่งใส</p>
+<h3 class="font-body-lg text-ink">ผลโหวตแบบเรียลไทม์</h3>
+<p class="font-body-md text-on-secondary-container/80">ทุกคนในกลุ่มจะเห็นคะแนนโหวตที่อัปเดตทันทีเมื่อมีการเปลี่ยนแปลง</p>
+</div>
+<div class="bg-tertiary-container p-xl rounded-lg border border-ink space-y-sm">
+<span class="material-symbols-outlined text-on-tertiary-container">history</span>
+<p class="font-label-sm uppercase tracking-wider text-on-tertiary-container">ประวัติ</p>
+<h3 class="font-body-lg text-ink">จัดเก็บในคลังไฟล์</h3>
+<p class="font-body-md text-on-tertiary-container/80">สรุปผลโหวตจะถูกบันทึกไว้ในโฟลเดอร์ของกลุ่มโดยอัตโนมัติ</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Hidden on desktop via design shell logic) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-md py-sm bg-surface-white dark:bg-surface-dark md:hidden">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-lg py-xs hover:bg-surface-container-low transition-all active:scale-90">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-sm text-label-sm">แชท</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-lg py-xs hover:bg-surface-container-low transition-all active:scale-90">
+<span class="material-symbols-outlined">call</span>
+<span class="font-label-sm text-label-sm">โทร</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container dark:bg-on-primary-fixed-variant text-on-primary-container dark:text-primary-fixed rounded-full px-lg py-xs active:scale-90 duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+<span class="font-label-sm text-label-sm">สร้าง</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-lg py-xs hover:bg-surface-container-low transition-all active:scale-90">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-sm text-label-sm">คลังไฟล์</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-lg py-xs hover:bg-surface-container-low transition-all active:scale-90">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">ตั้งค่า</span>
+</div>
+</nav>
+<script>
+        let optionCount = 2;
+        
+        function addOption() {
+            if(optionCount >= 10) return;
+            optionCount++;
+            
+            const container = document.getElementById('options-list');
+            const div = document.createElement('div');
+            div.className = 'flex items-center gap-sm group opacity-0 translate-y-2 transition-all duration-300';
+            div.innerHTML = `
+                <input type="text" placeholder="ตัวเลือกที่ ${optionCount}" 
+                       class="flex-1 h-[50px] px-xl py-sm rounded-full border border-ink bg-surface-white focus:ring-2 focus:ring-primary-container outline-none transition-all">
+                <button type="button" onclick="removeOption(this)" class="material-symbols-outlined text-ink-muted hover:text-error transition-colors">cancel</button>
+            `;
+            container.appendChild(div);
+            
+            // Animation trigger
+            setTimeout(() => {
+                div.classList.remove('opacity-0', 'translate-y-2');
+            }, 10);
+        }
+
+        function removeOption(btn) {
+            if(optionCount <= 2) return;
+            const parent = btn.parentElement;
+            parent.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                parent.remove();
+                optionCount--;
+                updatePlaceholders();
+            }, 300);
+        }
+
+        function updatePlaceholders() {
+            const inputs = document.querySelectorAll('#options-list input');
+            inputs.forEach((input, index) => {
+                input.placeholder = `ตัวเลือกที่ ${index + 1}`;
+            });
+        }
+    </script>
+</body></html>

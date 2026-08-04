@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ตั้งค่าการจัดการกลุ่ม - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#faf3e9",
+                    "inverse-primary": "#3de273",
+                    "surface-tint": "#006d2f",
+                    "secondary": "#4f6448",
+                    "surface": "#fff8f0",
+                    "outline-variant": "#bbcbb9",
+                    "on-tertiary-container": "#004694",
+                    "inverse-surface": "#33302a",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "on-primary": "#ffffff",
+                    "outline": "#6c7b6b",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#d1eac6",
+                    "primary-fixed-dim": "#3de273",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#93b8ff",
+                    "primary-fixed": "#66ff8e",
+                    "on-surface": "#1e1b16",
+                    "surface-dim": "#e0d9d0",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "on-surface-variant": "#3c4a3d",
+                    "secondary-fixed": "#d1eac6",
+                    "primary-container": "#25d366",
+                    "on-primary-fixed-variant": "#005322",
+                    "on-primary-container": "#005523",
+                    "tertiary-fixed": "#d7e2ff",
+                    "surface-bright": "#fff8f0",
+                    "ink": "#1c1e21",
+                    "on-secondary-container": "#556a4d",
+                    "surface-container-high": "#eee7dd",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#002109",
+                    "background": "#fff8f0",
+                    "surface-container-highest": "#e8e2d8",
+                    "surface-white": "#ffffff",
+                    "tertiary": "#005cbd",
+                    "surface-variant": "#e8e2d8",
+                    "surface-container": "#f4ede3",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-dark": "#000000",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#1e1b16",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "on-secondary-fixed": "#0d200a",
+                    "error": "#ba1a1a",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#001b3f",
+                    "ink-muted": "#5e5e5e",
+                    "on-error-container": "#93000a",
+                    "primary": "#006d2f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xxl": "32px",
+                    "sm": "12px",
+                    "md": "16px",
+                    "lg": "20px",
+                    "base": "4px",
+                    "xl": "24px",
+                    "huge": "80px",
+                    "xs": "8px"
+            },
+            "fontFamily": {
+                    "button-md": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "display-md": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "display-lg": ["Prompt"]
+            },
+            "fontSize": {
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #fff8f0;
+            color: #1c1e21;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #25d366;
+        }
+        .toggle-checkbox:checked + .toggle-label .toggle-dot {
+            transform: translateX(100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bbcbb9;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<nav class="bg-surface border-b border-outline-variant flex justify-between items-center w-full px-xl h-20 fixed top-0 z-50">
+<div class="flex items-center gap-md">
+<button class="p-xs hover:bg-surface-container-low transition-colors duration-200 rounded-full">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="text-display-md font-display-md text-primary">การจัดการกลุ่ม</h1>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer p-xs hover:bg-surface-container-low rounded-full">qr_code_scanner</span>
+<span class="material-symbols-outlined text-primary cursor-pointer p-xs hover:bg-surface-container-low rounded-full">more_vert</span>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<main class="pt-32 pb-huge px-xl md:pl-96 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-xxl">
+<!-- Sidebar Navigation (Desktop Only) -->
+<aside class="hidden md:flex flex-col h-screen w-80 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant p-md gap-sm z-40">
+<div class="mb-xxl px-md">
+<h2 class="text-display-md font-display-md text-primary">Arm Admin</h2>
+<p class="text-body-md font-body-md text-ink-muted">Enterprise Secure</p>
+</div>
+<nav class="flex flex-col gap-xs flex-1">
+<div class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 transition-all rounded-full cursor-pointer">
+<span class="material-symbols-outlined">chat</span>
+<span class="text-body-md font-body-md">Chats</span>
+</div>
+<div class="flex items-center gap-md bg-primary-container text-on-primary-container rounded-full px-md py-sm scale-98 transition-all cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-body-md font-body-md">Settings</span>
+</div>
+<div class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 transition-all rounded-full cursor-pointer">
+<span class="material-symbols-outlined">security</span>
+<span class="text-body-md font-body-md">Security</span>
+</div>
+<div class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 transition-all rounded-full cursor-pointer">
+<span class="material-symbols-outlined">database</span>
+<span class="text-body-md font-body-md">Data</span>
+</div>
+<div class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 transition-all rounded-full cursor-pointer">
+<span class="material-symbols-outlined">archive</span>
+<span class="text-body-md font-body-md">Archive</span>
+</div>
+</nav>
+<button class="mt-auto mb-md w-full py-md px-xl bg-primary text-on-primary rounded-full font-button-md text-button-md border border-ink hover:opacity-90 transition-opacity">
+                สร้างกลุ่มใหม่
+            </button>
+<div class="flex flex-col gap-xs pt-md border-t border-outline-variant">
+<div class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 transition-all rounded-full cursor-pointer">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="text-body-md font-body-md">Help</span>
+</div>
+<div class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 transition-all rounded-full cursor-pointer">
+<span class="material-symbols-outlined text-error">logout</span>
+<span class="text-body-md font-body-md text-error">Logout</span>
+</div>
+</div>
+</aside>
+<!-- Right Content Section: Bento Grid Layout -->
+<div class="lg:col-span-8 space-y-xl">
+<!-- Permissions Card -->
+<section class="bg-surface-white border border-ink rounded-lg p-xl space-y-xl">
+<h3 class="text-body-lg font-body-lg text-primary flex items-center gap-sm">
+<span class="material-symbols-outlined">gavel</span>
+                    สิทธิ์การใช้งานของสมาชิก
+                </h3>
+<div class="space-y-lg">
+<!-- Toggle: Edit Group Info -->
+<div class="flex items-center justify-between py-sm">
+<div class="space-y-xs">
+<p class="text-body-md font-body-md text-ink">แก้ไขข้อมูลกลุ่ม</p>
+<p class="text-label-sm font-label-sm text-ink-muted">อนุญาตให้สมาชิกเปลี่ยนชื่อกลุ่ม รูปภาพ และคำอธิบาย</p>
+</div>
+<div class="relative inline-block w-12 h-6 transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer z-10 transition-transform duration-200" id="toggle_edit" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-dim cursor-pointer transition-colors duration-200" for="toggle_edit">
+<span class="toggle-dot absolute left-0 inline-block w-6 h-6 rounded-full bg-white shadow transform transition-transform duration-200 border border-outline-variant"></span>
+</label>
+</div>
+</div>
+<div class="h-px bg-outline-variant/30"></div>
+<!-- Toggle: Send Messages -->
+<div class="flex items-center justify-between py-sm">
+<div class="space-y-xs">
+<p class="text-body-md font-body-md text-ink">ส่งข้อความ</p>
+<p class="text-label-sm font-label-sm text-ink-muted">หากปิด สมาชิกทั่วไปจะทำได้เพียงอ่านข้อความเท่านั้น</p>
+</div>
+<div class="relative inline-block w-12 h-6 transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-outline-variant appearance-none cursor-pointer z-10 transition-transform duration-200" id="toggle_send" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-dim cursor-pointer transition-colors duration-200" for="toggle_send">
+<span class="toggle-dot absolute left-0 inline-block w-6 h-6 rounded-full bg-white shadow transform transition-transform duration-200 border border-outline-variant"></span>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Invite Link Card -->
+<section class="bg-surface-white border border-ink rounded-lg p-xl space-y-lg">
+<div class="flex items-center justify-between">
+<h3 class="text-body-lg font-body-lg text-primary flex items-center gap-sm">
+<span class="material-symbols-outlined">link</span>
+                        ลิงก์เชิญเข้าร่วมกลุ่ม
+                    </h3>
+</div>
+<div class="flex items-center gap-md bg-surface-container-low p-md rounded-xl border border-outline-variant">
+<p class="flex-1 text-body-md font-body-md text-ink truncate select-all">https://armchat.link/g/7x8k2P_enterprise</p>
+<button class="px-lg py-sm bg-primary-container text-on-primary-container rounded-full border border-ink font-button-md text-button-md hover:bg-primary transition-colors duration-150">
+                        คัดลอก
+                    </button>
+</div>
+<p class="text-label-sm font-label-sm text-ink-muted">ทุกคนที่มีลิงก์นี้จะสามารถเข้าร่วมกลุ่มได้โดยไม่ต้องขออนุมัติ</p>
+</section>
+<!-- Admin List Card -->
+<section class="bg-surface-white border border-ink rounded-lg overflow-hidden">
+<div class="p-xl border-b border-outline-variant flex justify-between items-center">
+<h3 class="text-body-lg font-body-lg text-primary flex items-center gap-sm">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+                        ผู้ดูแลกลุ่ม (4)
+                    </h3>
+<button class="flex items-center gap-xs text-primary font-button-md text-button-md hover:underline">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+                        เพิ่มผู้ดูแล
+                    </button>
+</div>
+<div class="divide-y divide-outline-variant/30 max-h-[400px] overflow-y-auto custom-scrollbar">
+<!-- Admin Item 1 (Owner) -->
+<div class="flex items-center justify-between p-xl hover:bg-surface-container-lowest transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full border border-ink bg-cover bg-center" data-alt="A professional headshot of a Thai man in his late 30s wearing a clean white shirt, smiling confidently against a minimalist cream background. The portrait has soft, natural lighting and reflects a professional, calm utility aesthetic with high clarity and editorial style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDoECUYXjXLS1w40k9DT0nLkVV85T3Yzryz_CQRbzGuRhdNsM432XsDSCGf_j-TKwkm9aOzz9M-Riv6H9gbPrVQ03B6xlvk5irj2H3HUXcDnauWWupOXRucVvDaOJTAFDWpFDdCC9B8nUITI3C71GQtcvw7YTcwP7M2bW8eUXsTG6n7j0C1q3EEYs-MEeSf9BaEYr9ELb9X2gxZ7K8K0jnMQcg8KFeNcbmk5afRlNzqIOH8NQzfRBQ')"></div>
+<div>
+<p class="text-body-md font-body-md text-ink">ศราวุธ (คุณ)</p>
+<span class="text-label-xs font-label-xs bg-primary-container text-on-primary-container px-xs py-base rounded-full border border-ink">เจ้าของกลุ่ม</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-ink-muted">verified_user</span>
+</div>
+<!-- Admin Item 2 -->
+<div class="flex items-center justify-between p-xl hover:bg-surface-container-lowest transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full border border-ink bg-cover bg-center" data-alt="A professional studio portrait of a Thai woman executive in business attire, looking poised and focused. The background is a flat, warm grey. The image features high contrast, sharp focus, and fits a premium minimalist design system with professional lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA2y6hlhvrDszV5OdEfuSQtUxBCJ2B9YX8daKYaFDORSjUITNj3ZA-Y2W67aXKQkJsN2J-l6PyD-oHg0Q5Ts51I04N3KHRlCl6YcWPdyzUcVJ9LxI-ZfnbuV41tfieGsP1GFGrDRp8xZGIJCAd4Wo_Zqwq-mjowODyDgSIrdDAy3-6xBt5WI9OmKSn4GyMsFfDE7CicWrRXo7MTwBAVgwn8V0zu3Fo_TmDTI-NZTSMoRadMElk1zws')"></div>
+<div>
+<p class="text-body-md font-body-md text-ink">กมลชนก</p>
+<p class="text-label-sm font-label-sm text-ink-muted">ออนไลน์เมื่อ 5 นาทีที่แล้ว</p>
+</div>
+</div>
+<div class="flex items-center gap-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="px-md py-xs text-error font-button-md text-label-sm border border-error rounded-full hover:bg-error/10">ถอนสิทธิ์</button>
+<span class="material-symbols-outlined text-ink-muted cursor-pointer hover:text-ink">more_horiz</span>
+</div>
+</div>
+<!-- Admin Item 3 -->
+<div class="flex items-center justify-between p-xl hover:bg-surface-container-lowest transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full border border-ink bg-cover bg-center" data-alt="A portrait of a young Thai tech professional with modern glasses and a friendly expression. The scene is bright and airy with a minimal white and soft green color palette. The aesthetic is clean, professional, and follows the calm utility brand identity with geometric clarity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB8Q6tVQt6L0QYLw4GXQLU60iI_6ObsDSZenuHRTfqJL1KgbI6PGBsO2okm6Pdf1b83jskuYfTnLHx5npKvnKQ3w0Ot-eddM9GCMVvwNg21hI9lIT_MdvCI0EkPqKOQ0m8WmD0qgEvZWLePaWeGHV5SEAicDtxcmrlpTY0zIu7NC3PZ_3uUYDttra9NtOHdiDm_SVT7WW54Tynkw0zN3V7fEVJi7eSSYlEUYghrz63QX6lWOqxhMtQ')"></div>
+<div>
+<p class="text-body-md font-body-md text-ink">ธนพล</p>
+<p class="text-label-sm font-label-sm text-ink-muted">เพิ่งใช้งานเมื่อสักครู่</p>
+</div>
+</div>
+<div class="flex items-center gap-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="px-md py-xs text-error font-button-md text-label-sm border border-error rounded-full hover:bg-error/10">ถอนสิทธิ์</button>
+<span class="material-symbols-outlined text-ink-muted cursor-pointer hover:text-ink">more_horiz</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Side Panel: Quick Stats/Actions -->
+<div class="lg:col-span-4 space-y-xl">
+<div class="bg-ink text-surface-white rounded-lg p-xl space-y-lg">
+<h4 class="text-body-lg font-body-lg">สถิติกลุ่ม</h4>
+<div class="grid grid-cols-2 gap-md">
+<div class="bg-surface-white/10 p-md rounded-xl border border-white/20">
+<p class="text-label-sm font-label-sm opacity-60">สมาชิกทั้งหมด</p>
+<p class="text-display-md font-display-md">1,248</p>
+</div>
+<div class="bg-surface-white/10 p-md rounded-xl border border-white/20">
+<p class="text-label-sm font-label-sm opacity-60">ข้อความวันนี้</p>
+<p class="text-display-md font-display-md">352</p>
+</div>
+</div>
+<div class="h-px bg-white/20"></div>
+<div class="space-y-md">
+<p class="text-label-sm font-label-sm opacity-80 italic">"ความปลอดภัยคือหัวใจหลักขององค์กร จัดการสิทธิ์ด้วยความรอบคอบ"</p>
+</div>
+</div>
+<!-- Danger Zone -->
+<div class="bg-error-container/20 border border-error rounded-lg p-xl space-y-lg">
+<h4 class="text-body-md font-body-md text-error flex items-center gap-sm">
+<span class="material-symbols-outlined">report_problem</span>
+                    พื้นที่อันตราย
+                </h4>
+<div class="space-y-md">
+<button class="w-full text-left p-md border border-error/50 rounded-xl hover:bg-error/10 transition-colors group">
+<p class="text-body-md font-body-md text-error group-hover:underline">ล้างประวัติการแชททั้งหมด</p>
+<p class="text-label-xs font-label-xs text-ink-muted">ข้อความทั้งหมดจะถูกลบถาวรสำหรับสมาชิกทุกคน</p>
+</button>
+<button class="w-full text-left p-md border border-error rounded-xl bg-error text-white hover:bg-error/90 transition-colors shadow-sm">
+<p class="text-body-md font-body-md text-center">ยุบกลุ่มและลบสมาชิก</p>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm pb-md pt-sm bg-surface border-t border-outline-variant">
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xl py-base scale-95 transition-transform duration-100">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">forum</span>
+<span class="text-label-xs font-label-xs">Chats</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-xl py-base hover:text-primary transition-transform duration-100">
+<span class="material-symbols-outlined">call</span>
+<span class="text-label-xs font-label-xs">Calls</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-xl py-base hover:text-primary transition-transform duration-100">
+<span class="material-symbols-outlined">star</span>
+<span class="text-label-xs font-label-xs">Starred</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-xl py-base hover:text-primary transition-transform duration-100">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-xs font-label-xs">Settings</span>
+</div>
+</nav>
+<script>
+        // Micro-interactions for toggles and UI
+        document.querySelectorAll('.toggle-checkbox').forEach(toggle => {
+            toggle.addEventListener('change', (e) => {
+                const label = e.target.nextElementSibling;
+                if (e.target.checked) {
+                    console.log(`${e.target.id} is enabled`);
+                } else {
+                    console.log(`${e.target.id} is disabled`);
+                }
+            });
+        });
+
+        // Simple Copy to Clipboard animation
+        const copyBtn = document.querySelector('button:contains("คัดลอก")') || document.querySelectorAll('button')[2]; 
+        if(copyBtn) {
+            copyBtn.addEventListener('click', () => {
+                const originalText = copyBtn.innerText;
+                copyBtn.innerText = 'สำเร็จ!';
+                copyBtn.classList.replace('bg-primary-container', 'bg-inverse-primary');
+                setTimeout(() => {
+                    copyBtn.innerText = originalText;
+                    copyBtn.classList.replace('bg-inverse-primary', 'bg-primary-container');
+                }, 2000);
+            });
+        }
+        
+        // Add contains selector polyfill for simple script above
+        window.addEventListener('load', () => {
+             // Interaction logging or small visual pops could go here
+        });
+    </script>
+</body></html>

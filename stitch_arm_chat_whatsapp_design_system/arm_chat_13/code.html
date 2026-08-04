@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#006d2f",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#005523",
+                    "on-primary-fixed": "#002109",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "surface-variant": "#e8e2d8",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#6c7b6b",
+                    "surface-tint": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "background": "#fff8f0",
+                    "surface": "#fff8f0",
+                    "on-primary-fixed-variant": "#005322",
+                    "surface-bright": "#fff8f0",
+                    "surface-container-high": "#eee7dd",
+                    "surface-dark": "#000000",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#d7e2ff",
+                    "tertiary-container": "#93b8ff",
+                    "surface-dim": "#e0d9d0",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#0d200a",
+                    "inverse-on-surface": "#f7f0e6",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e8e2d8",
+                    "on-tertiary-container": "#004694",
+                    "inverse-surface": "#33302a",
+                    "primary-container": "#25d366",
+                    "tertiary": "#005cbd",
+                    "outline-variant": "#bbcbb9",
+                    "surface-white": "#ffffff",
+                    "on-secondary-container": "#556a4d",
+                    "inverse-primary": "#3de273",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#d1eac6",
+                    "ink": "#1c1e21",
+                    "surface-container": "#f4ede3",
+                    "on-tertiary-fixed": "#001b3f",
+                    "on-background": "#1e1b16",
+                    "ink-muted": "#5e5e5e",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#3de273",
+                    "secondary": "#4f6448",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "secondary-fixed": "#d1eac6",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1e1b16",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xxl": "32px",
+                    "base": "4px",
+                    "xs": "8px",
+                    "md": "16px",
+                    "xl": "24px",
+                    "sm": "12px",
+                    "lg": "20px",
+                    "huge": "80px"
+            },
+            "fontFamily": {
+                    "label-xs": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "button-md": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"],
+                    "display-md": ["Prompt"]
+            },
+            "fontSize": {
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #fff8f0;
+            color: #1c1e21;
+        }
+        .map-gradient {
+            background: linear-gradient(to bottom, rgba(255, 248, 240, 0) 70%, #fff8f0 100%);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .pulse-ring {
+            animation: pulse 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.2; }
+            100% { transform: scale(0.8); opacity: 0.5; }
+        }
+    </style>
+</head>
+<body class="flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar (Contextual Header) -->
+<header class="bg-surface border-b border-outline w-full top-0 z-50 flex justify-between items-center px-xl py-md w-full">
+<div class="flex items-center gap-md">
+<button class="cursor-pointer active:scale-95 text-primary">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-display-md text-display-md-mobile md:text-display-md text-primary font-bold">แชร์ตำแหน่ง</h1>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined cursor-pointer active:scale-95 text-ink-muted">search</span>
+<span class="material-symbols-outlined cursor-pointer active:scale-95 text-ink-muted">notifications</span>
+</div>
+</header>
+<main class="flex-1 relative flex flex-col md:flex-row h-full">
+<!-- Map Canvas -->
+<section class="relative w-full h-[512px] md:h-full md:flex-1 bg-surface-container overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A detailed map of a modern urban neighborhood in Bangkok, featuring clean minimalist cartography in soft greens, creams, and whites. The style is professional and editorial, with high contrast between the roads and green parks. Soft daylight lighting enhances the calm, utilitarian aesthetic of the brand palette." data-location="Bangkok" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAgtgA5YTsOdgZWl6n7-tXCSMNAR-1zBdECNETra3ha7F3VBWZxfdOhlK9OUriiwFdAXIfvyK3a4EurYRTR7EzB8Tn33_62jOWRk9Kupeu-pBP1qkLM3nGj_xXZ-46JheQKkK0G_bZoukgxlzVPrdD9IsATjW5Sg0dexJxADmij-P41W0RTS-dKFV0HtTbdX6laMj7a6pY-RL8K1Ci8beudWa_a4R8TjNUrYueSGk9Wi_8mb5Izv5w')"></div>
+<div class="map-gradient absolute inset-0 pointer-events-none"></div>
+<!-- User Pin -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="pulse-ring absolute w-16 h-16 bg-primary-container rounded-full"></div>
+<div class="relative w-12 h-12 rounded-full border-2 border-white overflow-hidden shadow-lg">
+<img class="w-full h-full object-cover" data-alt="Close up profile portrait of a young Thai man with a friendly smile, clean cut hair, in a professional yet approachable setting with soft warm lighting. The image style is bright and high-key, using the brand's cream and white tones for the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgs8dsQu5qlYmPJoR_Ri0a1L-EYcSMxRvkw_28Iojn0vpZtJ_XPG86mQ5cM39ztrOhuHHer3kxYnkICVFPm5mnxfILB6JuAqXmh5wfLVm608CdppZRobZbwTF8MvaD1_eBETEESavf4j070PJg48EnWhML1oUQZUNGg4DwKS9U54ZQixN1Dq74ifF6u9X0kJlUrAotW4CqVqAOGlq0Eanzv4TEcEzgEBnWQAc8qiZCH7A-U8fPX40"/>
+</div>
+<div class="mt-xs bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm text-label-sm shadow-md">
+                    ตำแหน่งปัจจุบันของคุณ
+                </div>
+</div>
+<!-- Floating Friend Pins (Asymmetric positions) -->
+<div class="absolute top-[30%] left-[25%] flex flex-col items-center opacity-90 scale-90">
+<div class="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young Thai woman wearing a minimalist white shirt, standing in a brightly lit modern cafe with blurred green plants in the background. The aesthetic is clean, warm, and professional, adhering to the brand's calm utility style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO5rdiW7iLxSNrKS2HsGfaifNiiOih-T6Uh37h_cGClwAMBFuQqleeNc0zhN_ezjUNjRUtT6aa-wBYefPp00Ra3md1jRHiIKL30KOTZkrZtnRf-ryTGrHDi_c9gRHRU3vodLM1O5udsFNv-H-MJTqjzt8zfxiPulCJ1jPP3rJyveLaIvy7mTivm6_DwJ6faf15Q-EFbetrIyD5SipBtRquVFSC7ZkN0ipHQYKfTt_2sehJ4Pbde9M"/>
+</div>
+</div>
+<div class="absolute bottom-[40%] right-[30%] flex flex-col items-center opacity-90 scale-90">
+<div class="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a Thai male architect in a bright, modern studio. He is smiling warmly, and the lighting is soft and even. The background features minimalist white furniture and cream-colored walls, consistent with the brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKH9s9_Ok4FpcLBI1MdRA238BH6TvtMnEmfi7QYANTYPjroEWNCAbfpHH5ptg0ZJFXv5ZJwqaNPJOc0nOcF0xHl7ytpDymEM5S1vCSPgy7QEN-nm0WfrW53IgWfwgiAdGrJTTHchO9gWCTeyY6n1_xkj9-vcXlKkRhxvsioVBegE76bGoJD852uwJolmm5-9BZqLCPibxE0VD6a_WJNb3djLn7tV-kNK6Hdj6dgF2gDkD_J9qcgOQ"/>
+</div>
+</div>
+</section>
+<!-- Sidebar / Bottom Drawer (Bento Layout) -->
+<aside class="z-20 w-full md:w-[400px] bg-surface flex flex-col shadow-2xl md:shadow-none border-t md:border-t-0 md:border-l border-outline">
+<div class="p-xl space-y-xl overflow-y-auto hide-scrollbar">
+<!-- Section 1: Live Location CTA -->
+<div class="bg-surface-white border border-ink p-lg rounded-lg space-y-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<div>
+<h2 class="font-body-lg text-body-lg text-ink font-semibold">แชร์ตำแหน่งเรียลไทม์</h2>
+<p class="font-body-md text-body-md text-ink-muted">ให้เพื่อนเห็นว่าคุณอยู่ที่ไหน</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-sm">
+<button class="duration-btn flex-1 py-md border border-ink rounded-full font-label-sm text-label-sm hover:bg-secondary-container transition-all active:scale-95" onclick="selectDuration(this)">15 นาที</button>
+<button class="duration-btn flex-1 py-md border border-ink rounded-full font-label-sm text-label-sm hover:bg-secondary-container transition-all active:scale-95" onclick="selectDuration(this)">1 ชั่วโมง</button>
+<button class="duration-btn flex-1 py-md border border-ink rounded-full font-label-sm text-label-sm hover:bg-secondary-container transition-all active:scale-95" onclick="selectDuration(this)">8 ชั่วโมง</button>
+</div>
+<button class="w-full py-md bg-primary-container border border-ink rounded-full font-button-md text-button-md text-ink font-bold active:scale-95 transition-transform">
+                        แชร์ตำแหน่งทันที
+                    </button>
+</div>
+<!-- Section 2: Friends Sharing (List) -->
+<div>
+<h3 class="font-label-sm text-label-sm text-ink-muted uppercase tracking-widest mb-md">เพื่อนที่กำลังแชร์ตำแหน่ง</h3>
+<div class="space-y-sm">
+<!-- Friend Chip 1 -->
+<div class="flex items-center justify-between p-md bg-surface-container-low rounded-lg border border-transparent hover:border-outline transition-colors cursor-pointer active:scale-98">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full border border-ink overflow-hidden bg-white">
+<img class="w-full h-full object-cover" data-alt="Portrait of a friendly Thai person with short hair, in a soft white studio environment. The light is warm and inviting, highlighting a professional and calm expression. The aesthetic is extremely clean and minimalist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMpuPU56eIm1InywhmWlHVZsTTbIlXh2UTK_0t_xH_nt9YTVokKLisBL9nvdNYvELQrRAFIB_x7yYIpFT4ukd0gBh0fmMjv04oJJIKmFbWavmEsszDhKw-XwQa4Rfidtlxqy89_T0lnSt84kMBHebEDZ1-dOFTqhT8P2h31qoTarDMtaXF3U016QFSrVBDyhyUxpc7qe8656JF0_Y2UqennU4-fdQweVsfdowdfxxlkP7SfLec39Y"/>
+</div>
+<div>
+<h4 class="font-body-md text-body-md text-ink font-medium">มายด์ (Mind)</h4>
+<p class="font-label-xs text-label-xs text-primary font-medium flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span> อยู่ห่างออกไป 1.2 กม.
+                                    </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-ink-muted">chevron_right</span>
+</div>
+<!-- Friend Chip 2 -->
+<div class="flex items-center justify-between p-md bg-surface-container-low rounded-lg border border-transparent hover:border-outline transition-colors cursor-pointer active:scale-98">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full border border-ink overflow-hidden bg-white">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young Thai professional in a minimal sage green shirt, set against a soft cream background. The character has a calm, friendly gaze. High-contrast bold lines and a minimalist layout define the photographic style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqww1-czUot6lFR540XaBWChmfZHlgyJi3MhEfMV3facqMXHnm2xv7HZVp8QM-RRaO7bW8wkjwSAZ1v9SKJM_5YzqnD22vFvKYJ9wAI3nLbUuoZV1dF0RxeeWzRCzRjWtiTDA-eEl6FbXIJkn__OJ_2Uv_C2XMw6sJtQyADnd9YCKe9Qfixwdxzlm0m9dlxh1S5bag--B6GDiUZHiAzRFtujTspGLVNvJ-3bDtGr35JmBRT-v8PEc"/>
+</div>
+<div>
+<h4 class="font-body-md text-body-md text-ink font-medium">นนท์ (Non)</h4>
+<p class="font-label-xs text-label-xs text-ink-muted">กำลังเดินทาง • อีก 15 นาทีถึง</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-ink-muted">chevron_right</span>
+</div>
+<!-- Friend Chip 3 -->
+<div class="flex items-center justify-between p-md bg-surface-container-low rounded-lg border border-transparent hover:border-outline transition-colors cursor-pointer active:scale-98">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full border border-ink overflow-hidden bg-white">
+<img class="w-full h-full object-cover" data-alt="Clear portrait of a Thai creative designer with glasses, in a workspace filled with natural soft morning light. The environment is orderly and minimalist, featuring textures of light wood and white surfaces, staying true to the brand's 'Calm Utility' aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaSvtjyK7pz5Zabcm4epzxmMHeFo6l0OlRiqRoBRMEooC8QHUF8XWMOG-wy3YEq7fFB4lpxqamye79LF26CsKJhTnm0jlMvSDKu-0FS_0F-Ox5bbOZI7nYGpRZjeF5xlBu1fblTTr6_kyOKTl4J7q6Z9_2UWSg1STzL6bUQeeE92eNNL0q64eAMYAE4MYxV159vaDauHt6PsWemqJrd7QpnR5dvQb4HrLiC8kFUR_hXq1QzESduoo"/>
+</div>
+<div>
+<h4 class="font-body-md text-body-md text-ink font-medium">กานต์ (Karn)</h4>
+<p class="font-label-xs text-label-xs text-ink-muted">ที่ทำงาน • ล่าสุด 5 นาทีที่แล้ว</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-ink-muted">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Section 3: Nearby Places (Bento Element) -->
+<div class="grid grid-cols-2 gap-md">
+<div class="bg-secondary-container p-lg rounded-lg flex flex-col justify-between aspect-square cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-secondary-container text-4xl">local_cafe</span>
+<p class="font-label-sm text-label-sm text-on-secondary-container font-semibold">ค้นหาร้านกาแฟใกล้เคียง</p>
+</div>
+<div class="bg-tertiary-container p-lg rounded-lg flex flex-col justify-between aspect-square cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-tertiary-container text-4xl">meeting_room</span>
+<p class="font-label-sm text-label-sm text-on-tertiary-container font-semibold">นัดพบที่จุดกึ่งกลาง</p>
+</div>
+</div>
+<div class="h-xl md:hidden"></div> <!-- Mobile padding for bottom nav -->
+</div>
+</aside>
+</main>
+<!-- BottomNavBar (Only Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-md pb-safe border-t border-outline bg-surface rounded-t-xl py-xs">
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-md py-xs active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span>
+<span class="font-label-sm text-label-sm-mobile">แชท</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-md py-xs hover:text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-sm text-label-sm-mobile">กลุ่ม</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-md py-xs hover:text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined">call</span>
+<span class="font-label-sm text-label-sm-mobile">การโทร</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-md py-xs hover:text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm-mobile">ตั้งค่า</span>
+</div>
+</nav>
+<script>
+        function selectDuration(element) {
+            // Reset all buttons
+            document.querySelectorAll('.duration-btn').forEach(btn => {
+                btn.classList.remove('bg-primary-container', 'text-on-primary-container', 'border-primary');
+                btn.classList.add('bg-transparent', 'text-ink', 'border-ink');
+            });
+            // Highlight selected
+            element.classList.remove('bg-transparent', 'text-ink', 'border-ink');
+            element.classList.add('bg-primary-container', 'text-on-primary-container', 'border-ink');
+        }
+
+        // Initialize first button as selected
+        window.onload = () => {
+            selectDuration(document.querySelectorAll('.duration-btn')[1]);
+        };
+    </script>
+</body></html>

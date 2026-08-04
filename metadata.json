@@ -1,0 +1,6 @@
+{
+  "name": "Arm Chat",
+  "description": "Real-time messaging, audio, and video calling application.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

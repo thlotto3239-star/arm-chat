@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "name": "arm-chat",
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "outputDirectory": ".next"
+}

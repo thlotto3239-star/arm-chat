@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="light" lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .fill-icon {
+      font-variation-settings: 'FILL' 1;
+    }
+    body {
+      font-family: 'Prompt', sans-serif;
+      background-color: #000000;
+    }
+    .main-layout {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      height: 100vh;
+      overflow: hidden;
+    }
+    @media (max-width: 1024px) {
+      .main-layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        display: none;
+      }
+    }
+    .video-area {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background-color: #000000;
+    }
+    .dynamic-grid {
+      display: grid;
+      gap: 12px;
+      padding: 16px;
+      flex-grow: 1;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-auto-rows: 1fr;
+      max-height: calc(100vh - 180px);
+    }
+    /* Special sizing for focused element */
+    .focused-tile {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+  </style>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "inverse-on-surface": "#f7f0e6",
+                  "on-secondary-fixed-variant": "#384c32",
+                  "ink-muted": "#5e5e5e",
+                  "surface-variant": "#e8e2d8",
+                  "on-primary": "#ffffff",
+                  "on-tertiary-fixed-variant": "#004590",
+                  "on-secondary": "#ffffff",
+                  "outline": "#6c7b6b",
+                  "secondary-container": "#d1eac6",
+                  "on-primary-fixed": "#002109",
+                  "inverse-surface": "#33302a",
+                  "surface-dark": "#000000",
+                  "surface-dim": "#e0d9d0",
+                  "background": "#fff8f0",
+                  "ink": "#1c1e21",
+                  "on-secondary-fixed": "#0d200a",
+                  "on-background": "#1e1b16",
+                  "on-error": "#ffffff",
+                  "error": "#ba1a1a",
+                  "secondary": "#4f6448",
+                  "surface-white": "#ffffff",
+                  "surface-container-high": "#eee7dd",
+                  "on-tertiary": "#ffffff",
+                  "primary-fixed": "#66ff8e",
+                  "primary": "#006d2f",
+                  "on-error-container": "#93000a",
+                  "surface-container-low": "#faf3e9",
+                  "surface-container-lowest": "#ffffff",
+                  "primary-container": "#25d366",
+                  "on-tertiary-container": "#004694",
+                  "tertiary-container": "#93b8ff",
+                  "inverse-primary": "#3de273",
+                  "on-surface": "#1e1b16",
+                  "secondary-fixed-dim": "#b5cdab",
+                  "surface-container": "#f4ede3",
+                  "surface-bright": "#fff8f0",
+                  "tertiary-fixed": "#d7e2ff",
+                  "on-primary-container": "#005523",
+                  "secondary-fixed": "#d1eac6",
+                  "surface": "#fff8f0",
+                  "surface-container-highest": "#e8e2d8",
+                  "tertiary": "#005cbd",
+                  "on-surface-variant": "#3c4a3d",
+                  "primary-fixed-dim": "#3de273",
+                  "on-secondary-container": "#556a4d",
+                  "outline-variant": "#bbcbb9",
+                  "surface-tint": "#006d2f",
+                  "on-primary-fixed-variant": "#005322",
+                  "tertiary-fixed-dim": "#abc7ff",
+                  "on-tertiary-fixed": "#001b3f",
+                  "error-container": "#ffdad6"
+          },
+          "borderRadius": {
+                  "DEFAULT": "1rem",
+                  "lg": "2rem",
+                  "xl": "3rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "xs": "8px",
+                  "xxl": "32px",
+                  "huge": "80px",
+                  "md": "16px",
+                  "xl": "24px",
+                  "base": "4px",
+                  "sm": "12px",
+                  "lg": "20px"
+          },
+          "fontFamily": {
+                  "button-md": ["Prompt"],
+                  "display-xl": ["Prompt"],
+                  "display-lg": ["Prompt"],
+                  "body-md": ["Prompt"],
+                  "label-xs": ["Prompt"],
+                  "display-xl-mobile": ["Prompt"],
+                  "display-md": ["Prompt"],
+                  "body-lg": ["Prompt"],
+                  "label-sm": ["Prompt"]
+          },
+          "fontSize": {
+                  "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                  "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                  "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                  "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                  "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                  "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                  "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                  "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                  "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-surface-dark text-on-primary antialiased overflow-hidden selection:bg-primary-container">
+<div class="main-layout">
+<!-- Left Side: Video Content -->
+<div class="video-area">
+<!-- Header Info -->
+<header class="p-lg flex justify-between items-start z-10">
+<div class="bg-surface-dark/40 backdrop-blur-md p-md rounded-xl border border-white/10">
+<h1 class="font-body-lg text-body-lg text-white mb-base flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">group</span>
+          การประชุมกลุ่มออกแบบ UI (12 ผู้เข้าร่วม)
+        </h1>
+<div class="flex items-center gap-sm">
+<span class="font-label-sm text-label-sm text-primary-fixed bg-primary/20 px-sm py-1 rounded-full border border-primary/30">Live 00:15:22</span>
+<span class="flex items-center gap-xs font-label-sm text-label-sm text-surface-variant">
+<span class="material-symbols-outlined text-[14px]">signal_cellular_4_bar</span>
+            เสถียรภาพ: ดีเยี่ยม
+          </span>
+</div>
+</div>
+<div class="flex gap-sm"><div class="flex items-center gap-xs bg-primary/20 text-primary-fixed px-md py-xs rounded-full border border-primary/30 font-label-sm"><span class="material-symbols-outlined text-[18px] fill-icon">grid_view</span>โหมดแกลเลอรี</div>
+<button class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-surface-dark/40 hover:bg-surface-dark/80 transition-all">
+<span class="material-symbols-outlined text-white">person_add</span>
+</button>
+<button class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-surface-dark/40 hover:bg-surface-dark/80 transition-all bg-primary-container">
+<span class="material-symbols-outlined text-ink fill-icon">grid_view</span>
+</button>
+</div>
+</header>
+<!-- Main Video Grid -->
+<main class="dynamic-grid overflow-y-auto custom-scrollbar" style="display: grid; gap: 12px; padding: 16px; flex-grow: 1; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; max-height: calc(100vh - 180px);">
+<!-- Focused: Screen Share -->
+<div class="relative group overflow-hidden rounded-xl bg-surface-container-high border-primary-container shadow-lg">
+<img alt="Screen Share Content - Design Mockup" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB50v891sf3XY58a3AykaRQtXQ-noJ9c2VSMPPxyyfADM3C_ywlJLTG1r0Py7iKFXrPD0dG8qdOWe7dkXSNTgSGjmaFpsZKKVBQsL72xH4t_TekHX6i3FwA4eDa2sKimCmL-qXXdKPArwSOV4zVxsVPWvP-b9ENNdxeHf_P9fqiQHU9QH0sV8zonOLVsWbUyUylwXf41RXZNSscC5Za2h_4pxVH0z61AQs0TfyVN-9oG8rgixP2wuY"/>
+<div class="absolute inset-0 bg-black/10"></div>
+<div class="absolute bottom-md left-md bg-black/60 backdrop-blur-sm px-md py-xs rounded-full flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-fixed text-md">present_to_all</span>
+<span class="font-body-md text-body-md text-white">คุณ กำลังแชร์หน้าจอ</span>
+</div>
+<div class="absolute top-md right-md bg-primary-container text-on-primary-container px-sm py-xs rounded-full font-label-xs flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">visibility</span> จอหลัก
+        </div>
+</div>
+<!-- Active Speaker: Arm -->
+<div class="relative group overflow-hidden rounded-xl bg-surface-container-high border border-white/10 ring-2 ring-primary">
+<img alt="Arm" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoGvQmXgSldc_NwOrfGGREB1Jcw61CI6zZaOevsnFr6DGQKhurrVL8fpQfC8jstHYiIwlGbhEwHsgDdHYhvB9UpEx7LZL8QDUtPLrIo8Ey60LFd4LuvCIEdbYjAcjUEJkiGXppsr08OLQNKKis7VDrtKjqz-gldiWonmzjBcRQ1Li8PgmdFhRpCLjJqWokxrVjtkQtsAjOcg4AMP_LEH_OTMCA9N-ix9nbNjEVablkx-YC_ebn-As"/>
+<div class="absolute bottom-md left-md bg-black/60 backdrop-blur-sm px-md py-xs rounded-full flex items-center gap-sm">
+<span class="font-body-md text-body-md text-white">คุณอาร์ม (Arm)</span>
+<span class="material-symbols-outlined text-primary-fixed text-md fill-icon">mic</span>
+</div>
+</div>
+<!-- Participant: Noei -->
+<div class="relative group overflow-hidden rounded-xl bg-surface-container-high border border-white/10">
+<img alt="Noei" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLVjZ-x27JxYGXKZCXIcSWJltrXG3389RFnk5R8zW5PkgC321XH77qv1d-Xa8WbhcMAWtZRUxprZUDSAt1YPRXawGCN7frcfl1_IaBFiOKlbYFgMkt6CEuA9HfIa-9OHh1v-S2OPc3IL7o6CUlqCGUbDYv0XtuB86EbNRGjKtVpxuDs7vOWRqo3XoKdsCtnNvShO9PQvEMLd5yJCrTrIe-JmfCTi_h8QRF1MrgAcr8fb28VU_WaUE"/>
+<div class="absolute bottom-md left-md bg-black/60 backdrop-blur-sm px-md py-xs rounded-full flex items-center gap-sm">
+<span class="font-body-md text-body-md text-white">เนย (Noei)</span>
+<span class="material-symbols-outlined text-error text-md">mic_off</span>
+</div>
+</div>
+<!-- Participant: Ton -->
+<div class="relative group overflow-hidden rounded-xl bg-surface-container-high border border-white/10">
+<img alt="Ton" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7Bj27MhASvBNN83c4LJaTsG-1gpYkQfp0FtScfNwcHHZAHgBK67EPOm1qWKvInd6X8rm-VQZ5mkOYB8V6XsVMzdyJO2eeyXOXI2IX1idRBaPdACLEeX6Ifi5ZgfUUYTjVHxZU-INQNvNX3oaCYQqeLecSXKLt6gvGwCmQmFCI44FJutZPPEu_q-4p5cFA4JwuxTA1dFWn4xXejaVE4tJDmmbUg4mUq5F3R7TG4IQtPxO5p2Qr7D4"/>
+<div class="absolute bottom-md left-md bg-black/60 backdrop-blur-sm px-md py-xs rounded-full flex items-center gap-sm">
+<span class="font-body-md text-body-md text-white">ต้น (Ton)</span>
+<span class="material-symbols-outlined text-primary-fixed text-md fill-icon">mic</span>
+</div>
+</div>
+<!-- Placeholder Participants for 10+ meeting -->
+<div class="relative group overflow-hidden rounded-xl bg-surface-container-highest/20 border border-white/5 flex items-center justify-center">
+<div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-display-md">K</div>
+<div class="absolute bottom-md left-md bg-black/60 backdrop-blur-sm px-md py-xs rounded-full">
+<span class="font-body-md text-body-md text-white">Kwan</span>
+</div>
+</div>
+<div class="relative group overflow-hidden rounded-xl bg-surface-container-highest/20 border border-white/5 flex items-center justify-center">
+<div class="w-16 h-16 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center text-display-md">P</div>
+<div class="absolute bottom-md left-md bg-black/60 backdrop-blur-sm px-md py-xs rounded-full">
+<span class="font-body-md text-body-md text-white">Ploy</span>
+</div>
+</div>
+<div class="relative group overflow-hidden rounded-xl bg-surface-container-highest/20 border border-white/5 flex items-center justify-center">
+<div class="w-16 h-16 rounded-full bg-primary-container/40 text-white flex items-center justify-center text-display-md">+6</div>
+<div class="absolute bottom-md left-md bg-black/60 backdrop-blur-sm px-md py-xs rounded-full">
+<span class="font-body-md text-body-md text-white">คนอื่น ๆ</span>
+</div>
+</div>
+<div class="relative group overflow-hidden rounded-xl bg-surface-container-highest/20 border border-white/5 flex items-center justify-center"><div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-display-md">M</div><div class="absolute bottom-md left-md bg-black/60 backdrop-blur-sm px-md py-xs rounded-full"><span class="font-body-md text-body-md text-white">Mew</span></div></div><div class="relative group overflow-hidden rounded-xl bg-surface-container-highest/20 border border-white/5 flex items-center justify-center"><div class="w-16 h-16 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center text-display-md">J</div><div class="absolute bottom-md left-md bg-black/60 backdrop-blur-sm px-md py-xs rounded-full"><span class="font-body-md text-body-md text-white">James</span></div></div></main>
+<!-- Control Bar -->
+<nav class="p-lg flex justify-center">
+<div class="flex items-center gap-md bg-surface-dark/80 backdrop-blur-xl border border-white/10 px-xl py-md rounded-full shadow-2xl">
+<button class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center bg-white/5 hover:bg-white/10 transition-all group" id="toggleMic" onclick="toggleControl('toggleMic', 'mic', 'mic_off')">
+<span class="material-symbols-outlined text-white group-active:scale-90 transition-transform">mic</span>
+</button>
+<button class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center bg-white/5 hover:bg-white/10 transition-all group" id="toggleCam" onclick="toggleControl('toggleCam', 'videocam', 'videocam_off')">
+<span class="material-symbols-outlined text-white group-active:scale-90 transition-transform">videocam</span>
+</button>
+<button class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center bg-primary-container text-ink transition-all group">
+<span class="material-symbols-outlined fill-icon group-active:scale-90 transition-transform">present_to_all</span>
+</button>
+<button class="relative w-14 h-14 rounded-full border border-white/20 flex items-center justify-center bg-white/5 hover:bg-white/10 transition-all group" onclick="toggleSidebarTab('chat')">
+<span class="material-symbols-outlined text-white group-active:scale-90 transition-transform">chat</span>
+<span class="absolute -top-1 -right-1 w-5 h-5 bg-primary-container text-ink font-label-xs text-label-xs flex items-center justify-center rounded-full border-2 border-surface-dark">3</span>
+</button>
+<button class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center bg-white/5 hover:bg-white/10 transition-all group" onclick="toggleSidebarTab('participants')">
+<span class="material-symbols-outlined text-white group-active:scale-90 transition-transform">group</span>
+</button>
+<div class="h-8 w-[1px] bg-white/10 mx-xs"></div>
+<button class="w-14 h-14 rounded-full flex items-center justify-center bg-error hover:bg-error/90 transition-all shadow-lg shadow-error/20 group">
+<span class="material-symbols-outlined text-white fill-icon group-active:rotate-45 transition-transform">call_end</span>
+</button>
+</div>
+</nav>
+</div>
+<!-- Right Side: Sidebar (Chat/Participants) -->
+<aside class="sidebar bg-surface-white border-l border-outline/20 flex flex-col h-full overflow-hidden">
+<!-- Tabs -->
+<div class="flex border-b border-outline/10">
+<button class="flex-1 py-lg font-body-md text-ink border-b-2 border-primary-container" id="tabChat" onclick="showTab('chat')">แชท</button>
+<button class="flex-1 py-lg font-body-md text-ink-muted hover:text-ink transition-colors" id="tabPeople" onclick="showTab('participants')">ผู้เข้าร่วม (12)</button>
+</div>
+<!-- Tab Content: Chat -->
+<div class="flex-1 flex flex-col p-lg overflow-hidden" id="contentChat">
+<div class="flex-1 space-y-lg overflow-y-auto pr-sm custom-scrollbar">
+<div class="flex flex-col items-start max-w-[85%]">
+<span class="font-label-sm text-label-sm text-ink-muted mb-xs">คุณอาร์ม</span>
+<div class="bg-surface-container-low p-md rounded-tr-lg rounded-br-lg rounded-bl-lg text-ink font-body-md text-body-md border border-outline/10">
+              สวัสดีทุกคน เห็นหน้าจอที่แชร์ไหมครับ?
+            </div>
+</div>
+<div class="flex flex-col items-end w-full">
+<div class="bg-secondary-container p-md rounded-tl-lg rounded-br-lg rounded-bl-lg text-on-secondary-container font-body-md text-body-md border border-secondary/10">
+              เห็นชัดเจนครับ สวยมาก!
+            </div>
+<span class="font-label-xs text-label-xs text-ink-muted mt-base">14:02</span>
+</div>
+<div class="flex flex-col items-start max-w-[85%]">
+<span class="font-label-sm text-label-sm text-ink-muted mb-xs">ต้น (Ton)</span>
+<div class="bg-surface-container-low p-md rounded-tr-lg rounded-br-lg rounded-bl-lg text-ink font-body-md text-body-md border border-outline/10">
+              ฟอนต์ Prompt ตัวหนาดูมีพลังดีนะ
+            </div>
+</div>
+</div>
+<div class="mt-lg">
+<div class="relative">
+<input class="w-full h-[50px] rounded-full border border-outline/30 bg-surface-container-lowest px-xl font-body-md focus:ring-2 focus:ring-primary-container outline-none transition-all pr-[50px]" placeholder="พิมพ์ข้อความที่นี่..." type="text"/>
+<button class="absolute right-xs top-xs w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-ink hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-md">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Tab Content: Participants (Hidden by default) -->
+<div class="hidden flex-1 flex flex-col p-lg overflow-hidden" id="contentParticipants">
+<div class="flex-1 space-y-md overflow-y-auto pr-sm custom-scrollbar">
+<!-- Participant List Item -->
+<div class="flex items-center justify-between p-sm hover:bg-surface-container-low rounded-lg transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">A</div>
+<span class="font-body-md text-ink">คุณอาร์ม (ผู้จัด)</span>
+</div>
+<div class="flex gap-xs text-ink-muted">
+<span class="material-symbols-outlined text-primary fill-icon">mic</span>
+<span class="material-symbols-outlined">videocam</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-sm hover:bg-surface-container-low rounded-lg transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold">N</div>
+<span class="font-body-md text-ink">เนย (Noei)</span>
+</div>
+<div class="flex gap-xs text-ink-muted">
+<span class="material-symbols-outlined text-error">mic_off</span>
+<span class="material-symbols-outlined">videocam</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-sm hover:bg-surface-container-low rounded-lg transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container font-bold">T</div>
+<span class="font-body-md text-ink">ต้น (Ton)</span>
+</div>
+<div class="flex gap-xs text-ink-muted">
+<span class="material-symbols-outlined text-primary fill-icon">mic</span>
+<span class="material-symbols-outlined">videocam</span>
+</div>
+</div>
+<!-- More list items... -->
+<div class="flex items-center justify-between p-sm hover:bg-surface-container-low rounded-lg transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-ink-muted font-bold">K</div>
+<span class="font-body-md text-ink">Kwan</span>
+</div>
+<div class="flex gap-xs text-ink-muted">
+<span class="material-symbols-outlined">mic_off</span>
+<span class="material-symbols-outlined">videocam_off</span>
+</div>
+</div>
+</div>
+<button class="mt-lg w-full py-md rounded-xl border border-primary text-primary font-button-md hover:bg-primary/5 transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined">person_add</span> เชิญเพื่อน
+          </button>
+</div>
+</aside>
+</div>
+<script>
+    function toggleControl(btnId, iconOn, iconOff) {
+      const btn = document.getElementById(btnId);
+      const icon = btn.querySelector('.material-symbols-outlined');
+      const isOn = icon.textContent === iconOn;
+      
+      if (isOn) {
+        icon.textContent = iconOff;
+        btn.classList.remove('bg-white/5');
+        btn.classList.add('bg-error/20', 'border-error/50');
+        icon.classList.add('text-error');
+      } else {
+        icon.textContent = iconOn;
+        btn.classList.remove('bg-error/20', 'border-error/50');
+        btn.classList.add('bg-white/5');
+        icon.classList.remove('text-error');
+        icon.classList.add('text-white');
+      }
+    }
+
+    function showTab(tabName) {
+      const chatContent = document.getElementById('contentChat');
+      const participantsContent = document.getElementById('contentParticipants');
+      const chatTab = document.getElementById('tabChat');
+      const peopleTab = document.getElementById('tabPeople');
+
+      if (tabName === 'chat') {
+        chatContent.classList.remove('hidden');
+        participantsContent.classList.add('hidden');
+        chatTab.classList.add('border-primary-container', 'text-ink');
+        chatTab.classList.remove('text-ink-muted');
+        peopleTab.classList.remove('border-primary-container', 'text-ink');
+        peopleTab.classList.add('text-ink-muted');
+      } else {
+        chatContent.classList.add('hidden');
+        participantsContent.classList.remove('hidden');
+        peopleTab.classList.add('border-primary-container', 'text-ink');
+        peopleTab.classList.remove('text-ink-muted');
+        chatTab.classList.remove('border-primary-container', 'text-ink');
+        chatTab.classList.add('text-ink-muted');
+      }
+    }
+
+    function toggleSidebarTab(tabName) {
+        // In mobile/tablet view, this could toggle the entire sidebar visibility
+        // For desktop, it just switches tabs
+        showTab(tabName);
+    }
+  </script>
+</body></html>

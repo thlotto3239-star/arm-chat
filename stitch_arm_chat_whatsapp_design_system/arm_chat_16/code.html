@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="light" lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chat Backup &amp; Storage - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#006d2f",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#005523",
+                    "on-primary-fixed": "#002109",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "surface-variant": "#e8e2d8",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#6c7b6b",
+                    "surface-tint": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "background": "#fff8f0",
+                    "surface": "#fff8f0",
+                    "on-primary-fixed-variant": "#005322",
+                    "surface-bright": "#fff8f0",
+                    "surface-container-high": "#eee7dd",
+                    "surface-dark": "#000000",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#d7e2ff",
+                    "tertiary-container": "#93b8ff",
+                    "surface-dim": "#e0d9d0",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e8e2d8",
+                    "on-tertiary-container": "#004694",
+                    "inverse-surface": "#33302a",
+                    "primary-container": "#25d366",
+                    "tertiary": "#005cbd",
+                    "outline-variant": "#bbcbb9",
+                    "surface-white": "#ffffff",
+                    "on-secondary-container": "#556a4d",
+                    "inverse-primary": "#3de273",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#d1eac6",
+                    "ink": "#1c1e21",
+                    "surface-container": "#f4ede3",
+                    "on-tertiary-fixed": "#001b3f",
+                    "on-background": "#1e1b16",
+                    "ink-muted": "#5e5e5e",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#3de273",
+                    "secondary": "#4f6448",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "secondary-fixed": "#d1eac6",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1e1b16",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xxl": "32px",
+                    "base": "4px",
+                    "xs": "8px",
+                    "md": "16px",
+                    "xl": "24px",
+                    "sm": "12px",
+                    "lg": "20px",
+                    "huge": "80px"
+            },
+            "fontFamily": {
+                    "label-xs": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "button-md": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"],
+                    "display-md": ["Prompt"]
+            },
+            "fontSize": {
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #fff8f0;
+            color: #1c1e21;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .flat-card {
+            border: 1px solid #1c1e21;
+        }
+    </style>
+</head>
+<body class="bg-surface selection:bg-primary-container">
+<!-- Top Navigation Bar -->
+<nav class="bg-surface border-b border-outline w-full top-0 z-50 sticky">
+<div class="flex justify-between items-center px-xl py-md w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary cursor-pointer active:scale-95" data-icon="arrow_back">arrow_back</button>
+<span class="font-display-md text-display-md-mobile md:text-display-md text-primary">การสำรองข้อมูล</span>
+</div>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-ink-muted cursor-pointer hover:bg-surface-container-high transition-colors p-xs rounded-full" data-icon="help_outline">help_outline</span>
+</div>
+</div>
+</nav>
+<main class="max-w-4xl mx-auto px-xl py-huge space-y-huge">
+<!-- Storage Usage Section -->
+<section>
+<h2 class="font-display-md text-display-md-mobile md:text-display-md text-primary mb-xl">พื้นที่จัดเก็บข้อมูล</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+<!-- Large Bento Storage Card -->
+<div class="md:col-span-2 bg-surface-white flat-card p-xl rounded-lg flex flex-col justify-between h-full">
+<div class="flex justify-between items-start mb-xl">
+<div>
+<p class="font-body-md text-ink-muted">พื้นที่ที่ใช้ไป</p>
+<p class="font-display-md text-primary">12.4 GB / 15 GB</p>
+</div>
+<span class="material-symbols-outlined text-primary scale-125" data-icon="cloud_done">cloud_done</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container h-xs rounded-full mb-md overflow-hidden">
+<div class="bg-primary-container h-full border-r border-ink" style="width: 82%"></div>
+</div>
+<div class="flex justify-between items-center">
+<p class="font-label-sm text-ink-muted">สำรองข้อมูลล่าสุด: เมื่อวานนี้ 22:45</p>
+<button class="bg-primary-container text-ink px-xl py-sm rounded-full border border-ink font-button-md active:scale-95 transition-transform">
+                            สำรองข้อมูลทันที
+                        </button>
+</div>
+</div>
+<!-- Manage Tool Card -->
+<div class="bg-surface-dark p-xl rounded-lg flex flex-col justify-between text-on-primary">
+<div class="space-y-sm">
+<span class="material-symbols-outlined text-primary-container text-4xl" data-icon="cleaning_services">cleaning_services</span>
+<h3 class="font-body-lg text-white">จัดการพื้นที่</h3>
+<p class="font-label-sm text-surface-variant">ลบไฟล์ขนาดใหญ่หรือล้างแชทเก่าเพื่อเพิ่มพื้นที่ว่าง</p>
+</div>
+<button class="mt-xl border border-white text-white px-xl py-sm rounded-full font-button-md hover:bg-white hover:text-ink transition-colors active:scale-95">
+                        ตรวจสอบไฟล์
+                    </button>
+</div>
+</div>
+</section>
+<!-- Backup Settings Section -->
+<section class="space-y-xl">
+<h2 class="font-display-md text-display-md-mobile md:text-display-md text-primary">การตั้งค่าการสำรอง</h2>
+<div class="space-y-sm">
+<!-- Setting Row: Destination -->
+<div class="bg-surface-white flat-card p-md rounded-lg flex items-center justify-between hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="google_drive">add_to_drive</span>
+</div>
+<div>
+<p class="font-body-lg">ตำแหน่งการสำรอง</p>
+<p class="font-label-sm text-ink-muted">Google Drive (arm.workspace@gmail.com)</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-ink-muted group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Setting Row: Frequency -->
+<div class="bg-surface-white flat-card p-md rounded-lg flex flex-col gap-xl">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="update">update</span>
+</div>
+<p class="font-body-lg">ความถี่ในการสำรองข้อมูล</p>
+</div>
+<div class="grid grid-cols-3 gap-md">
+<button class="backup-freq-btn border border-ink p-sm rounded-full font-label-sm text-center active:scale-95 transition-all bg-primary-container text-ink" onclick="selectFreq(this)">รายวัน</button>
+<button class="backup-freq-btn border border-ink p-sm rounded-full font-label-sm text-center active:scale-95 transition-all bg-transparent text-ink" onclick="selectFreq(this)">รายสัปดาห์</button>
+<button class="backup-freq-btn border border-ink p-sm rounded-full font-label-sm text-center active:scale-95 transition-all bg-transparent text-ink" onclick="selectFreq(this)">รายเดือน</button>
+</div>
+</div>
+<!-- Setting Row: Advanced -->
+<div class="bg-surface-white flat-card p-md rounded-lg flex items-center justify-between hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="database">database</span>
+</div>
+<div>
+<p class="font-body-lg">ปลายทางสำรอง (ขั้นสูง)</p>
+<p class="font-label-sm text-ink-muted">Supabase Storage / Private Server</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-ink-muted group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Media Options -->
+<section class="space-y-xl">
+<h2 class="font-display-md text-display-md-mobile md:text-display-md text-primary">ไฟล์สื่อ</h2>
+<div class="bg-surface-white flat-card rounded-lg overflow-hidden divide-y divide-ink">
+<div class="p-md flex items-center justify-between">
+<div>
+<p class="font-body-lg">รวมวิดีโอในการสำรอง</p>
+<p class="font-label-sm text-ink-muted">จะใช้พื้นที่เพิ่มขึ้นประมาณ 4.2 GB</p>
+</div>
+<!-- Custom Toggle -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container border border-ink"></div>
+</label>
+</div>
+<div class="p-md flex items-center justify-between">
+<div>
+<p class="font-body-lg">สำรองข้อมูลผ่านเครือข่ายมือถือ</p>
+<p class="font-label-sm text-ink-muted">อาจมีค่าบริการข้อมูลเพิ่มเติม</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container border border-ink"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Danger Zone -->
+<section class="pt-xl">
+<div class="bg-error-container p-xl rounded-lg border border-error flex items-center justify-between">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-error" data-icon="delete_forever">delete_forever</span>
+<div>
+<p class="font-body-lg text-on-error-container">ลบข้อมูลสำรองทั้งหมด</p>
+<p class="font-label-sm text-on-error-container opacity-80">การดำเนินการนี้ไม่สามารถย้อนกลับได้</p>
+</div>
+</div>
+<button class="bg-error text-white px-xl py-sm rounded-full font-button-md active:scale-95">
+                    ลบทิ้ง
+                </button>
+</div>
+</section>
+</main>
+<!-- Side Navigation Bar (Desktop) -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-lowest border-r border-outline p-md z-[60]">
+<div class="mb-huge">
+<span class="font-display-md text-display-md text-primary">Arm Chat</span>
+<div class="flex items-center gap-sm mt-md">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-ink">
+<img class="w-full h-full object-cover" data-alt="A professional close-up studio portrait of a friendly Thai man with short black hair wearing a simple modern linen shirt. He is smiling warmly against a soft cream-colored background. The lighting is bright and even, capturing a high-end clean aesthetic consistent with a modern tech application user profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA41S64vKKkHo2z_a9-5Kr1VJTgKh2OmixSOZO5gMvDX6BSyPtzGN6MKGCxEVkBVyThBlqA_9fYGcWr7q6DGipYfrCjvHJm1zUeqi0IYEP913c6jo-YbwAsrc8oHu2BAH7dj53EqaY0bspP4CPK1HBC6wulUcSjtSKVb1bVEFvpp4WRb9VSXRW-3OWtWcOW0yeXV5zY9jq3LVD2hAewicPxBgbq45Zmny3igAEtpFnrLZasZllzTus"/>
+</div>
+<div>
+<p class="font-body-md text-primary leading-none">ผู้ใช้</p>
+<p class="font-label-sm text-ink-muted">ออนไลน์</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-sm">
+<div class="flex items-center gap-md p-md text-ink-muted hover:bg-surface-container rounded-full cursor-pointer transition-all active:scale-98">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="font-body-md">แชท</span>
+</div>
+<div class="flex items-center gap-md p-md text-ink-muted hover:bg-surface-container rounded-full cursor-pointer transition-all active:scale-98">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-body-md">กลุ่ม</span>
+</div>
+<div class="flex items-center gap-md p-md text-ink-muted hover:bg-surface-container rounded-full cursor-pointer transition-all active:scale-98">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+<span class="font-body-md">การโทร</span>
+</div>
+<div class="flex items-center gap-md p-md bg-primary-container text-on-primary-container rounded-full cursor-pointer transition-all active:scale-98">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md">ตั้งค่า</span>
+</div>
+</nav>
+<button class="mt-auto bg-primary-container text-on-primary-container border border-ink p-md rounded-full font-button-md flex items-center justify-center gap-sm hover:bg-secondary-container transition-all active:scale-98">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+            สร้างแชทใหม่
+        </button>
+</aside>
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-md pb-safe bg-surface border-t border-outline h-16">
+<div class="flex flex-col items-center justify-center text-ink-muted px-md py-xs hover:text-primary transition-transform active:scale-90">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="font-label-sm text-label-sm-mobile">แชท</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-md py-xs hover:text-primary transition-transform active:scale-90">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-sm text-label-sm-mobile">กลุ่ม</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-md py-xs hover:text-primary transition-transform active:scale-90">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+<span class="font-label-sm text-label-sm-mobile">การโทร</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-md py-xs transition-transform active:scale-90">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm-mobile">ตั้งค่า</span>
+</div>
+</nav>
+<script>
+        function selectFreq(btn) {
+            document.querySelectorAll('.backup-freq-btn').forEach(b => {
+                b.classList.remove('bg-primary-container');
+                b.classList.add('bg-transparent');
+            });
+            btn.classList.remove('bg-transparent');
+            btn.classList.add('bg-primary-container');
+        }
+
+        // Add a subtle micro-interaction for the storage card
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.flat-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-2px)';
+                    card.style.transition = 'transform 0.2s ease-out';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body></html>

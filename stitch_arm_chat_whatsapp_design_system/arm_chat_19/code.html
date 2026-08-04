@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="light" lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ศูนย์ความช่วยเหลือ - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#006d2f",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#005523",
+                    "on-primary-fixed": "#002109",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "surface-variant": "#e8e2d8",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#6c7b6b",
+                    "surface-tint": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "background": "#fff8f0",
+                    "surface": "#fff8f0",
+                    "on-primary-fixed-variant": "#005322",
+                    "surface-bright": "#fff8f0",
+                    "surface-container-high": "#eee7dd",
+                    "surface-dark": "#000000",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#d7e2ff",
+                    "tertiary-container": "#93b8ff",
+                    "surface-dim": "#e0d9d0",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e8e2d8",
+                    "on-tertiary-container": "#004694",
+                    "inverse-surface": "#33302a",
+                    "primary-container": "#25d366",
+                    "tertiary": "#005cbd",
+                    "outline-variant": "#bbcbb9",
+                    "surface-white": "#ffffff",
+                    "on-secondary-container": "#556a4d",
+                    "inverse-primary": "#3de273",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#d1eac6",
+                    "ink": "#1c1e21",
+                    "surface-container": "#f4ede3",
+                    "on-tertiary-fixed": "#001b3f",
+                    "on-background": "#1e1b16",
+                    "ink-muted": "#5e5e5e",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#3de273",
+                    "secondary": "#4f6448",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "secondary-fixed": "#d1eac6",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1e1b16",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xxl": "32px",
+                    "base": "4px",
+                    "xs": "8px",
+                    "md": "16px",
+                    "xl": "24px",
+                    "sm": "12px",
+                    "lg": "20px",
+                    "huge": "80px"
+            },
+            "fontFamily": {
+                    "label-xs": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "button-md": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"],
+                    "display-md": ["Prompt"]
+            },
+            "fontSize": {
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Prompt', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .active-pill {
+            background-color: #25d366;
+            border: 1px solid #1c1e21;
+        }
+    </style>
+</head>
+<body class="bg-background text-ink selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<header class="bg-surface border-b border-outline w-full top-0 sticky z-50">
+<div class="flex justify-between items-center px-xl py-md w-full max-w-[1440px] mx-auto">
+<div class="font-display-md text-display-md-mobile md:text-display-md text-primary font-bold cursor-pointer active:scale-95 transition-transform">
+                Arm Chat
+            </div>
+<div class="flex items-center gap-md">
+<div class="hidden md:flex items-center bg-surface-container-low rounded-full px-md py-xs border border-outline w-64">
+<span class="material-symbols-outlined text-ink-muted mr-xs">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-full text-ink" placeholder="ค้นหาหัวข้อช่วยเหลือ..." type="text"/>
+</div>
+<div class="flex gap-sm">
+<button class="p-xs hover:bg-surface-container-high transition-colors rounded-full material-symbols-outlined text-primary cursor-pointer active:scale-95">notifications</button>
+<button class="md:hidden p-xs hover:bg-surface-container-high transition-colors rounded-full material-symbols-outlined text-primary cursor-pointer active:scale-95">search</button>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-xl pb-huge">
+<!-- Hero Section / Header -->
+<section class="py-huge text-center">
+<h1 class="font-display-xl-mobile md:font-display-xl text-display-xl-mobile md:text-display-xl mb-xl text-ink">สวัสดี เราจะช่วยคุณ<br/>ได้อย่างไรบ้าง?</h1>
+<p class="font-body-lg text-body-lg text-ink-muted max-w-2xl mx-auto mb-xxl">
+                ค้นหาคำถามที่พบบ่อย จัดการบัญชีของคุณ หรือติดต่อทีมสนับสนุนของเราได้ตลอด 24 ชั่วโมง
+            </p>
+<div class="flex flex-wrap justify-center gap-md">
+<button class="px-xl py-md bg-primary-container text-ink font-button-md text-button-md rounded-full border border-ink hover:scale-105 active:scale-95 transition-all flex items-center gap-xs">
+<span class="material-symbols-outlined">report</span>
+                    รายงานปัญหาการใช้งาน
+                </button>
+<button class="px-xl py-md bg-transparent text-ink font-button-md text-button-md rounded-full border border-ink hover:bg-surface-container-high active:scale-95 transition-all">
+                    ติดต่อเจ้าหน้าที่
+                </button>
+</div>
+</section>
+<!-- Main Content Categories (Bento Style) -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-xl">
+<!-- FAQ Card (Large) -->
+<div class="md:col-span-8 bg-surface-white border border-ink rounded-lg p-xl flex flex-col justify-between min-h-[400px]">
+<div>
+<div class="flex justify-between items-start mb-xl">
+<div>
+<h2 class="font-display-md text-[32px] text-primary mb-xs">FAQ</h2>
+<p class="font-body-md text-ink-muted">คำถามที่พบบ่อยเกี่ยวกับ Arm Chat</p>
+</div>
+<span class="material-symbols-outlined text-display-md opacity-20">help_center</span>
+</div>
+<div class="space-y-md">
+<div class="group flex items-center justify-between p-md bg-surface-container-low rounded-xl border border-transparent hover:border-primary transition-all cursor-pointer">
+<span class="font-body-md">วิธีการเปลี่ยนรหัสผ่านใหม่?</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+<div class="group flex items-center justify-between p-md bg-surface-container-low rounded-xl border border-transparent hover:border-primary transition-all cursor-pointer">
+<span class="font-body-md">ความปลอดภัยของการแชทแบบเข้ารหัสคืออะไร?</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+<div class="group flex items-center justify-between p-md bg-surface-container-low rounded-xl border border-transparent hover:border-primary transition-all cursor-pointer">
+<span class="font-body-md">การตั้งค่าความเป็นส่วนตัวของกลุ่ม</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+<button class="mt-xl text-primary font-button-md text-button-md self-start hover:underline flex items-center gap-xs">
+                    ดูหัวข้อทั้งหมด 
+                    <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+<!-- Contact Us Card (Tall) -->
+<div class="md:col-span-4 bg-primary text-on-primary rounded-lg p-xl flex flex-col">
+<h2 class="font-display-md text-[32px] mb-md">Contact Us</h2>
+<p class="font-body-md mb-xl opacity-90">หากคุณต้องการความช่วยเหลือเพิ่มเติม ทีมงานของเราพร้อมดูแลคุณ</p>
+<div class="flex flex-col gap-lg flex-grow">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-on-primary/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<p class="font-label-sm opacity-70">Email Support</p>
+<p class="font-body-md">support@armchat.th</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-on-primary/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div>
+<p class="font-label-sm opacity-70">Hotline</p>
+<p class="font-body-md">+66 2 123 4567</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-on-primary/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">forum</span>
+</div>
+<div>
+<p class="font-label-sm opacity-70">Live Chat</p>
+<p class="font-body-md">พร้อมให้บริการในแอป</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Privacy Policy (Square/Wide) -->
+<div class="md:col-span-6 bg-surface-container rounded-lg p-xl border border-outline-variant hover:border-ink transition-colors cursor-pointer group">
+<div class="flex items-center justify-between mb-md">
+<h2 class="font-display-md text-[28px]">Privacy Policy</h2>
+<span class="material-symbols-outlined text-primary group-hover:rotate-12 transition-transform">verified_user</span>
+</div>
+<p class="font-body-md text-ink-muted mb-lg">เรียนรู้วิธีการที่เราปกป้องข้อมูลส่วนบุคคลของคุณและความเป็นส่วนตัวในการสื่อสาร</p>
+<div class="flex items-center gap-xs text-primary font-medium">
+                    อ่านนโยบายความเป็นส่วนตัว
+                    <span class="material-symbols-outlined text-sm">north_east</span>
+</div>
+</div>
+<!-- Terms of Service (Square/Wide) -->
+<div class="md:col-span-6 bg-surface-container rounded-lg p-xl border border-outline-variant hover:border-ink transition-colors cursor-pointer group">
+<div class="flex items-center justify-between mb-md">
+<h2 class="font-display-md text-[28px]">Terms of Service</h2>
+<span class="material-symbols-outlined text-primary group-hover:rotate-12 transition-transform">gavel</span>
+</div>
+<p class="font-body-md text-ink-muted mb-lg">ข้อกำหนดและเงื่อนไขในการใช้งานบริการ Arm Chat เพื่อความเข้าใจที่ตรงกัน</p>
+<div class="flex items-center gap-xs text-primary font-medium">
+                    อ่านเงื่อนไขการใช้งาน
+                    <span class="material-symbols-outlined text-sm">north_east</span>
+</div>
+</div>
+</section>
+<!-- Newsletter or Call to Action (Inverted Style) -->
+<section class="mt-huge bg-ink text-surface-white rounded-xl p-xl md:p-xxl flex flex-col md:flex-row items-center justify-between gap-xl">
+<div class="max-w-xl text-center md:text-left">
+<h3 class="font-display-md text-[32px] mb-xs">ติดตามข่าวสารล่าสุด</h3>
+<p class="font-body-md opacity-70">รับข่าวสารเกี่ยวกับการอัปเดตความปลอดภัยและฟีเจอร์ใหม่ๆ ก่อนใคร</p>
+</div>
+<div class="flex w-full md:w-auto gap-sm">
+<input class="bg-surface-white/10 border border-surface-white/20 rounded-full px-xl py-md focus:ring-primary focus:border-primary flex-grow md:w-80 text-white" placeholder="อีเมลของคุณ" type="email"/>
+<button class="bg-primary text-on-primary px-xl py-md rounded-full font-button-md whitespace-nowrap active:scale-95 transition-transform">สมัครรับข่าวสาร</button>
+</div>
+</section>
+</main>
+<!-- Footer Area (Matching Navigation Structure but as a Site Footer) -->
+<footer class="bg-surface-container-lowest border-t border-outline py-huge">
+<div class="max-w-[1200px] mx-auto px-xl">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-xl mb-huge">
+<div class="col-span-2 md:col-span-1">
+<h4 class="font-display-md text-[24px] text-primary mb-md">Arm Chat</h4>
+<p class="font-body-md text-ink-muted">แอปพลิเคชันแชทที่เน้นความปลอดภัยและเรียบง่าย สำหรับทุกคน</p>
+</div>
+<div>
+<h5 class="font-bold mb-md">แอปพลิเคชัน</h5>
+<ul class="space-y-sm text-ink-muted font-body-md">
+<li class="hover:text-primary cursor-pointer">ดาวน์โหลด</li>
+<li class="hover:text-primary cursor-pointer">ฟีเจอร์</li>
+<li class="hover:text-primary cursor-pointer">ความปลอดภัย</li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-md">ช่วยเหลือ</h5>
+<ul class="space-y-sm text-ink-muted font-body-md">
+<li class="hover:text-primary cursor-pointer">ศูนย์ความช่วยเหลือ</li>
+<li class="hover:text-primary cursor-pointer">รายงานปัญหา</li>
+<li class="hover:text-primary cursor-pointer">ติดต่อเรา</li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-md">กฎหมาย</h5>
+<ul class="space-y-sm text-ink-muted font-body-md">
+<li class="hover:text-primary cursor-pointer">ข้อกำหนดการใช้งาน</li>
+<li class="hover:text-primary cursor-pointer">นโยบายความเป็นส่วนตัว</li>
+<li class="hover:text-primary cursor-pointer">คุกกี้</li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-xl border-t border-outline-variant gap-md">
+<p class="font-label-sm text-ink-muted">© 2024 Arm Chat. สงวนลิขสิทธิ์</p>
+<div class="flex gap-lg">
+<span class="material-symbols-outlined text-ink-muted cursor-pointer hover:text-primary">public</span>
+<span class="material-symbols-outlined text-ink-muted cursor-pointer hover:text-primary">share</span>
+<span class="material-symbols-outlined text-ink-muted cursor-pointer hover:text-primary">group</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-md pb-safe h-20 border-t border-outline bg-surface">
+<a class="flex flex-col items-center justify-center text-ink-muted px-md py-xs active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-sm text-label-sm-mobile mt-1">แชท</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-muted px-md py-xs active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-sm text-label-sm-mobile mt-1">กลุ่ม</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-muted px-md py-xs active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">call</span>
+<span class="font-label-sm text-label-sm-mobile mt-1">การโทร</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-md py-xs active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm-mobile mt-1">ตั้งค่า</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for search focus
+        const searchInput = document.querySelector('input[type="text"]');
+        const searchContainer = searchInput?.parentElement;
+
+        if (searchInput && searchContainer) {
+            searchInput.addEventListener('focus', () => {
+                searchContainer.classList.add('ring-2', 'ring-primary', 'border-primary');
+            });
+            searchInput.addEventListener('blur', () => {
+                searchContainer.classList.remove('ring-2', 'ring-primary', 'border-primary');
+            });
+        }
+    </script>
+</body></html>

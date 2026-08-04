@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>การยืนยันตัวตนสองชั้น - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #fff8f0;
+        }
+        .security-grid-pattern {
+            background-image: radial-gradient(#6c7b6b 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            opacity: 0.1;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "surface-container-low": "#faf3e9",
+                "inverse-primary": "#3de273",
+                "surface-tint": "#006d2f",
+                "secondary": "#4f6448",
+                "surface": "#fff8f0",
+                "outline-variant": "#bbcbb9",
+                "on-tertiary-container": "#004694",
+                "inverse-surface": "#33302a",
+                "tertiary-fixed-dim": "#abc7ff",
+                "on-primary": "#ffffff",
+                "outline": "#6c7b6b",
+                "on-error": "#ffffff",
+                "secondary-container": "#d1eac6",
+                "primary-fixed-dim": "#3de273",
+                "error-container": "#ffdad6",
+                "tertiary-container": "#93b8ff",
+                "primary-fixed": "#66ff8e",
+                "on-surface": "#1e1b16",
+                "surface-dim": "#e0d9d0",
+                "on-tertiary-fixed-variant": "#004590",
+                "secondary-fixed-dim": "#b5cdab",
+                "on-surface-variant": "#3c4a3d",
+                "secondary-fixed": "#d1eac6",
+                "primary-container": "#25d366",
+                "on-primary-fixed-variant": "#005322",
+                "on-primary-container": "#005523",
+                "tertiary-fixed": "#d7e2ff",
+                "surface-bright": "#fff8f0",
+                "ink": "#1c1e21",
+                "on-secondary-container": "#556a4d",
+                "surface-container-high": "#eee7dd",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-fixed": "#002109",
+                "background": "#fff8f0",
+                "surface-container": "#f4ede3",
+                "inverse-on-surface": "#f7f0e6",
+                "surface-dark": "#000000",
+                "on-tertiary": "#ffffff",
+                "on-background": "#1e1b16",
+                "on-secondary-fixed-variant": "#384c32",
+                "on-secondary-fixed": "#0d200a",
+                "error": "#ba1a1a",
+                "on-secondary": "#ffffff",
+                "on-tertiary-fixed": "#001b3f",
+                "ink-muted": "#5e5e5e",
+                "on-error-container": "#93000a",
+                "primary": "#006d2f"
+              },
+              "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+              },
+              "spacing": {
+                "xxl": "32px",
+                "sm": "12px",
+                "md": "16px",
+                "lg": "20px",
+                "base": "4px",
+                "xl": "24px",
+                "huge": "80px",
+                "xs": "8px"
+              },
+              "fontFamily": {
+                "button-md": ["Prompt"],
+                "display-xl": ["Prompt"],
+                "label-xs": ["Prompt"],
+                "body-md": ["Prompt"],
+                "body-lg": ["Prompt"],
+                "display-md": ["Prompt"],
+                "display-xl-mobile": ["Prompt"],
+                "label-sm": ["Prompt"],
+                "display-lg": ["Prompt"]
+              },
+              "fontSize": {
+                "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-x-hidden">
+<!-- Sidebar (Desktop Only) -->
+<nav class="hidden md:flex flex-col h-screen w-80 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant z-50 p-md gap-sm">
+<div class="mb-huge px-md">
+<h1 class="text-display-md font-display-md text-primary">Arm Chat</h1>
+<p class="text-label-sm font-label-sm text-secondary opacity-70">Enterprise Secure</p>
+</div>
+<div class="flex flex-col gap-xs flex-grow">
+<a class="flex items-center gap-md text-secondary hover:bg-secondary-container/50 px-md py-sm rounded-full transition-all duration-150" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="text-body-md font-body-md">Chats</span>
+</a>
+<a class="flex items-center gap-md bg-primary-container text-on-primary-container rounded-full px-md py-sm scale-98 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="text-body-md font-body-md">Security</span>
+</a>
+<a class="flex items-center gap-md text-secondary hover:bg-secondary-container/50 px-md py-sm rounded-full transition-all duration-150" href="#">
+<span class="material-symbols-outlined">database</span>
+<span class="text-body-md font-body-md">Data</span>
+</a>
+<a class="flex items-center gap-md text-secondary hover:bg-secondary-container/50 px-md py-sm rounded-full transition-all duration-150" href="#">
+<span class="material-symbols-outlined">devices_other</span>
+<span class="text-body-md font-body-md">Devices</span>
+</a>
+<a class="flex items-center gap-md text-secondary hover:bg-secondary-container/50 px-md py-sm rounded-full transition-all duration-150" href="#">
+<span class="material-symbols-outlined">archive</span>
+<span class="text-body-md font-body-md">Archive</span>
+</a>
+<a class="flex items-center gap-md text-secondary hover:bg-secondary-container/50 px-md py-sm rounded-full transition-all duration-150" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-body-md font-body-md">Settings</span>
+</a>
+</div>
+<div class="pt-md border-t border-outline-variant flex flex-col gap-xs">
+<button class="w-full bg-primary text-on-primary py-md rounded-full font-button-md text-button-md border border-ink hover:opacity-90 transition-opacity mb-sm">
+                New Group
+            </button>
+<a class="flex items-center gap-md text-secondary px-md py-sm rounded-full hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="text-body-md font-body-md">Help</span>
+</a>
+<a class="flex items-center gap-md text-secondary px-md py-sm rounded-full hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-body-md font-body-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="md:ml-80 min-h-screen relative pb-huge md:pb-0">
+<!-- Mobile Top Bar -->
+<header class="md:hidden flex justify-between items-center w-full px-xl h-20 bg-surface border-b border-outline-variant sticky top-0 z-40">
+<h1 class="text-display-md font-display-md text-primary">Arm Chat</h1>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-primary">qr_code_scanner</span>
+<span class="material-symbols-outlined text-primary">more_vert</span>
+</div>
+</header>
+<div class="max-w-4xl mx-auto px-xl py-huge">
+<!-- Header Section -->
+<section class="mb-huge relative overflow-hidden rounded-lg bg-surface-white border border-ink p-xl flex flex-col md:flex-row items-center gap-xl">
+<div class="absolute inset-0 security-grid-pattern pointer-events-none"></div>
+<div class="relative z-10 flex-shrink-0">
+<div class="w-32 h-32 rounded-full bg-primary-container flex items-center justify-center border border-ink">
+<span class="material-symbols-outlined text-6xl text-on-primary-container" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+</div>
+<div class="relative z-10 text-center md:text-left">
+<h2 class="text-display-lg font-display-lg text-ink mb-sm">การยืนยันตัวตนสองชั้น</h2>
+<p class="text-body-lg font-body-lg text-ink-muted">เพิ่มความปลอดภัยอีกระดับให้กับบัญชีของคุณด้วยการกำหนดรหัส PIN และอีเมลสำรองสำหรับการกู้คืนข้อมูล</p>
+</div>
+</section>
+<!-- Main Security Controls: Bento Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+<!-- Toggle Card -->
+<div class="bg-surface-white border border-ink p-xl rounded-lg flex flex-col justify-between group transition-all duration-300 hover:border-primary">
+<div class="flex justify-between items-start mb-xl">
+<div class="p-md bg-secondary-container rounded-full border border-ink">
+<span class="material-symbols-outlined text-ink" style="font-variation-settings: 'FILL' 1;">lock_open</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="twoStepToggle" type="checkbox" value=""/>
+<div class="w-14 h-8 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-1 after:left-1 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary border border-ink"></div>
+</div>
+</div>
+<div>
+<h3 class="text-display-md-mobile md:text-display-md font-display-md text-ink mb-xs">สถานะปัจจุบัน</h3>
+<p class="text-primary font-bold text-body-lg mb-sm" id="statusLabel">เปิดใช้งานแล้ว</p>
+<p class="text-body-md text-ink-muted">เมื่อเปิดใช้งาน คุณจะต้องกรอกรหัส PIN เมื่อลงทะเบียนหมายเลขโทรศัพท์กับ Arm Chat ในอนาคต</p>
+</div>
+</div>
+<!-- Change PIN Card -->
+<div class="bg-surface-white border border-ink p-xl rounded-lg flex flex-col gap-xl hover:bg-surface-container-low transition-colors cursor-pointer" onclick="openModal('pinModal')">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full border border-ink bg-white flex items-center justify-center">
+<span class="material-symbols-outlined text-ink">password</span>
+</div>
+<h3 class="text-body-lg font-bold text-ink">เปลี่ยนรหัส PIN</h3>
+</div>
+<p class="text-body-md text-ink-muted">เปลี่ยนรหัสผ่าน 6 หลักที่คุณใช้สำหรับการยืนยันตัวตน เพื่อความปลอดภัยสูงสุดควรเปลี่ยนเป็นประจำ</p>
+<div class="mt-auto">
+<button class="w-full border border-ink py-md rounded-full font-button-md text-button-md flex items-center justify-center gap-sm hover:bg-ink hover:text-white transition-all">
+                            ตั้งค่ารหัสใหม่
+                            <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Recovery Email Card -->
+<div class="bg-surface-white border border-ink p-xl rounded-lg flex flex-col gap-xl hover:bg-surface-container-low transition-colors cursor-pointer md:col-span-2" onclick="openModal('emailModal')">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full border border-ink bg-white flex items-center justify-center">
+<span class="material-symbols-outlined text-ink">alternate_email</span>
+</div>
+<div>
+<h3 class="text-body-lg font-bold text-ink">ที่อยู่อีเมลสำรอง</h3>
+<p class="text-label-sm font-label-sm text-primary">p*******@example.com (ยืนยันแล้ว)</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-ink">edit</span>
+</div>
+<p class="text-body-md text-ink-muted">ใช้อีเมลนี้เพื่อรีเซ็ตรหัส PIN หากคุณลืมรหัสผ่าน สิ่งนี้สำคัญมากในการเข้าถึงบัญชีของคุณหากเกิดปัญหา</p>
+</div>
+<!-- Security Tip Card -->
+<div class="bg-ink text-on-primary border border-ink p-xl rounded-lg md:col-span-2 relative overflow-hidden">
+<div class="absolute -right-10 -bottom-10 opacity-20 rotate-12">
+<span class="material-symbols-outlined text-[160px]">verified</span>
+</div>
+<div class="relative z-10">
+<h4 class="text-body-lg font-bold mb-sm">คำแนะนำเพื่อความปลอดภัย</h4>
+<ul class="space-y-sm text-body-md opacity-80">
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary-fixed">check_circle</span>
+                                อย่าแชร์รหัส PIN 6 หลักของคุณกับใครก็ตาม
+                            </li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary-fixed">check_circle</span>
+                                Arm Chat จะไม่ถามรหัส PIN ของคุณผ่านการแชทหรืออีเมล
+                            </li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary-fixed">check_circle</span>
+                                ตรวจสอบให้แน่ใจว่าคุณสามารถเข้าถึงอีเมลสำรองได้ตลอดเวลา
+                            </li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Navigation Bar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm pb-md pt-sm bg-surface border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-ink-muted px-xl py-base" href="#">
+<span class="material-symbols-outlined">forum</span>
+<span class="text-label-xs font-label-xs">Chats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-muted px-xl py-base" href="#">
+<span class="material-symbols-outlined">call</span>
+<span class="text-label-xs font-label-xs">Calls</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xl py-base scale-95 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="text-label-xs font-label-xs">Security</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-muted px-xl py-base" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-label-xs font-label-xs">Archive</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-muted px-xl py-base" href="#">
+<span class="material-symbols-outlined">file_export</span>
+<span class="text-label-xs font-label-xs">Settings</span>
+</a>
+</nav>
+<!-- Modals (Overlay) -->
+<div class="fixed inset-0 z-[100] bg-ink/50 backdrop-blur-sm hidden items-center justify-center p-xl" id="pinModal">
+<div class="bg-surface-white border border-ink rounded-lg w-full max-w-md p-xl animate-in fade-in zoom-in duration-200">
+<div class="flex justify-between items-center mb-xl">
+<h3 class="text-display-md-mobile font-display-md text-ink">เปลี่ยนรหัส PIN</h3>
+<button class="material-symbols-outlined text-ink p-xs" onclick="closeModal('pinModal')">close</button>
+</div>
+<div class="space-y-xl">
+<div>
+<label class="block text-label-sm font-label-sm text-ink-muted mb-xs">รหัส PIN ใหม่ (6 หลัก)</label>
+<input class="w-full h-14 bg-white border border-ink px-xl rounded-full focus:ring-2 focus:ring-primary focus:outline-none text-center text-2xl tracking-widest placeholder:text-ink-muted" placeholder="······" type="password"/>
+</div>
+<div>
+<label class="block text-label-sm font-label-sm text-ink-muted mb-xs">ยืนยันรหัส PIN ใหม่อีกครั้ง</label>
+<input class="w-full h-14 bg-white border border-ink px-xl rounded-full focus:ring-2 focus:ring-primary focus:outline-none text-center text-2xl tracking-widest placeholder:text-ink-muted" placeholder="······" type="password"/>
+</div>
+<button class="w-full bg-primary text-on-primary py-md rounded-full font-button-md text-button-md border border-ink hover:opacity-90 transition-all">
+                    บันทึกรหัส PIN
+                </button>
+</div>
+</div>
+</div>
+<div class="fixed inset-0 z-[100] bg-ink/50 backdrop-blur-sm hidden items-center justify-center p-xl" id="emailModal">
+<div class="bg-surface-white border border-ink rounded-lg w-full max-w-md p-xl animate-in fade-in zoom-in duration-200">
+<div class="flex justify-between items-center mb-xl">
+<h3 class="text-display-md-mobile font-display-md text-ink">อีเมลสำรอง</h3>
+<button class="material-symbols-outlined text-ink p-xs" onclick="closeModal('emailModal')">close</button>
+</div>
+<div class="space-y-xl">
+<p class="text-body-md text-ink-muted">ระบุอีเมลที่คุณสามารถใช้รีเซ็ตรหัส PIN ได้หากเกิดข้อผิดพลาด</p>
+<div>
+<label class="block text-label-sm font-label-sm text-ink-muted mb-xs">อีเมลสำรอง</label>
+<input class="w-full h-14 bg-white border border-ink px-xl rounded-full focus:ring-2 focus:ring-primary focus:outline-none placeholder:text-ink-muted" placeholder="example@email.com" type="email"/>
+</div>
+<div class="flex gap-md">
+<button class="flex-1 border border-ink py-md rounded-full font-button-md text-button-md hover:bg-surface-container-low transition-all" onclick="closeModal('emailModal')">
+                        ยกเลิก
+                    </button>
+<button class="flex-1 bg-primary text-on-primary py-md rounded-full font-button-md text-button-md border border-ink hover:opacity-90 transition-all">
+                        อัปเดตอีเมล
+                    </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        const toggle = document.getElementById('twoStepToggle');
+        const statusLabel = document.getElementById('statusLabel');
+        
+        toggle.addEventListener('change', function() {
+            if (this.checked) {
+                statusLabel.textContent = 'เปิดใช้งานแล้ว';
+                statusLabel.classList.remove('text-error');
+                statusLabel.classList.add('text-primary');
+            } else {
+                statusLabel.textContent = 'ปิดการใช้งาน';
+                statusLabel.classList.remove('text-primary');
+                statusLabel.classList.add('text-error');
+            }
+        });
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            if (event.target.id === 'pinModal' || event.target.id === 'emailModal') {
+                closeModal(event.target.id);
+            }
+        }
+    </script>
+</body></html>

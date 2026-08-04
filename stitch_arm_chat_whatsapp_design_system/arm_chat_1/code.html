@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Arm Chat - เข้าสู่ระบบ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#f7f0e6",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "ink-muted": "#5e5e5e",
+                    "surface-variant": "#e8e2d8",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "on-secondary": "#ffffff",
+                    "outline": "#6c7b6b",
+                    "secondary-container": "#d1eac6",
+                    "on-primary-fixed": "#002109",
+                    "inverse-surface": "#33302a",
+                    "surface-dark": "#000000",
+                    "surface-dim": "#e0d9d0",
+                    "background": "#fff8f0",
+                    "ink": "#1c1e21",
+                    "on-secondary-fixed": "#0d200a",
+                    "on-background": "#1e1b16",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "secondary": "#4f6448",
+                    "surface-white": "#ffffff",
+                    "surface-container-high": "#eee7dd",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#66ff8e",
+                    "primary": "#006d2f",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#faf3e9",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#25d366",
+                    "on-tertiary-container": "#004694",
+                    "tertiary-container": "#93b8ff",
+                    "inverse-primary": "#3de273",
+                    "on-surface": "#1e1b16",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "surface-container": "#f4ede3",
+                    "surface-bright": "#fff8f0",
+                    "tertiary-fixed": "#d7e2ff",
+                    "on-primary-container": "#005523",
+                    "secondary-fixed": "#d1eac6",
+                    "surface": "#fff8f0",
+                    "surface-container-highest": "#e8e2d8",
+                    "tertiary": "#005cbd",
+                    "on-surface-variant": "#3c4a3d",
+                    "primary-fixed-dim": "#3de273",
+                    "on-secondary-container": "#556a4d",
+                    "outline-variant": "#bbcbb9",
+                    "surface-tint": "#006d2f",
+                    "on-primary-fixed-variant": "#005322",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "on-tertiary-fixed": "#001b3f",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "xxl": "32px",
+                    "huge": "80px",
+                    "md": "16px",
+                    "xl": "24px",
+                    "base": "4px",
+                    "sm": "12px",
+                    "lg": "20px"
+            },
+            "fontFamily": {
+                    "button-md": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"],
+                    "display-md": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "label-sm": ["Prompt"]
+            },
+            "fontSize": {
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        font-family: 'Prompt', sans-serif;
+        background-color: #fff8f0; /* surface color from config */
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .verification-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #e8e2d8;
+        transition: background-color 0.3s ease;
+      }
+      .verification-dot.active {
+        background-color: #25d366;
+      }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-md overflow-hidden relative">
+<!-- Decorative Elements (Atmospheric Background) -->
+<div class="absolute inset-0 pointer-events-none opacity-20 overflow-hidden">
+<div class="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-primary-container blur-[100px]"></div>
+<div class="absolute top-1/2 -right-20 w-80 h-80 rounded-full bg-secondary-container blur-[100px]"></div>
+</div>
+<!-- Main Auth Container -->
+<main class="relative z-10 w-full max-w-[480px]">
+<!-- Brand Identity -->
+<div class="text-center mb-xl">
+<h1 class="font-display-md text-display-md text-primary mb-xs">Arm Chat</h1>
+<p class="font-body-md text-body-md text-ink-muted">เชื่อมต่อถึงกันด้วยความเรียบง่าย</p>
+</div>
+<!-- Auth Card -->
+<div class="bg-surface-white rounded-[25px] border border-ink p-xxl shadow-sm transition-all duration-500 overflow-hidden" id="auth-card">
+<!-- Step 1: Initial Login Options -->
+<div class="space-y-lg block" id="step-options">
+<h2 class="font-body-lg text-body-lg text-ink text-center mb-xl">ยินดีต้อนรับกลับมา</h2>
+<button class="w-full h-[54px] flex items-center justify-center gap-md border border-ink rounded-full bg-surface-white hover:bg-surface-container transition-all active:scale-[0.98]">
+<img alt="Google Logo" class="w-6 h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs0E34diAO_GEdPK6gGhJPmIPQHSnheudXV_g0zeV5ksXbM_o1amcGh8ZOF-mcdcTjjKOpbT_McLKK4OZmgyrq-MU7G1IEybJPQnXREKWQWdTHgUtKikH2Z3q48bzKAF82U6m3ud1AcUDjO8HiIfXepCm_Hp2ajcUmATAz4MIYaA_nXk1EmK1tiiLOQ_hkYYPTY14Ov468I2knj8W4PpxXKwOsSOWlLzL4DnuGYYCJhOpwEN-oF_g"/>
+<span class="font-button-md text-button-md text-ink">ดำเนินการต่อด้วย Google</span>
+</button>
+<div class="flex items-center gap-md py-md">
+<div class="h-[1px] flex-grow bg-surface-variant"></div>
+<span class="font-label-sm text-label-sm text-ink-muted">หรือ</span>
+<div class="h-[1px] flex-grow bg-surface-variant"></div>
+</div>
+<button class="w-full h-[54px] flex items-center justify-center gap-md border border-ink rounded-full bg-primary-container hover:opacity-90 transition-all active:scale-[0.98]" onclick="showPhoneForm()">
+<span class="material-symbols-outlined text-ink">call</span>
+<span class="font-button-md text-button-md text-ink">เข้าสู่ระบบด้วยเบอร์โทรศัพท์</span>
+</button>
+</div>
+<!-- Step 2: Phone Number Input -->
+<div class="space-y-lg hidden" id="step-phone">
+<div class="flex items-center mb-lg">
+<button class="p-xs -ml-xs hover:bg-surface-container rounded-full transition-all" onclick="showOptions()">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="font-body-lg text-body-lg text-ink ml-xs">เบอร์โทรศัพท์ของคุณ</h2>
+</div>
+<div class="space-y-base">
+<label class="font-label-sm text-label-sm text-ink-muted px-md">หมายเลขโทรศัพท์</label>
+<div class="relative">
+<span class="absolute left-md top-1/2 -translate-y-1/2 font-body-md text-ink">+66</span>
+<input class="w-full h-[54px] pl-[64px] pr-md rounded-full border border-ink bg-surface-white font-body-md focus:ring-2 focus:ring-primary-container focus:outline-none transition-all" id="phone-input" placeholder="81-234-5678" type="tel"/>
+</div>
+</div>
+<p class="font-label-sm text-label-sm text-ink-muted text-center italic">
+                    "รหัสจะแสดงในแอปเพื่อความปลอดภัยสูงสุด"
+                </p>
+<button class="w-full h-[54px] flex items-center justify-center gap-md border border-ink rounded-full bg-primary-container hover:opacity-90 transition-all active:scale-[0.98]" onclick="startVerification()">
+<span class="font-button-md text-button-md text-ink">รับรหัสยืนยัน</span>
+</button>
+</div>
+<!-- Step 3: Simulated Internal Verification -->
+<div class="space-y-lg hidden" id="step-verify">
+<div class="text-center space-y-md">
+<h2 class="font-body-lg text-body-lg text-ink">ยืนยันตัวตนในแอป</h2>
+<p class="font-body-md text-body-md text-ink-muted">กรุณาใส่รหัส 4 หลักที่แสดงอยู่บนหน้าจอเครื่องหลักของคุณ</p>
+<div class="flex justify-center gap-lg py-xl">
+<div class="w-14 h-14 border-2 border-ink rounded-lg flex items-center justify-center font-display-md text-primary bg-surface-container-low" id="v-1">-</div>
+<div class="w-14 h-14 border-2 border-ink rounded-lg flex items-center justify-center font-display-md text-primary bg-surface-container-low" id="v-2">-</div>
+<div class="w-14 h-14 border-2 border-ink rounded-lg flex items-center justify-center font-display-md text-primary bg-surface-container-low" id="v-3">-</div>
+<div class="w-14 h-14 border-2 border-ink rounded-lg flex items-center justify-center font-display-md text-primary bg-surface-container-low" id="v-4">-</div>
+</div>
+<!-- Internal Verification Simulator -->
+<div class="bg-surface-container-highest p-md rounded-xl space-y-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">security</span>
+<span class="font-label-sm text-label-sm text-ink">การจำลองการยืนยันภายใน</span>
+</div>
+<p class="font-label-xs text-label-xs text-ink-muted text-left">กดปุ่มเพื่อจำลองการรับรหัสจากอุปกรณ์เครื่องอื่น</p>
+<button class="w-full py-xs border border-ink rounded-full bg-surface-white font-button-md text-label-sm hover:bg-ink hover:text-white transition-all" id="sim-btn" onclick="simulateKeypad()">จำลองการใส่รหัส (1234)</button>
+</div>
+</div>
+<div class="text-center pt-md">
+<button class="font-label-sm text-label-sm text-primary underline" onclick="showPhoneForm()">ส่งรหัสอีกครั้ง</button>
+</div>
+</div>
+<!-- Success State -->
+<div class="space-y-lg hidden text-center py-xl" id="step-success">
+<div class="w-20 h-20 bg-primary-container rounded-full flex items-center justify-center mx-auto mb-lg">
+<span class="material-symbols-outlined text-ink text-[40px]">check</span>
+</div>
+<h2 class="font-display-md text-display-md text-ink">สำเร็จ!</h2>
+<p class="font-body-md text-body-md text-ink-muted">กำลังนำคุณเข้าสู่ Arm Chat...</p>
+</div>
+</div>
+<!-- Footer Links -->
+<footer class="mt-xl flex flex-col items-center gap-xs">
+<div class="flex gap-md">
+<a class="font-label-sm text-label-sm text-ink-muted hover:text-primary transition-colors" href="#">ข้อกำหนดการใช้งาน</a>
+<a class="font-label-sm text-label-sm text-ink-muted hover:text-primary transition-colors" href="#">ความเป็นส่วนตัว</a>
+<a class="font-label-sm text-label-sm text-ink-muted hover:text-primary transition-colors" href="#">ช่วยเหลือ</a>
+</div>
+<p class="font-label-xs text-label-xs text-ink-muted opacity-60">© 2024 Arm Chat Thailand</p>
+</footer>
+</main>
+<!-- JavaScript for Step Transitions and Simulation -->
+<script>
+        const card = document.getElementById('auth-card');
+        const stepOptions = document.getElementById('step-options');
+        const stepPhone = document.getElementById('step-phone');
+        const stepVerify = document.getElementById('step-verify');
+        const stepSuccess = document.getElementById('step-success');
+
+        function hideAll() {
+            stepOptions.classList.add('hidden');
+            stepPhone.classList.add('hidden');
+            stepVerify.classList.add('hidden');
+            stepSuccess.classList.add('hidden');
+        }
+
+        function showOptions() {
+            hideAll();
+            stepOptions.classList.remove('hidden');
+        }
+
+        function showPhoneForm() {
+            hideAll();
+            stepPhone.classList.remove('hidden');
+        }
+
+        function startVerification() {
+            const phone = document.getElementById('phone-input').value;
+            if (!phone) {
+                alert('กรุณากรอกเบอร์โทรศัพท์');
+                return;
+            }
+            hideAll();
+            stepVerify.classList.remove('hidden');
+        }
+
+        function simulateKeypad() {
+            const codes = ['1', '2', '3', '4'];
+            const simBtn = document.getElementById('sim-btn');
+            simBtn.disabled = true;
+            simBtn.innerText = 'กำลังตรวจสอบ...';
+
+            codes.forEach((char, index) => {
+                setTimeout(() => {
+                    const el = document.getElementById(`v-${index + 1}`);
+                    el.innerText = char;
+                    el.classList.add('bg-primary-container', 'text-on-primary-container');
+                    el.classList.remove('bg-surface-container-low');
+                    
+                    if (index === 3) {
+                        setTimeout(() => {
+                            hideAll();
+                            stepSuccess.classList.remove('hidden');
+                            // Simulate redirect
+                            setTimeout(() => {
+                                window.location.reload(); // In production, redirect to dashboard
+                            }, 2000);
+                        }, 800);
+                    }
+                }, (index + 1) * 400);
+            });
+        }
+
+        // Ripple Effect for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const ripple = document.createElement('span');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+    </script>
+<style>
+        .ripple {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+        @keyframes ripple-animation {
+            to { transform: scale(30); opacity: 0; }
+        }
+        #auth-card {
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+        }
+    </style>
+</body></html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ข้อมูลผู้ติดต่อ - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e8e2d8",
+                    "inverse-primary": "#3de273",
+                    "surface-dim": "#e0d9d0",
+                    "on-primary-fixed": "#002109",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#d1eac6",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1e1b16",
+                    "surface-container": "#f4ede3",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-tint": "#006d2f",
+                    "primary-container": "#25d366",
+                    "on-tertiary-container": "#004694",
+                    "surface-container-highest": "#e8e2d8",
+                    "background": "#fff8f0",
+                    "on-primary-container": "#005523",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "outline-variant": "#bbcbb9",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#001b3f",
+                    "inverse-surface": "#33302a",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#d1eac6",
+                    "surface-dark": "#000000",
+                    "primary": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "outline": "#6c7b6b",
+                    "error": "#ba1a1a",
+                    "ink-muted": "#5e5e5e",
+                    "secondary": "#4f6448",
+                    "on-background": "#1e1b16",
+                    "tertiary": "#005cbd",
+                    "surface": "#fff8f0",
+                    "surface-container-high": "#eee7dd",
+                    "surface-container-lowest": "#ffffff",
+                    "ink": "#1c1e21",
+                    "tertiary-fixed": "#d7e2ff",
+                    "primary-fixed-dim": "#3de273",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "on-secondary-container": "#556a4d",
+                    "surface-white": "#ffffff",
+                    "on-primary-fixed-variant": "#005322",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#93b8ff",
+                    "on-secondary-fixed": "#0d200a",
+                    "surface-bright": "#fff8f0",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "huge": "80px",
+                    "xxl": "32px",
+                    "xs": "8px",
+                    "xl": "24px",
+                    "md": "16px",
+                    "lg": "20px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "display-md": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "button-md": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"]
+            },
+            "fontSize": {
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Prompt', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .flat-ink-border { border: 1px solid #1c1e21; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary-container min-h-screen pb-huge">
+<!-- Top Navigation Bar -->
+<header class="w-full h-16 bg-background sticky top-0 z-50 flex justify-between items-center px-xl">
+<div class="flex items-center gap-md">
+<button class="active:scale-95 transition-transform p-xs hover:bg-surface-container-high rounded-full">
+<span class="material-symbols-outlined text-ink">arrow_back</span>
+</button>
+<h1 class="font-display-md text-display-md-mobile text-primary">ข้อมูลผู้ติดต่อ</h1>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-high p-xs rounded-full transition-colors" data-icon="security">security</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-high p-xs rounded-full transition-colors" data-icon="more_vert">more_vert</span>
+</div>
+</header>
+<main class="max-w-2xl mx-auto px-xl mt-md flex flex-col gap-huge">
+<!-- Profile Header Section -->
+<section class="flex flex-col items-center text-center">
+<div class="relative group">
+<div class="w-48 h-48 rounded-full overflow-hidden flat-ink-border mb-xl transition-transform duration-500 group-hover:scale-[1.02]">
+<img class="w-full h-full object-cover" data-alt="A professional close-up studio portrait of a young Thai woman named Apinya with a friendly expression. She is set against a warm cream and white organic background, reflecting the 'Calm Utility' aesthetic. The lighting is soft and high-key, emphasizing natural skin tones and a clean, minimalist professional look. The style is editorial and high-contrast, using the brand's sophisticated and approachable palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI8X9At6lEyznQ-y6RdbsP_FFXn40mwUjOsgbddALzrmWAl6QXg-1OOAcvZC28T-2vwcPX-467KyRmj8KQumqrk05vT5nBPhfdXB9Wstx6WHC3C2MCnXVJ7ALdOLSo13uWX6TGLB0DemV_5oNiBpyi6-L3KxbhYa9QC2YXooCYJQ4PpsyFHHbCkRrH7e8lgUT9__xF82VUa_mo6HNDSnXe3Wsz2W_TPjU3jVJHox0G-1-CNLg0AuQ"/>
+</div>
+<div class="absolute bottom-xl right-base w-10 h-10 bg-primary-container rounded-full flat-ink-border flex items-center justify-center">
+<span class="material-symbols-outlined text-ink" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<h2 class="font-display-md text-display-md-mobile text-ink mb-base">Apinya K.</h2>
+<p class="font-body-lg text-ink-muted">@apinya_k • ใช้งานเมื่อ 5 นาทีที่แล้ว</p>
+<div class="flex gap-md mt-xl w-full justify-center">
+<button class="flex-1 max-w-[140px] h-12 rounded-full bg-primary-container flat-ink-border flex items-center justify-center gap-xs text-ink font-button-md active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+                    แชท
+                </button>
+<button class="flex-1 max-w-[140px] h-12 rounded-full bg-surface-white flat-ink-border flex items-center justify-center gap-xs text-ink font-button-md active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">call</span>
+                    โทร
+                </button>
+<button class="w-12 h-12 rounded-full bg-surface-white flat-ink-border flex items-center justify-center text-ink active:scale-95 transition-all">
+<span class="material-symbols-outlined">video_call</span>
+</button>
+</div>
+</section>
+<!-- Info Grid (Asymmetric Bento Style) -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+<!-- About Section -->
+<div class="bg-surface-white p-xl rounded-lg flat-ink-border md:col-span-2">
+<h3 class="font-label-sm text-primary mb-md uppercase tracking-widest">เกี่ยวกับ</h3>
+<p class="font-body-md text-ink leading-relaxed">
+                    UX Designer ผู้หลงใหลในการสร้างสรรค์ประสบการณ์ที่เรียบง่ายแต่ทรงพลัง รับออกแบบ Mobile App และ Web Application ยินดีที่ได้รู้จักทุกคนค่ะ 🌿✨
+                </p>
+</div>
+<!-- Contact Detail -->
+<div class="bg-surface-white p-xl rounded-lg flat-ink-border flex flex-col gap-sm">
+<h3 class="font-label-sm text-primary uppercase tracking-widest">เบอร์โทรศัพท์</h3>
+<div class="flex justify-between items-center">
+<p class="font-body-lg text-ink">+66 89-123-4567</p>
+<span class="material-symbols-outlined text-ink-muted cursor-pointer hover:text-primary transition-colors">content_copy</span>
+</div>
+</div>
+<!-- Privacy/Security Story (Color Inversion) -->
+<div class="bg-surface-dark p-xl rounded-lg flex flex-col justify-between">
+<div>
+<h3 class="font-label-sm text-primary-fixed uppercase tracking-widest mb-md">ความเป็นส่วนตัว</h3>
+<p class="font-body-md text-surface-container-low">การแชทนี้ได้รับการเข้ารหัสแบบ End-to-end เพื่อความปลอดภัยสูงสุดของคุณ</p>
+</div>
+<div class="mt-xl flex items-center gap-xs text-primary-fixed">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-sm">ตรวจสอบแล้ว</span>
+</div>
+</div>
+</section>
+<!-- Shared Media Gallery -->
+<section>
+<div class="flex justify-between items-end mb-xl px-base">
+<div>
+<h3 class="font-display-md text-[32px] text-ink leading-none">สื่อที่แชร์ร่วมกัน</h3>
+<p class="font-label-sm text-ink-muted mt-base">รูปภาพและวิดีโอทั้งหมด 42 รายการ</p>
+</div>
+<button class="text-primary font-button-md flex items-center gap-xs hover:underline">
+                    ดูทั้งหมด <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="flex gap-md overflow-x-auto hide-scrollbar pb-base">
+<div class="flex-none w-40 h-40 rounded-lg flat-ink-border overflow-hidden bg-surface-white">
+<img class="w-full h-full object-cover" data-alt="A minimalist architectural shot of a modern white concrete building with sharp shadows under a bright blue sky. The visual style is clean, geometric, and high-contrast, perfectly aligning with the 'Calm Utility' brand. The lighting is direct and creates bold architectural shapes. The atmosphere is quiet, sophisticated, and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKs0Pp3hmTyM6pvDqDaJv0VPa6hpSjRLxoql76LJnHBq6DE7LVCuBwwl6u6gASnKwPv1gPuxyDMBSDCYpPMQ02f0qwiafc6fDyvmzdtrXNo_5lxffiBJbTuHFPTb3cNEDx5M5KmBRJOytX3at43YlAm6-kCdNnLZDmc9kb6VAM86Qw4S0SSLdigwubH5ZtBqotpn3CmcYaaXa5gFoYz47qcCjfhvOsP6F5fByoq_QOLbpi_pUwJdc"/>
+</div>
+<div class="flex-none w-40 h-40 rounded-lg flat-ink-border overflow-hidden bg-surface-white">
+<img class="w-full h-full object-cover" data-alt="A top-down aesthetic flat-lay of a wooden workspace featuring a digital tablet showing UI wireframes, a green leaf in a ceramic vase, and a cup of matcha latte. The color palette is organic, dominated by cream, green, and natural wood tones. The lighting is soft and diffused, creating a serene, focused creative atmosphere. The image feels professional yet approachable." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDTam_0jUlZk2xAa-aSF-vlgflltmdRF2TvajqJRVcpsbnwuxXeSz8Gt16C0i3kg98y-g-AUyK0CnikeiQ8oYYb2PmfSQKgkis64jCDYiFLpc-jl1OO24lneV1qNmI6p9i-NbsVKMxbGTEMSTwGjjcoH62SZMUlhf14vKVmKeJWZbjuj1E7vpNz-aZEyysec8u4etUxHZ_XXypJfCOJhTBCo_Cu-MzfiTGtXLT_jLlfCRhjP6TlNU"/>
+</div>
+<div class="flex-none w-40 h-40 rounded-lg flat-ink-border overflow-hidden bg-surface-white">
+<img class="w-full h-full object-cover" data-alt="A close-up abstract of lush tropical monstera leaves with bright sunlight filtering through the foliage. The image emphasizes vibrant greens and deep shadows, creating a high-contrast natural pattern. The visual style is crisp and modern, reflecting the organic warmth of the Thai messaging app brand identity. The mood is fresh, calm, and reliable." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFaBhiHzKx43XgSAsDFeYUvVvkjp7B_XjTenm73DPgUq5UiDKZBFmhz_fvgnwGtv3Ezhr_8tERLE8xaikb1NfGna1pAr6zPiaT2BGGh_dclXA0xPr_CHKA3kINTNm9NYO40RH_TAf1_XUxqXIJkq8oewp5LQA88DPBm5WpMH2lQZjj7ezjP4i1TSzSzn0b1CEaiFgxLisQM8jIzwrBbK850vyGfAiKmJgmAPsNjJTrC8pbKIW_FWs"/>
+</div>
+<div class="flex-none w-40 h-40 rounded-lg flat-ink-border overflow-hidden bg-surface-white flex items-center justify-center bg-surface-container">
+<span class="font-body-lg text-ink-muted">+39</span>
+</div>
+</div>
+</section>
+<!-- Action Options -->
+<section class="flex flex-col gap-sm">
+<button class="w-full h-16 px-xl bg-surface-white flat-ink-border rounded-lg flex items-center justify-between group hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-ink">notifications_off</span>
+<span class="font-body-md text-ink">ปิดการแจ้งเตือน</span>
+</div>
+<div class="w-10 h-6 bg-surface-variant rounded-full p-[2px] transition-colors relative">
+<div class="w-5 h-5 bg-white rounded-full flat-ink-border shadow-sm"></div>
+</div>
+</button>
+<button class="w-full h-16 px-xl bg-surface-white flat-ink-border rounded-lg flex items-center gap-md hover:bg-error-container/20 group transition-colors">
+<span class="material-symbols-outlined text-error">block</span>
+<span class="font-body-md text-error">บล็อกผู้ติดต่อ</span>
+</button>
+<button class="w-full h-16 px-xl bg-surface-white flat-ink-border rounded-lg flex items-center gap-md hover:bg-error-container/20 group transition-colors">
+<span class="material-symbols-outlined text-error">report</span>
+<span class="font-body-md text-error">รายงานปัญหา</span>
+</button>
+</section>
+</main>
+<!-- Navigation Shell (BottomNavBar) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-md py-sm bg-surface-white md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-lg py-xs hover:bg-surface-container-low transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="font-label-sm text-label-sm">แชท</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-lg py-xs hover:bg-surface-container-low transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+<span class="font-label-sm text-label-sm">โทร</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-lg py-xs hover:bg-surface-container-low transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="contacts" style="font-variation-settings: 'FILL' 1;">contacts</span>
+<span class="font-label-sm text-label-sm">ผู้ติดต่อ</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-lg py-xs hover:bg-surface-container-low transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-label-sm text-label-sm">คลังไฟล์</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-lg py-xs hover:bg-surface-container-low transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm">ตั้งค่า</span>
+</a>
+</nav>
+<!-- Desktop Navigation Side Anchored Alternative for Consistency -->
+<div class="hidden md:block fixed left-0 top-0 h-full w-20 bg-surface-white flat-ink-border border-l-0 z-50">
+<div class="flex flex-col items-center py-xl gap-huge h-full">
+<div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center flat-ink-border">
+<span class="material-symbols-outlined text-ink">bolt</span>
+</div>
+<div class="flex flex-col gap-xl">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="chat">chat</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="call">call</span>
+<span class="material-symbols-outlined text-primary" data-icon="contacts" style="font-variation-settings: 'FILL' 1;">contacts</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="folder_open">folder_open</span>
+</div>
+<div class="mt-auto">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="settings">settings</span>
+</div>
+</div>
+</div>
+<script>
+        // Micro-interaction for the toggle switch
+        document.querySelector('.relative.transition-colors').addEventListener('click', function() {
+            const circle = this.querySelector('div');
+            const isOff = circle.classList.contains('translate-x-0') || !circle.classList.contains('translate-x-4');
+            
+            if (isOff) {
+                circle.style.transform = 'translateX(16px)';
+                this.classList.replace('bg-surface-variant', 'bg-primary-container');
+            } else {
+                circle.style.transform = 'translateX(0px)';
+                this.classList.replace('bg-primary-container', 'bg-surface-variant');
+            }
+        });
+
+        // Add some smooth scrolling for the gallery
+        const gallery = document.querySelector('.hide-scrollbar');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        gallery.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - gallery.offsetLeft;
+            scrollLeft = gallery.scrollLeft;
+        });
+        gallery.addEventListener('mouseleave', () => isDown = false);
+        gallery.addEventListener('mouseup', () => isDown = false);
+        gallery.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - gallery.offsetLeft;
+            const walk = (x - startX) * 2;
+            gallery.scrollLeft = scrollLeft - walk;
+        });
+    </script>
+</body></html>

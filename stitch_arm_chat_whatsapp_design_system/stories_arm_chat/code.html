@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #fff8f0; /* background from config */
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .status-ring {
+            padding: 3px;
+            border: 2px solid #25d366; /* primary-container */
+            border-radius: 9999px;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#006d2f",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#005523",
+                    "on-primary-fixed": "#002109",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "surface-variant": "#e8e2d8",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#6c7b6b",
+                    "surface-tint": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "background": "#fff8f0",
+                    "surface": "#fff8f0",
+                    "on-primary-fixed-variant": "#005322",
+                    "surface-bright": "#fff8f0",
+                    "surface-container-high": "#eee7dd",
+                    "surface-dark": "#000000",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#d7e2ff",
+                    "tertiary-container": "#93b8ff",
+                    "surface-dim": "#e0d9d0",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#0d200a",
+                    "inverse-on-surface": "#f7f0e6",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e8e2d8",
+                    "on-tertiary-container": "#004694",
+                    "inverse-surface": "#33302a",
+                    "primary-container": "#25d366",
+                    "tertiary": "#005cbd",
+                    "outline-variant": "#bbcbb9",
+                    "surface-white": "#ffffff",
+                    "on-secondary-container": "#556a4d",
+                    "inverse-primary": "#3de273",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#d1eac6",
+                    "ink": "#1c1e21",
+                    "surface-container": "#f4ede3",
+                    "on-tertiary-fixed": "#001b3f",
+                    "on-background": "#1e1b16",
+                    "ink-muted": "#5e5e5e",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#3de273",
+                    "secondary": "#4f6448",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "secondary-fixed": "#d1eac6",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1e1b16",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xxl": "32px",
+                    "base": "4px",
+                    "xs": "8px",
+                    "md": "16px",
+                    "xl": "24px",
+                    "sm": "12px",
+                    "lg": "20px",
+                    "huge": "80px"
+            },
+            "fontFamily": {
+                    "label-xs": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "button-md": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"],
+                    "display-md": ["Prompt"]
+            },
+            "fontSize": {
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface">
+<div class="flex flex-col md:flex-row h-screen overflow-hidden">
+<!-- Desktop SideNavBar -->
+<aside class="hidden md:flex flex-col h-full w-64 docked left-0 bg-surface-container-lowest border-r border-outline p-md">
+<div class="mb-xxl">
+<h1 class="font-display-md text-display-md text-primary">Arm Chat</h1>
+<div class="flex items-center gap-sm mt-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-ink overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a friendly Thai man in his early 30s with a warm smile, wearing a clean white linen shirt. The background is a soft, minimalist cream color matching the app's aesthetic. High-quality lighting, soft shadows, and clean lines embody the professional yet approachable brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn5U0k3eIxoLXAEcnFhsWBn0LK1Iu2QyXAn2f1rRZn0HHhpe6s65VIRL9dlZWiTj5VSH3cDasS3NHIm3iIBLVKGTggmH48GIqbmhOvmnSCfxiMIb8Ou1yQC3PBQBBlLz9skvZKo3f2cHW4iufDswFL-0IYFwhvEsQg3nP-HGWPf6JIaX8gdWUJXHk9Zx_nUeEhU685PHLr3oejWZ9q_3tAtEyq1CVXdVpJ5UGBEJhFaTV6QAlVpm0"/>
+</div>
+<div>
+<p class="font-body-md text-body-md text-primary font-bold">Arm</p>
+<p class="font-label-sm text-label-sm text-ink-muted">ออนไลน์</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-xs flex-grow">
+<a class="flex items-center gap-md px-md py-sm text-ink-muted hover:bg-surface-container transition-all active:scale-98 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="font-body-md text-body-md">แชท</span>
+</a>
+<!-- Active State for Status: We map this to the concept of stories/updates -->
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container rounded-full active:scale-98 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="history" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-body-md text-body-md font-bold">อัปเดต</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-ink-muted hover:bg-surface-container transition-all active:scale-98 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-body-md text-body-md">กลุ่ม</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-ink-muted hover:bg-surface-container transition-all active:scale-98 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+<span class="font-body-md text-body-md">การโทร</span>
+</a>
+</nav>
+<button class="mt-auto w-full py-md bg-primary-container text-on-primary-container font-button-md text-button-md rounded-full border border-ink active:scale-95 transition-transform">
+                สร้างแชทใหม่
+            </button>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-grow overflow-y-auto pb-24 md:pb-0 hide-scrollbar bg-background">
+<!-- Mobile/Universal Top Bar -->
+<header class="sticky top-0 z-40 bg-surface border-b border-outline flex justify-between items-center px-xl py-md w-full">
+<h2 class="font-display-md text-display-md-mobile md:hidden text-primary">อัปเดต</h2>
+<h2 class="hidden md:block font-display-md text-display-md text-primary">สถานะล่าสุด</h2>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95" data-icon="search">search</span>
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95" data-icon="more_vert">more_vert</span>
+</div>
+</header>
+<div class="max-w-4xl mx-auto px-xl py-xl">
+<!-- My Status Section -->
+<section class="mb-huge">
+<h3 class="font-body-lg text-body-lg text-ink font-bold mb-xl">สถานะของฉัน</h3>
+<div class="flex items-center gap-xl group cursor-pointer">
+<div class="relative">
+<div class="w-16 h-16 rounded-full border-2 border-outline-variant p-0.5">
+<div class="w-full h-full rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A close-up profile picture of a young Thai man with neat hair and a friendly expression, captured in natural, bright daylight. The image has a clean, high-contrast look with soft focus in the background, matching the application's modern and minimalist design system colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeri5LBZBsUH2sPWSnDig7CypLanwq0Mdqcfy2QQ96Ml-ZbBeKgnQweCHdsQtaD_Wc15FurQ5CpIpuRQ_XsfmjSi9IDkepOl7Ztz6uLQPhPMNSlEx1ESN6RmTNS4euPsNGsHngwm25tdsxQVw6rLV5Dp6HeuIuaW1x62q_As4dAxJiw5kLLePWlRmaktXwfK9V5cU-7nimjWWFjVOBY0hGzNajx9_VEoE5yX-VR91SUgXNHd4WBas"/>
+</div>
+</div>
+<div class="absolute bottom-0 right-0 bg-primary-container border-2 border-surface w-6 h-6 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-on-primary-container" style="font-size: 16px;">add</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-ink font-medium">เพิ่มสถานะใหม่</span>
+<span class="font-label-sm text-label-sm text-ink-muted">แตะเพื่อเพิ่มการอัปเดตสถานะของคุณ</span>
+</div>
+</div>
+</section>
+<!-- Recent Updates Grid -->
+<section class="mb-huge">
+<div class="flex justify-between items-end mb-xl">
+<h3 class="font-body-lg text-body-lg text-ink font-bold">อัปเดตล่าสุด</h3>
+<button class="text-primary font-label-sm text-label-sm hover:underline">ดูทั้งหมด</button>
+</div>
+<!-- Bento-ish Grid Layout -->
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-xl">
+<!-- Status Card 1 -->
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden border border-ink group cursor-pointer active:scale-95 transition-all">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A lush green tropical cafe in Bangkok, featuring floor-to-ceiling windows, many indoor plants, and soft morning sunlight. The scene is peaceful and organic, emphasizing the 'Calm Utility' theme of the brand with high-contrast greens and creamy wood tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7wJNRfb2o6pT3floPyjhoTFa4zzWCS1JQZd4QgN7e2kflwlLfA9JRC51hAzuHZ57HH1M46n4G9dPsArgmquqdLcu4xhY7Y7AjJLF7ki_VU5jito1gEEUGnVWNFDmxBDFWk-pZxCS1T3PunlL3hytZh0yvZft5oN9uPT2kATmgG4CvfUDWuE63vwIyz3wonZ3-vqTQctFafGJBB1HzGOcJW4jGT5y81JLt8Pp4TJrSGc-W2HqwKuc"/>
+<div class="absolute top-md left-md z-20">
+<div class="status-ring">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white">
+<img class="w-full h-full object-cover" data-alt="Profile photo of a young Thai woman with a joyful smile, wearing elegant minimalist jewelry. The lighting is bright and airy, consistent with a clean light-mode user interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEnVOx0XNfVxlE811uWqlP9VdHy9vkVuz4BLutO3w9bmI-1mYJHGOQfxV9YnchJzUsTWOX3wr9fKSXgLg2QT1wvQz2In9GszRb9gQa9B8aEYAeoQQaPW0082xOMALclM-aJ2tPDcrq0i4zBKJD1mn9KWz3F5yg_ypuxIVz9Wb4FiUvDlJ8kSZfCbveUxqh0x3qU4Ob0gdB90cSjBOUj9wD7de4mHfGF2quGZxJGYuFl7aJ3JIe3LA"/>
+</div>
+</div>
+</div>
+<div class="absolute bottom-md left-md right-md z-20 text-white">
+<p class="font-label-sm text-label-sm font-bold">ใบเฟิร์น</p>
+<p class="font-label-xs text-label-xs opacity-80">12 นาทีที่แล้ว</p>
+</div>
+</div>
+<!-- Status Card 2 -->
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden border border-ink group cursor-pointer active:scale-95 transition-all">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A minimalist overhead shot of a premium Thai iced tea on a white marble table next to a green plant. The lighting is crisp with sharp shadows, emphasizing the flat, high-contrast geometric style of the application design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAle-da_RW9D3w5GiGPSnscx4H6A-fJyKOpO5tzhTHia1yNduGKz-DzlbcPa-BnSdA50PFWPuOlws17LrixcsfLkdwHS-YeZ5HQngZA3fLLggrBuPPKpt513Gh-JJa34mWdLX7qwVR3kZCY8pzgj3MdKVPTo-wjHQg3w66wWiSPDvxJJfDGMY3Q2eWIz8yAgEX-rNoxsZFQtcW0wV3BVKsR60-5cLj8kFRMnSiCw3HinP0iVr8ycYE"/>
+<div class="absolute top-md left-md z-20">
+<div class="status-ring">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white">
+<img class="w-full h-full object-cover" data-alt="A portrait of a creative professional Thai man wearing modern black glasses and a simple dark t-shirt. The background is a flat, neutral grey, highlighting the subject in a clean, editorial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMUVHprFnBV999VJB-I7dEzrQqG3OmZDckHL6l7On0KNw2wwwDl9KRhS3YkjKSrErGcKW9MyjM6mhpmiB_lKHRvk8V4mxvp93ZyDE-9fLHVjUKdSqXPe9FP2Sj2eii-cO9WdwWXzsq2MWXIzcr7bvzk8YxuEETtxWFshWWK359eBWtyulIVKBqZgfwe4KZ7uc5UoNEZlo6vRXqVfq7uW5HwLuuyw6ZCRHMI_xgKgjWg-YVQUDUtuE"/>
+</div>
+</div>
+</div>
+<div class="absolute bottom-md left-md right-md z-20 text-white">
+<p class="font-label-sm text-label-sm font-bold">ก้อง</p>
+<p class="font-label-xs text-label-xs opacity-80">45 นาทีที่แล้ว</p>
+</div>
+</div>
+<!-- Status Card 3 (Text-based) -->
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden border border-ink bg-primary flex flex-col items-center justify-center p-xl text-center group cursor-pointer active:scale-95 transition-all">
+<div class="absolute top-md left-md z-20">
+<div class="status-ring border-on-primary">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white">
+<img class="w-full h-full object-cover" data-alt="Profile photo of an elderly Thai woman with a kind, smiling face, wearing a traditional silk blouse in a modern cut. The image is warm and high-quality, reflecting a human-centered design approach." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeDqPEH6sQFPXIR7yB9dEprHaChSKseUOFPmSVZbvg10RWUSY7rhBk3A461TlrF6ltrzikvvWS-_mYJbxty1MMWAHG99u4Dhl-2mapfKimFJy9PvfU7BaA3xSVsT5lSxhlQXNngGE5RfpiAmJP87GPB0bbw73WNuU2J64jtfTDielRK8eX0lburQJdkzH_QtATY_iCRrrAcJMSprc-gvPIhmSEm1SYf58FE9ZWsL664vM7Tn8JFKM"/>
+</div>
+</div>
+</div>
+<p class="font-body-md text-body-md text-white font-medium z-10">"วันนี้อากาศดีมากครับ อย่าลืมรักษาสุขภาพกันด้วยนะครับทุกคน"</p>
+<div class="absolute bottom-md left-md right-md z-20 text-white text-left">
+<p class="font-label-sm text-label-sm font-bold">คุณป้าสมพร</p>
+<p class="font-label-xs text-label-xs opacity-80">2 ชม. ที่แล้ว</p>
+</div>
+</div>
+<!-- Status Card 4 -->
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden border border-ink group cursor-pointer active:scale-95 transition-all">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A cinematic sunset over the Chao Phraya River in Bangkok, with the silhouette of Wat Arun in the distance. The colors are deep oranges and purples, providing a high-impact contrast against the typically bright app interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABwGJRIYvH_ZsGOZ_Q2Aqc11ZguRxyYlAzO5jA7x16B-N7-bVfnz0FrO77PCFRRgzbiZTZp0OHIeHGJ8RVi6tKDOrUe6uZzUyk9HelxDJxYjwUoRPbB8tu9HE7wld4w4bZr2tCcfatakPla_yBn0SZqb1AMjTu56FlapDB0rU2kdOfvarmkZIWIfQFUYxKr9q-KxDAlWY_oDTdI6Z019C3TUAEOMG6G9cydLrzENOCZuDsNtBKSUw"/>
+<div class="absolute top-md left-md z-20">
+<div class="status-ring">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white">
+<img class="w-full h-full object-cover" data-alt="Profile picture of a young Thai man with an athletic build, wearing a cycling jersey. The photo is taken outdoors with bright, natural lighting and vibrant colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtgpoyqRzL-GFijpf5jMuAV6ZQUQJhVTlN9XiLuJWxoVqCy9W5wHHzb-Su64zOFo8DB8Mx6WIRHLMF0HjFzMxzO3bSMIdfkpY406UPkb8IcAN7QrnuHB88_IuV0Ynaeq-7taNYzw6ebY5qg3reL5sM86DXQdsmaUnsmlQ16rSQbtJNqvrEuaNzbMauTSCtOunrApwbJ1lC79TkmPrcrUoIbhVYDVwTBCe460Tk_FbxDkmOJVjhEWQ"/>
+</div>
+</div>
+</div>
+<div class="absolute bottom-md left-md right-md z-20 text-white">
+<p class="font-label-sm text-label-sm font-bold">ตั้ม</p>
+<p class="font-label-xs text-label-xs opacity-80">5 ชม. ที่แล้ว</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Viewed Updates List -->
+<section>
+<h3 class="font-body-lg text-body-lg text-ink font-bold mb-xl opacity-60">อัปเดตที่ดูแล้ว</h3>
+<div class="space-y-md">
+<div class="flex items-center gap-xl opacity-60 group cursor-pointer">
+<div class="w-16 h-16 rounded-full border border-outline p-0.5">
+<div class="w-full h-full rounded-full overflow-hidden bg-surface-container grayscale">
+<img class="w-full h-full object-cover" data-alt="Profile photo of a stylish Thai woman in a minimalist urban setting. She is wearing a cream-colored blazer and has a calm, professional expression. The photo uses high-key lighting to maintain a bright, modern look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbv9L-PekKz5Ina9GwCMdqcr3MJuv9G-ezA-48bvp_Xk3xkE0L42NRLhBK6Xkub_HRHgsGjoiS7SSq0FDMMPe6N6HruB_fdCw_22I_wmDmFzUmpm2adHvfKBBwwW6I3rC7KZrlN44hBY2AMWPpU8tScC0B7-Q14wzvv6l6iGIZqCxcRr33cr3OBfqtuhLsJKXqj8VpE_PRDPPYHmMJkLzJolCX9Rck_qLAGtPiPAUJSqut738fv6c"/>
+</div>
+</div>
+<div class="flex flex-col border-b border-outline-variant flex-grow pb-md">
+<span class="font-body-md text-body-md text-ink font-medium">มิ้นต์</span>
+<span class="font-label-sm text-label-sm text-ink-muted">วันนี้ เมื่อเวลา 08:30 น.</span>
+</div>
+</div>
+<div class="flex items-center gap-xl opacity-60 group cursor-pointer">
+<div class="w-16 h-16 rounded-full border border-outline p-0.5">
+<div class="w-full h-full rounded-full overflow-hidden bg-surface-container grayscale">
+<img class="w-full h-full object-cover" data-alt="Close-up of a young Thai man's face with a friendly and approachable look. He has short black hair and is standing against a soft-focus background of a modern office space. The image is clean and minimalist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuYa07MTsF_ybme4uFXXC6zRvwFXGU9ezpkq0YXIbg-1EFQaSj2sglxJom8tfvur4Iw7zaolvSsK4gFqnebAJmq9Hpw4xfykHphoQK2o0NmyukzpwkDKMqPUYAKmYDJpfHyYTsWGs3GDaDqP252t1o-66aQcXWpn5cYF3EOju9K_sj20sVFGTkEatBZd4fThTyUPfuIicghsO_NBHP4j0LSPLl1XsIfvS_89IrcnlW8UtRVHdcZhk"/>
+</div>
+</div>
+<div class="flex flex-col border-b border-outline-variant flex-grow pb-md">
+<span class="font-body-md text-body-md text-ink font-medium">นนท์</span>
+<span class="font-label-sm text-label-sm text-ink-muted">เมื่อวานนี้ เมื่อเวลา 21:15 น.</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Action Button (Status Context) -->
+<div class="fixed bottom-24 right-md md:bottom-xl md:right-xl flex flex-col gap-md items-center z-50">
+<button class="w-12 h-12 bg-surface-container-high text-primary rounded-full border border-ink flex items-center justify-center shadow-md active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="w-16 h-16 bg-primary-container text-on-primary-container rounded-full border border-ink flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="photo_camera" data-weight="fill" style="font-size: 32px;">photo_camera</span>
+</button>
+</div>
+<!-- Mobile BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-md pb-safe bg-surface border-t border-outline h-16">
+<a class="flex flex-col items-center justify-center text-ink-muted px-md py-xs hover:text-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="font-label-sm text-label-sm-mobile">แชท</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-md py-xs active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="history" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-label-sm text-label-sm-mobile">อัปเดต</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-muted px-md py-xs hover:text-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-sm text-label-sm-mobile">กลุ่ม</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-muted px-md py-xs hover:text-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+<span class="font-label-sm text-label-sm-mobile">การโทร</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-muted px-md py-xs hover:text-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm-mobile">ตั้งค่า</span>
+</a>
+</nav>
+</div>
+<script>
+        // Simple interaction for status cards
+        document.querySelectorAll('.aspect-\\[3\\/4\\]').forEach(card => {
+            card.addEventListener('click', () => {
+                console.log('Status viewing not implemented - UI only');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 128" fill="none">
+  <!-- Arm Chat Stacked Logo: mark on top, wordmark below -->
+  <circle cx="48" cy="40" r="30" fill="#25d366" stroke="#1c1e21" stroke-width="2"/>
+  <path d="M44 24H56A8 8 0 0 1 64 32V44A8 8 0 0 1 56 52H48L40 60V52H36A8 8 0 0 1 28 44V32A8 8 0 0 1 36 24Z" fill="#ffffff" stroke="#1c1e21" stroke-width="2" stroke-linejoin="round"/>
+  <g stroke="#25d366" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M50 27L43.5 47"/>
+    <path d="M50 27L56.5 47"/>
+    <path d="M45 40H55"/>
+  </g>
+  <text x="48" y="100" text-anchor="middle" font-family="Inter, 'Prompt', sans-serif" font-size="26" font-weight="500" letter-spacing="-0.01em" fill="#1c1e21">Arm Chat</text>
+</svg>
