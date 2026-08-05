@@ -1,5 +1,11 @@
 -- Supabase Database Schema for Arm Chat
 -- Project ref comes from SUPABASE_PROJECT_REF env var; not hardcoded here.
+--
+-- ⚠️ SNAPSHOT WARNING (2026-08-05): live DB มี 13 tables (มากกว่าไฟล์นี้)
+-- และมี columns/policies/functions เพิ่มเติม — ดู deltas ที่ verify กับ live DB แล้วใน
+--   supabase/migrations/20260805000000_production_alignment.sql
+--   supabase/migrations/20260805000001_fix_rls_recursion.sql
+-- ผล live audit ล่าสุดอยู่ใน docs/db-assumptions.md (ทุก assumption VERIFIED แล้ว)
 
 -- Enable UUID Extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";

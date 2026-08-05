@@ -1,11 +1,36 @@
 # Database Assumption Register
 
-> ทุก assumption ระบุ status `NOT VERIFIED` จนกว่าจะตรวจสอบกับ DB จริง
-> Source of truth สำหรับ Track B จนกว่าจะมี DB access
+> ✅ **LIVE AUDIT เสร็จแล้ว 2026-08-05** (direct connection ไปยัง Supabase จริง)
+> ทุก assumption ด้านล่าง VERIFIED แล้ว — ผลจริงอยู่ในส่วนท้ายไฟล์นี้
+
+## ✅ Live Audit Results (2026-08-05) — Source of Truth ปัจจุบัน
+
+| Assumption | ผลจริง |
+|---|---|
+| A1 (schema.sql ตรง live) | ❌ **ผิด** — live DB มี 13 tables; schema.sql เป็น snapshot เก่า (4-5 tables) |
+| A2 (ไม่มี room_members/friendships/call_logs/notifications_history) | ❌ **ผิด** — มีครบทั้ง 4 tables + `conversations`, `conversation_members`, `calls`, `group_activity_logs` ด้วย |
+| A3 (ไม่มี columns ที่โค้ดอ้าง) | ❌ **ผิด** — `messages.reply_to_id/reactions/is_edited/deleted_at/is_pinned/sent_at/delivered_at/read_at`, `rooms.avatar_url/description/banner`, `stories.views_count/reactions` มีครบ |
+| A4 (rooms RLS ไม่มี policy) | ❌ **ผิด (แต่พบบั๊กใหญ่กว่า)** — rooms มี policies แต่ policy ของ `room_members`/`conversation_members` อ้างตารางตัวเอง → **infinite recursion (42P17)** ทำ rooms/messages/room_members query ไม่ได้เลย → แก้แล้วด้วย SECURITY DEFINER functions (migration `20260805000001`) |
+| A5 (ไม่มี storage policies) | ❌ **ผิด** — มีครบทั้ง 3 buckets (public read + auth upload own + update/delete own) |
+| A6 (ไม่มี bucket stories) | ❌ **ผิด** — มี bucket `stories` (public) แล้ว |
+| A7 (ไม่มี triggers/functions) | ⚠️ **บางส่วน** — มี `handle_new_user` + `on_auth_user_created` trigger แล้ว; ไม่มี `update_updated_at` / `cleanup_expired_stories` (ยังไม่จำเป็นบล็อกงาน) |
+| A8 (ไม่มี indexes) | ⚠️ **บางส่วน** — มี unique indexes; เพิ่ม query indexes 9 ตัวใน migration `20260805000000` |
+
+**สิ่งที่สร้าง/แก้บน live DB วันที่ 2026-08-05:**
+1. สร้างตาราง `test_results` (ขาดใน live — test-suite ใช้)
+2. เพิ่ม policies ที่ขาด: messages UPDATE/DELETE, rooms UPDATE, stories UPDATE/DELETE, friendships UPDATE/DELETE, room_members UPDATE/DELETE, conversations/conversation_members/calls (เดิม RLS deny-all), group_activity_logs INSERT, test_results SELECT/INSERT
+3. แก้ `42P17 infinite recursion` ด้วย `is_room_member()`, `is_room_admin()`, `is_conversation_member()` (SECURITY DEFINER)
+4. เพิ่ม indexes 9 ตัวตาม query pattern
+
+Migrations ถูก apply กับ live DB แล้วและ verify ผ่าน probe จริง (13/13 tables อ่านได้, RLS บล็อก anonymous ถูกต้อง)
+
+---
+
+# บันทึกเดิม (ก่อนมี DB access) — เก็บไว้เป็นประวัติ
 
 ## Context
 
-ไม่มีสิทธิ์เข้าถึง Supabase project จริง ณ ตอนนี้ — ออกแบบ migration จาก `supabase/schema.sql` ใน repository เท่านั้น (67 บรรทัด, 4 tables: `profiles`, `rooms`, `messages`, `stories`)
+ไม่มีสิทธิ์เข้าถึง Supabase project จริง ณ ตอนนั้น — ออกแบบ migration จาก `supabase/schema.sql` ใน repository เท่านั้น (67 บรรทัด, 4 tables: `profiles`, `rooms`, `messages`, `stories`)
 
 Full Audit พบว่าโค้ดอ้าง tables และ columns ที่ไม่มีใน `schema.sql` — แสดงว่าอย่างน้อย schema ใน repo ล้าหลังโค้ด หรือ DB จริงมีการเปลี่ยนแปลงที่ไม่ได้ capture ใน repo
 

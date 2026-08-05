@@ -83,7 +83,7 @@ export default function ChatsPage() {
           await supabase.from('messages').insert({
             room_id: newRoom.id,
             sender_id: currentUserId,
-            content: 'ยินดีต้อนรับสู่ระบบ Arm Chat! ระบบเชื่อมต่อฐานข้อมูล Supabase เรียบร้อยแล้ว',
+            content: 'ยินดีต้อนรับสู่ระบบ Arm Chat! ระบบเชื่อมต่อฐานข้อมูลเรียบร้อยแล้ว',
             type: 'text'
           });
 
@@ -170,7 +170,7 @@ export default function ChatsPage() {
         setCalls([
           {
             id: 'call-1',
-            name: 'สายโทรผ่าน WebRTC',
+            name: 'สายโทรเสียง/วิดีโอ',
             avatarUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB5fLbjBs0-8kxCHeRywp-sz0Z3WUDB5B0UURCtzFK2VXLzLAN-kRLjWh_aNJ8cjo14xhGNPbcFnswzuybswny3Iq-kZ-4cdMNtNCzZjw_lwn4vRuayMY9hVOiO8H29YWr5-HGBAaXIywOVxBARJiuEWmJlOi8pK7m4XZu1TZePqby5Pe9NPm2oHkErA18UWdVhQt4WPAa5EWKoGN2WQwEwy1Ft8PnPZXMU6rFQpTJNkmF8ZmJsyhs',
             callType: 'video',
             time: '14:20',
@@ -235,7 +235,7 @@ export default function ChatsPage() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-ink/10">
             <div>
               <h1 className="text-3xl font-normal text-ink">กล่องข้อความ (Inbox)</h1>
-              <p className="text-sm text-ink-muted">จัดการแชต ประวัติการโทร และกลุ่มสนทนาของคุณบน Supabase Cloud</p>
+              <p className="text-sm text-ink-muted">จัดการแชต ประวัติการโทร และกลุ่มสนทนาของคุณบนระบบคลาวด์</p>
             </div>
 
             <div className="flex items-center gap-2">
@@ -310,7 +310,7 @@ export default function ChatsPage() {
             {loading ? (
               <div className="flex flex-col items-center justify-center h-64 gap-3 text-ink-muted">
                 <span className="material-symbols-outlined animate-spin text-3xl">sync</span>
-                <p className="text-sm">กำลังโหลดข้อมูลแชตจาก Supabase...</p>
+                <p className="text-sm">กำลังโหลดข้อมูลแชต...</p>
               </div>
             ) : activeTab === 'calls' ? (
               <div className="divide-y divide-ink/10">
@@ -408,7 +408,7 @@ export default function ChatsPage() {
 
             <div>
               <h3 className="text-xl font-normal text-ink">สร้างกลุ่มสนทนาใหม่</h3>
-              <p className="text-xs text-ink-muted mt-1">ตั้งชื่อกลุ่มของคุณเพื่อเริ่มพูดคุยกันหลายคนบน Supabase</p>
+              <p className="text-xs text-ink-muted mt-1">ตั้งชื่อกลุ่มของคุณเพื่อเริ่มพูดคุยกันหลายคน</p>
             </div>
 
             <form onSubmit={handleCreateGroup} className="space-y-4">

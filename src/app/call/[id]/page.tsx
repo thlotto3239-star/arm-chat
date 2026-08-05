@@ -121,7 +121,7 @@ export default function CallRoomPage() {
           </button>
           <div>
             <div className="font-prompt text-lg font-normal text-surface-white">ห้องโทรวิดีโอ (Arm Call HD)</div>
-            <div className="text-xs text-primary-fixed">ห้องสนทนา: {String(roomId)} • เข้ารหัสปลอดภัย LiveKit/WebRTC</div>
+            <div className="text-xs text-primary-fixed">ห้องสนทนา: {String(roomId)} • เข้ารหัสปลอดภัยตลอดสาย</div>
           </div>
         </div>
 

@@ -1,11 +1,11 @@
 import type { ImgHTMLAttributes } from 'react';
 
 /**
- * Arm Chat official brand asset URLs
+ * Arm Chat official brand assets (local — ห้าม hot-link โลโก้จาก host ภายนอก)
  */
-export const APP_ICON_URL = 'https://img1.pic.in.th/images/c2db5de63c52f3f384bef058630d00a2.png';
-export const CENTER_LOGO_URL = 'https://img2.pic.in.th/-5234c8b5903d4694.png';
-export const HEADER_LOGO_URL = 'https://img1.pic.in.th/images/dcc2c4467a42cf230657f36250989360.png';
+export const APP_ICON_URL = '/brand/app-icon.png';
+export const CENTER_LOGO_URL = '/brand/logo-center.png';
+export const HEADER_LOGO_URL = '/brand/header.png';
 
 export type ArmChatMarkProps = ImgHTMLAttributes<HTMLImageElement> & {
   mono?: boolean;

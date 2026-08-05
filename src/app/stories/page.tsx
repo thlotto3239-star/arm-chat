@@ -164,7 +164,7 @@ export default function StoriesPage() {
           <div className="flex justify-between items-center mb-8 pb-6 border-b border-ink/10">
             <div>
               <h1 className="text-3xl font-normal text-ink">เรื่องราว (Stories / Status)</h1>
-              <p className="text-sm text-ink-muted">อัปเดตสถานะประจำวันที่จัดเก็บลง Supabase และหายไปอัตโนมัติใน 24 ชั่วโมง</p>
+              <p className="text-sm text-ink-muted">อัปเดตสถานะประจำวันที่จัดเก็บอย่างปลอดภัย และหายไปอัตโนมัติใน 24 ชั่วโมง</p>
             </div>
 
             <input
@@ -200,7 +200,7 @@ export default function StoriesPage() {
             </div>
             <div>
               <div className="font-prompt text-base font-normal text-ink">เรื่องราวของฉัน (My Story)</div>
-              <div className="text-xs text-ink-muted">แตะเพื่อเลือกรูปภาพและบันทึกลง Supabase Storage</div>
+              <div className="text-xs text-ink-muted">แตะเพื่อเลือกรูปภาพและบันทึกลงคลังของ Arm Chat</div>
             </div>
           </div>
 

@@ -283,7 +283,7 @@ export default function SettingsPage() {
             <div className="space-y-3">
               {[
                 { label: 'แจ้งเตือนแชตกลุ่ม (Group Activity)', state: prefGroups, setter: setPrefGroups, field: 'pref_groups' },
-                { label: 'แจ้งเตือนสายโทรสด (Calls & WebRTC)', state: prefCalls, setter: setPrefCalls, field: 'pref_calls' },
+                { label: 'แจ้งเตือนสายโทรสด (Calls)', state: prefCalls, setter: setPrefCalls, field: 'pref_calls' },
                 { label: 'แจ้งเตือนอัปเดตเรื่องราว (Stories)', state: prefStories, setter: setPrefStories, field: 'pref_stories' },
                 { label: 'แสดงเครื่องหมายอ่านแล้ว (Read Receipts)', state: readReceipts, setter: setReadReceipts, field: 'read_receipts_enabled' },
               ].map((cat, idx) => (

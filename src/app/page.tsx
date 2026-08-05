@@ -64,7 +64,7 @@ export default function LandingPage() {
               <img
                 alt="Arm Chat Logo"
                 className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover shadow-sm"
-                src="https://img1.pic.in.th/images/c2db5de63c52f3f384bef058630d00a2.png"
+                src="/brand/app-icon.png"
               />
               <span className="font-bold text-xl md:text-2xl text-ink tracking-tight">Arm Chat</span>
             </Link>

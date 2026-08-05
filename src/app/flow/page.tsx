@@ -46,12 +46,12 @@ export default function FlowPage() {
             </div>
             <h3 className="text-2xl font-normal text-ink mb-2">2. Authentication</h3>
             <p className="text-base text-ink-muted mb-4 leading-relaxed">
-              ระบบสมัครสมาชิกและเข้าสู่ระบบผ่าน OTP หรือ Social Login เก็บข้อมูลด้วย Supabase Auth อย่างปลอดภัย
+              ระบบสมัครสมาชิกและเข้าสู่ระบบผ่าน OTP หรือ Social Login เก็บข้อมูลด้วยระบบยืนยันตัวตนของ Arm Chat อย่างปลอดภัย
             </p>
             <div className="flex flex-wrap gap-2">
               <span className="px-3 py-1 bg-surface-container rounded-full text-xs border border-ink/10">Email OTP</span>
               <span className="px-3 py-1 bg-surface-container rounded-full text-xs border border-ink/10">Google</span>
-              <span className="px-3 py-1 bg-surface-container rounded-full text-xs border border-ink/10">GitHub</span>
+              <span className="px-3 py-1 bg-surface-container rounded-full text-xs border border-ink/10">เบอร์โทรศัพท์</span>
             </div>
           </div>
 
@@ -89,12 +89,12 @@ export default function FlowPage() {
                     <span className="material-symbols-outlined text-[18px]">call</span>
                     ประวัติการโทร
                   </div>
-                  <div className="text-xs opacity-70">การโทร LiveKit</div>
+                  <div className="text-xs opacity-70">การโทร Arm Chat</div>
                 </div>
               </div>
             </div>
             <div className="w-full md:w-64 h-48 bg-surface-dark rounded-xl p-4 flex flex-col justify-center items-center text-center border border-surface-white/20">
-              <span className="text-primary-fixed font-normal text-sm mb-2">ศูนย์กลางข้อมูล Supabase</span>
+              <span className="text-primary-fixed font-normal text-sm mb-2">ศูนย์กลางข้อมูล Arm Chat</span>
               <div className="w-16 h-1 bg-primary-container rounded-full"></div>
             </div>
           </div>
@@ -106,13 +106,13 @@ export default function FlowPage() {
             </div>
             <h3 className="text-2xl font-normal mb-2 text-surface-white">5. Chat & Call</h3>
             <p className="text-base opacity-90 mb-4 leading-relaxed">
-              หน้าต่างสนทนาเชิงลึก รองรับการส่งไฟล์ และการโทรด้วยเสียง/วิดีโอคุณภาพสูงผ่าน LiveKit Cloud
+              หน้าต่างสนทนาเชิงลึก รองรับการส่งไฟล์ และการโทรด้วยเสียง/วิดีโอคุณภาพสูงผ่านระบบคลาวด์ของ Arm Chat
             </p>
             <Link
               href="/call/demo-room"
               className="inline-flex items-center justify-center bg-primary-container text-ink px-6 py-2.5 rounded-full text-sm border border-ink hover:opacity-95 transition-all font-normal w-full"
             >
-              ทดสอบการโทร LiveKit →
+              ทดสอบการโทร →
             </Link>
           </div>
         </section>
@@ -135,7 +135,7 @@ export default function FlowPage() {
             <div className="bg-surface-white p-6 rounded-2xl border border-ink/20">
               <h4 className="text-lg font-normal text-ink mb-2">1. ระบบ ID / Username</h4>
               <p className="text-sm text-ink-muted leading-relaxed">
-                ค้นหาด้วยชื่อผู้ใช้ที่ไม่ซ้ำกัน (Unique Username) โดยระบบจะค้นหาในฐานข้อมูล Supabase แบบ Real-time
+                ค้นหาด้วยชื่อผู้ใช้ที่ไม่ซ้ำกัน (Unique Username) โดยระบบจะค้นหาในฐานข้อมูลแบบ Real-time
               </p>
             </div>
             <div className="bg-surface-white p-6 rounded-2xl border border-ink/20">
