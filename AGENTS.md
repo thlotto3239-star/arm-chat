@@ -16,7 +16,7 @@
    - Fact-based verification rule: When checking items/ingredients, verify the exact count against factual data. If ingredients or items exceed 2 or 3, record and log them explicitly in the workspace rules/notebook.
 
 ## 📓 Workspace Fact Log (บันทึกข้อมูลจริงที่ตรวจสอบจากโค้ด)
-- **Database Tables Count**: 13 tables บน live DB (verified 2026-08-05 ผ่าน direct connection): `call_logs`, `calls`, `conversation_members`, `conversations`, `friendships`, `group_activity_logs`, `messages`, `notifications_history`, `profiles`, `room_members`, `rooms`, `stories`, `test_results` [Exceeds 3, explicitly logged]
+- **Database Tables Count**: 25 tables บน live DB (verified 2026-08-05 ผ่าน direct connection): `profiles`, `rooms`, `room_members`, `messages`, `stories`, `friendships`, `call_logs`, `calls`, `conversations`, `conversation_members`, `notifications_history`, `group_activity_logs`, `test_results` + 12 ตารางจาก UI screens (migration `20260805000002_feature_schema_from_ui.sql`): `polls`, `poll_options`, `poll_votes`, `starred_messages`, `blocked_users`, `broadcast_lists`, `broadcast_list_members`, `devices`, `reports`, `export_requests`, `backups`, `story_views` [Exceeds 3, explicitly logged]
 - **Storage Buckets Count**: 3 buckets (`avatars`, `chat-media`, `stories`) — มี storage.objects policies ครบ (verified 2026-08-05)
 - **RLS**: ทุก table มี policy อย่างน้อย 1 อัน (verified 2026-08-05) — แก้ bug `42P17 infinite recursion` ด้วย SECURITY DEFINER functions (`is_room_member`, `is_room_admin`, `is_conversation_member`) ใน `supabase/migrations/20260805000001_fix_rls_recursion.sql`
 - **Checklist Sections Count**: 24 categories [Exceeds 3, explicitly logged]

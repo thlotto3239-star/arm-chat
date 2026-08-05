@@ -21,6 +21,7 @@
 2. เพิ่ม policies ที่ขาด: messages UPDATE/DELETE, rooms UPDATE, stories UPDATE/DELETE, friendships UPDATE/DELETE, room_members UPDATE/DELETE, conversations/conversation_members/calls (เดิม RLS deny-all), group_activity_logs INSERT, test_results SELECT/INSERT
 3. แก้ `42P17 infinite recursion` ด้วย `is_room_member()`, `is_room_admin()`, `is_conversation_member()` (SECURITY DEFINER)
 4. เพิ่ม indexes 9 ตัวตาม query pattern
+5. **สร้าง schema ครบตาม UI mockups 43 หน้า** (migration `20260805000002`): 12 ตารางใหม่ (`polls`, `poll_options`, `poll_votes`, `starred_messages`, `blocked_users`, `broadcast_lists`, `broadcast_list_members`, `devices`, `reports`, `export_requests`, `backups`, `story_views`) + columns เพิ่มใน `room_members` (is_archived/is_pinned/wallpaper/notification_tone), `rooms` (invite_code/is_public/is_verified), `messages` (latitude/longitude/location_name), `profiles` (two_factor/security_pin_hash/recovery_email/privacy_*/pref_show_preview/default_disappear_seconds) — verify ผ่าน probe ทุกตาราง/ทุก column
 
 Migrations ถูก apply กับ live DB แล้วและ verify ผ่าน probe จริง (13/13 tables อ่านได้, RLS บล็อก anonymous ถูกต้อง)
 
