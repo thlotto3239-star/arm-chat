@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 176 64" fill="none">
+  <!-- Arm Chat Horizontal Logo: mark + wordmark -->
+  <defs>
+    <clipPath id="bubbleClipH">
+      <path d="M28 16H40A8 8 0 0 1 48 24V36A8 8 0 0 1 40 44H32L24 52V44H20A8 8 0 0 1 12 36V24A8 8 0 0 1 20 16Z"/>
+    </clipPath>
+  </defs>
+  <g transform="translate(0,0)">
+    <circle cx="32" cy="32" r="30" fill="#25d366" stroke="#1c1e21" stroke-width="2"/>
+    <path d="M28 16H40A8 8 0 0 1 48 24V36A8 8 0 0 1 40 44H32L24 52V44H20A8 8 0 0 1 12 36V24A8 8 0 0 1 20 16Z" fill="#ffffff" stroke="#1c1e21" stroke-width="2" stroke-linejoin="round"/>
+    <g stroke="#25d366" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M34 19L27.5 39"/>
+      <path d="M34 19L40.5 39"/>
+      <path d="M29 32H39"/>
+    </g>
+  </g>
+  <text x="70" y="42" font-family="Inter, 'Prompt', sans-serif" font-size="30" font-weight="500" letter-spacing="-0.01em" fill="#1c1e21">Arm Chat</text>
+</svg>

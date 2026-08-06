@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Arm Chat Monochrome Mark: single-color (uses currentColor), for dark surfaces / favicon -->
+  <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="3" fill="none"/>
+  <path d="M28 16H40A8 8 0 0 1 48 24V36A8 8 0 0 1 40 44H32L24 52V44H20A8 8 0 0 1 12 36V24A8 8 0 0 1 20 16Z" stroke="currentColor" stroke-width="3" fill="none" stroke-linejoin="round"/>
+  <g stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M34 19L27.5 39"/>
+    <path d="M34 19L40.5 39"/>
+    <path d="M29 32H39"/>
+  </g>
+</svg>

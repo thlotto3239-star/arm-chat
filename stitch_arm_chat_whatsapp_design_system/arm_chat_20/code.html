@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>สร้างรายการบรอดแคสต์ใหม่ - Arm Chat</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#006d2f",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#005523",
+                    "on-primary-fixed": "#002109",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "surface-variant": "#e8e2d8",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#6c7b6b",
+                    "surface-tint": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "background": "#fff8f0",
+                    "surface": "#fff8f0",
+                    "on-primary-fixed-variant": "#005322",
+                    "surface-bright": "#fff8f0",
+                    "surface-container-high": "#eee7dd",
+                    "surface-dark": "#000000",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#d7e2ff",
+                    "tertiary-container": "#93b8ff",
+                    "surface-dim": "#e0d9d0",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#0d200a",
+                    "inverse-on-surface": "#f7f0e6",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e8e2d8",
+                    "on-tertiary-container": "#004694",
+                    "inverse-surface": "#33302a",
+                    "primary-container": "#25d366",
+                    "tertiary": "#005cbd",
+                    "outline-variant": "#bbcbb9",
+                    "surface-white": "#ffffff",
+                    "on-secondary-container": "#556a4d",
+                    "inverse-primary": "#3de273",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#d1eac6",
+                    "ink": "#1c1e21",
+                    "surface-container": "#f4ede3",
+                    "on-tertiary-fixed": "#001b3f",
+                    "on-background": "#1e1b16",
+                    "ink-muted": "#5e5e5e",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#3de273",
+                    "secondary": "#4f6448",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "secondary-fixed": "#d1eac6",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1e1b16",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xxl": "32px",
+                    "base": "4px",
+                    "xs": "8px",
+                    "md": "16px",
+                    "xl": "24px",
+                    "sm": "12px",
+                    "lg": "20px",
+                    "huge": "80px"
+            },
+            "fontFamily": {
+                    "label-xs": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "button-md": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"],
+                    "display-md": ["Prompt"]
+            },
+            "fontSize": {
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Prompt', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .contact-checkbox:checked + label {
+            background-color: #d1eac6;
+            border-color: #006d2f;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #6c7b6b; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col overflow-x-hidden">
+<!-- TopNavBar (Suppressed FAB on sub-page, but showing shell for navigation context) -->
+<header class="bg-surface border-b border-outline w-full top-0 sticky z-50 flex justify-between items-center px-xl py-md">
+<div class="flex items-center gap-md">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-high transition-colors active:scale-95" onclick="window.history.back()">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<h1 class="font-display-md text-display-md-mobile md:text-display-md text-primary leading-none">บรอดแคสต์ใหม่</h1>
+<p class="font-label-sm text-label-sm-mobile text-ink-muted" id="selection-counter">เลือกผู้รับ 0 จาก 256</p>
+</div>
+</div>
+<div class="hidden md:flex gap-sm">
+<button class="px-xl py-xs rounded-full border border-ink text-ink font-button-md hover:bg-surface-container-high transition-colors">
+                ยกเลิก
+            </button>
+<button class="px-xl py-xs rounded-full bg-primary-container border border-ink text-ink font-button-md hover:bg-opacity-90 active:scale-95 transition-all" id="create-btn-desktop">
+                สร้าง
+            </button>
+</div>
+<button class="md:hidden flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-ink-muted">search</span>
+</button>
+</header>
+<main class="flex-1 max-w-4xl mx-auto w-full px-md md:px-xl py-xl">
+<!-- Explanation Section -->
+<section class="mb-xxl p-xl bg-surface-container-lowest border border-ink rounded-lg relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px]">campaign</span>
+</div>
+<div class="relative z-10 max-w-2xl">
+<h2 class="font-body-lg text-body-lg text-primary mb-xs">รายการบรอดแคสต์ทำงานอย่างไร?</h2>
+<p class="font-body-md text-body-md text-ink-muted">
+                    เฉพาะผู้ติดต่อที่บันทึกเบอร์โทรศัพท์ของคุณไว้ในสมุดโทรศัพท์เท่านั้นที่จะได้รับข้อความบรอดแคสต์ของคุณ ผู้รับจะเห็นข้อความนั้นเป็น <span class="text-ink font-medium">ข้อความส่วนตัว</span> ตามปกติ และเมื่อพวกเขาตอบกลับ ข้อความนั้นจะไม่ถูกส่งไปยังคนอื่นในรายการบรอดแคสต์
+                </p>
+</div>
+</section>
+<!-- Search & Filter (Mobile optimized) -->
+<div class="mb-xl">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-md text-ink-muted">search</span>
+<input class="w-full h-[50px] pl-[48px] pr-md rounded-full bg-surface-white border border-ink text-body-md focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-ink-muted outline-none transition-all" placeholder="ค้นหาชื่อหรือเบอร์โทรศัพท์..." type="text"/>
+</div>
+</div>
+<!-- Selected Horizontal Scroll -->
+<div class="mb-xl hidden" id="selected-list-container">
+<div class="flex gap-sm overflow-x-auto pb-sm custom-scrollbar no-scrollbar">
+<!-- Selected items will be injected here via JS -->
+</div>
+</div>
+<!-- Contacts List -->
+<div class="space-y-base">
+<h3 class="font-label-sm text-label-sm text-ink-muted px-xs mb-xs">ผู้ติดต่อล่าสุด</h3>
+<div class="space-y-base" id="contacts-grid">
+<!-- Contact Row 1 -->
+<div class="contact-item">
+<input class="hidden contact-checkbox" data-avatar="image-1" data-name="อาร์ม" id="contact-1" type="checkbox"/>
+<label class="flex items-center gap-md p-md rounded-lg border border-transparent hover:bg-surface-container cursor-pointer transition-all active:scale-[0.98]" for="contact-1">
+<div class="relative h-12 w-12 rounded-full overflow-hidden border border-ink bg-white flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a friendly Thai man with short black hair wearing a casual linen green shirt. The lighting is bright and warm, emphasizing a calm and trustworthy persona against a minimalist cream background. High contrast, sharp focus, digital photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjPmMr0IwzkiJWJgT-pT9qpkA1TFEry7evGbZ0ogz5AuEEOJtixvhRORlRtiSN3ru4qA5B08t4gpi0q7x25boziaXEJmD4ogBAn_CBzFJM78i8w2ZvMDOFbHpXr5-_HtTqtjsPKkvnSx3xlTd3Iht-_rdaLD8GtSvF0Qlvj6Vv6DbvyPcnJ11nvonxYwDp3-TUG7ToufJubFCWD4_xAJm33-QoarS-BQd6uGF4MpfWa0YKq9XSHU0"/>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-ink">อาร์ม (Arm)</p>
+<p class="font-label-sm text-label-sm text-ink-muted">กำลังออนไลน์</p>
+</div>
+<span class="material-symbols-outlined text-primary check-icon hidden">check_circle</span>
+</label>
+</div>
+<!-- Contact Row 2 -->
+<div class="contact-item">
+<input class="hidden contact-checkbox" data-avatar="image-2" data-name="น้ำฝน" id="contact-2" type="checkbox"/>
+<label class="flex items-center gap-md p-md rounded-lg border border-transparent hover:bg-surface-container cursor-pointer transition-all active:scale-[0.98]" for="contact-2">
+<div class="relative h-12 w-12 rounded-full overflow-hidden border border-ink bg-white flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young Thai woman with long dark hair tied in a loose bun, wearing a white organic cotton top. Her expression is serene and professional. The scene is set in a bright, modern interior with soft natural light and subtle shadows. Sophisticated color-blocking style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8ApFrZDlDD9zupCVAHBrmdNuG6z1r43e61gPlPszlAjr4MYNztx7NtxevzGbUUOelAC0fnZ5OSzNcKqT1rG3yeVuGsTjHB0EmjS8E6UX99Fp1nsyIq5nuRnAjbWAER8VQRJ0d-E1tgUT7D_WbqXoqfEbhTVVoGOagmXQ3ocL5PMGrKj8dzyjMYTCUsBh6Q7fzfZO6eu0XqV8yiYN54UzHZvUrEGDaL64sEUznI20LHTT50nCRK0o"/>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-ink">น้ำฝน</p>
+<p class="font-label-sm text-label-sm text-ink-muted">ใช้งานล่าสุด เมื่อวานนี้</p>
+</div>
+<span class="material-symbols-outlined text-primary check-icon hidden">check_circle</span>
+</label>
+</div>
+<!-- Contact Row 3 -->
+<div class="contact-item">
+<input class="hidden contact-checkbox" data-avatar="image-3" data-name="เอกกี้" id="contact-3" type="checkbox"/>
+<label class="flex items-center gap-md p-md rounded-lg border border-transparent hover:bg-surface-container cursor-pointer transition-all active:scale-[0.98]" for="contact-3">
+<div class="relative h-12 w-12 rounded-full overflow-hidden border border-ink bg-white flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A minimalist headshot of a middle-aged Thai man with a kind smile, wearing stylish glasses and a dark polo shirt. The aesthetic is editorial and clean, featuring a solid cream background that reflects a high-end, professional messaging application interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiecDHGV687IFwQM4DAeJ1fWCl1m6PSO-qNvuYeNd_G7mezm_cZjLWFJXdqQdY7fqZOsHPrxpwyovzRAxoo5f0ZElI-wRJ4Ipoto5I53zVCCKK2BwpJF1FZtXuCWv3odfuGvyUxqVtDg3fj5vuwih6ByKarutGjvKVrXc2s7JAN_9MX1jcsJQmS9TQa9JTFb8A5ZLGVcUkw-zUXwc3XpXRBmTp0MzcKOjJy0his5MPA4Fq8A3bYfs"/>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-ink">เอกกี้</p>
+<p class="font-label-sm text-label-sm text-ink-muted">Available</p>
+</div>
+<span class="material-symbols-outlined text-primary check-icon hidden">check_circle</span>
+</label>
+</div>
+<!-- Contact Row 4 -->
+<div class="contact-item">
+<input class="hidden contact-checkbox" data-avatar="image-4" data-name="เจนจิรา" id="contact-4" type="checkbox"/>
+<label class="flex items-center gap-md p-md rounded-lg border border-transparent hover:bg-surface-container cursor-pointer transition-all active:scale-[0.98]" for="contact-4">
+<div class="relative h-12 w-12 rounded-full overflow-hidden border border-ink bg-white flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a Thai professional woman with a bob haircut, looking directly into the camera with a confident and approachable look. She is wearing a modern green blazer. The lighting is soft-box studio quality, creating a flat yet premium aesthetic consistent with a calm utility design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtNAA1qX6XuFS7vc7yjfd4bUwjxqObvqmUN93flq4PfJQX9zQmxhV1dqCL3Ag1ZB7dN056iJ3oOihb3xQsC7zM-6_18s8l_fIE2dSVoi8wdulqekKMKXTdOBnScRqFDDM2D9yJvyLGKf7uenap9nqElKzTU42_kGUPjf4WMlOp8Da97UiIC0vwFZJ0VXHYOOll7elOQJvAPNj9STbdlu5SLLe5gbrT6A6Ms1GytuS-LbMtMwmL8k0"/>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-ink">เจนจิรา</p>
+<p class="font-label-sm text-label-sm text-ink-muted">Busy</p>
+</div>
+<span class="material-symbols-outlined text-primary check-icon hidden">check_circle</span>
+</label>
+</div>
+<!-- Contact Row 5 -->
+<div class="contact-item">
+<input class="hidden contact-checkbox" data-avatar="image-5" data-name="พี่บอย" id="contact-5" type="checkbox"/>
+<label class="flex items-center gap-md p-md rounded-lg border border-transparent hover:bg-surface-container cursor-pointer transition-all active:scale-[0.98]" for="contact-5">
+<div class="relative h-12 w-12 rounded-full overflow-hidden border border-ink bg-white flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A portrait of a cheerful Thai man in his late 20s with a modern hairstyle, wearing a casual white t-shirt. He is standing in a brightly lit environment that looks like a clean, open-plan office. The visual style is minimal, professional, and focuses on high-contrast clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk2qpb_TvjPV8B4RGHo_Efk7GOiUJREktdLGK74SRhRqIeEU_qFfKAtvRrLFyzUGCHnNMdNZ18uRxkH5Ik84kvzs8ix-z0-CaEZYOVZB5P7tx-A9MVNguWucPBxowgE5Dy_SF-l9r56DpTtdJFlagRUaUXsSmJg9G5CgLIXQnzt8zY4X6fXSD84m7jYtlv_h6PiW3bq2veRPDT_gryy-VzisVrCxcyL7yR4kW3nn1Rs2HvubzIb2E"/>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-ink">พี่บอย</p>
+<p class="font-label-sm text-label-sm text-ink-muted">At the gym</p>
+</div>
+<span class="material-symbols-outlined text-primary check-icon hidden">check_circle</span>
+</label>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Sticky Create Button -->
+<div class="md:hidden fixed bottom-[80px] right-xl z-50">
+<button class="w-14 h-14 rounded-full bg-primary-container border border-ink flex items-center justify-center text-ink shadow-lg active:scale-90 transition-transform scale-0 opacity-0 transform translate-y-4" id="create-btn-mobile">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check</span>
+</button>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-md pb-safe border-t border-outline bg-surface h-[72px]">
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-md py-xs active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-sm text-label-sm-mobile">แชท</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-md py-xs active:scale-90 transition-transform hover:text-primary cursor-pointer">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-sm text-label-sm-mobile">กลุ่ม</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-md py-xs active:scale-90 transition-transform hover:text-primary cursor-pointer">
+<span class="material-symbols-outlined">call</span>
+<span class="font-label-sm text-label-sm-mobile">การโทร</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-md py-xs active:scale-90 transition-transform hover:text-primary cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm-mobile">ตั้งค่า</span>
+</div>
+</nav>
+<script>
+        const checkboxes = document.querySelectorAll('.contact-checkbox');
+        const counter = document.getElementById('selection-counter');
+        const selectedListContainer = document.getElementById('selected-list-container');
+        const selectedList = selectedListContainer.querySelector('.flex');
+        const mobileBtn = document.getElementById('create-btn-mobile');
+        const desktopBtn = document.getElementById('create-btn-desktop');
+
+        let selectedContacts = [];
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                const id = e.target.id;
+                const name = e.target.dataset.name;
+                const label = e.target.nextElementSibling;
+                const checkIcon = label.querySelector('.check-icon');
+
+                if (e.target.checked) {
+                    selectedContacts.push({ id, name });
+                    checkIcon.classList.remove('hidden');
+                    label.classList.add('border-primary', 'bg-secondary-container');
+                } else {
+                    selectedContacts = selectedContacts.filter(c => c.id !== id);
+                    checkIcon.classList.add('hidden');
+                    label.classList.remove('border-primary', 'bg-secondary-container');
+                }
+
+                updateUI();
+            });
+        });
+
+        function updateUI() {
+            const count = selectedContacts.length;
+            counter.innerText = `เลือกผู้รับ ${count} จาก 256`;
+
+            // Update Selected Chip List
+            if (count > 0) {
+                selectedListContainer.classList.remove('hidden');
+                selectedList.innerHTML = selectedContacts.map(contact => `
+                    <div class="flex-shrink-0 flex items-center gap-xs px-md py-xs bg-surface-white border border-ink rounded-full animate-in fade-in zoom-in duration-200">
+                        <span class="font-label-sm text-ink">${contact.name}</span>
+                        <button onclick="removeContact('${contact.id}')" class="flex items-center justify-center hover:text-error transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">close</span>
+                        </button>
+                    </div>
+                `).join('');
+                
+                // Show Create Buttons
+                mobileBtn.classList.remove('scale-0', 'opacity-0', 'translate-y-4');
+                mobileBtn.classList.add('scale-100', 'opacity-100', 'translate-y-0');
+                desktopBtn.disabled = false;
+                desktopBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            } else {
+                selectedListContainer.classList.add('hidden');
+                mobileBtn.classList.add('scale-0', 'opacity-0', 'translate-y-4');
+                mobileBtn.classList.remove('scale-100', 'opacity-100', 'translate-y-0');
+                desktopBtn.disabled = true;
+                desktopBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        window.removeContact = (id) => {
+            const checkbox = document.getElementById(id);
+            if (checkbox) {
+                checkbox.checked = false;
+                checkbox.dispatchEvent(new Event('change'));
+            }
+        };
+
+        // Initial state
+        desktopBtn.disabled = true;
+        desktopBtn.classList.add('opacity-50', 'cursor-not-allowed');
+    </script>
+</body></html>

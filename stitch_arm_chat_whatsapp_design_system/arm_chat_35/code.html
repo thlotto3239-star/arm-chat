@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ผลการค้นหา - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #fff8f0;
+            color: #1c1e21;
+            margin: 0;
+            padding: 0;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .search-highlight {
+            background-color: #25d366;
+            color: #1c1e21;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bbcbb9;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#faf3e9",
+                      "inverse-primary": "#3de273",
+                      "surface-tint": "#006d2f",
+                      "secondary": "#4f6448",
+                      "surface": "#fff8f0",
+                      "outline-variant": "#bbcbb9",
+                      "on-tertiary-container": "#004694",
+                      "inverse-surface": "#33302a",
+                      "tertiary-fixed-dim": "#abc7ff",
+                      "on-primary": "#ffffff",
+                      "outline": "#6c7b6b",
+                      "on-error": "#ffffff",
+                      "secondary-container": "#d1eac6",
+                      "primary-fixed-dim": "#3de273",
+                      "error-container": "#ffdad6",
+                      "tertiary-container": "#93b8ff",
+                      "primary-fixed": "#66ff8e",
+                      "on-surface": "#1e1b16",
+                      "surface-dim": "#e0d9d0",
+                      "on-tertiary-fixed-variant": "#004590",
+                      "secondary-fixed-dim": "#b5cdab",
+                      "on-surface-variant": "#3c4a3d",
+                      "secondary-fixed": "#d1eac6",
+                      "primary-container": "#25d366",
+                      "on-primary-fixed-variant": "#005322",
+                      "on-primary-container": "#005523",
+                      "tertiary-fixed": "#d7e2ff",
+                      "surface-bright": "#fff8f0",
+                      "ink": "#1c1e21",
+                      "on-secondary-container": "#556a4d",
+                      "surface-container-high": "#eee7dd",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-fixed": "#002109",
+                      "background": "#fff8f0",
+                      "surface-container-highest": "#e8e2d8",
+                      "surface-white": "#ffffff",
+                      "tertiary": "#005cbd",
+                      "surface-variant": "#e8e2d8",
+                      "surface-container": "#f4ede3",
+                      "inverse-on-surface": "#f7f0e6",
+                      "surface-dark": "#000000",
+                      "on-tertiary": "#ffffff",
+                      "on-background": "#1e1b16",
+                      "on-secondary-fixed-variant": "#384c32",
+                      "on-secondary-fixed": "#0d200a",
+                      "error": "#ba1a1a",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-fixed": "#001b3f",
+                      "ink-muted": "#5e5e5e",
+                      "on-error-container": "#93000a",
+                      "primary": "#006d2f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xxl": "32px",
+                      "sm": "12px",
+                      "md": "16px",
+                      "lg": "20px",
+                      "base": "4px",
+                      "xl": "24px",
+                      "huge": "80px",
+                      "xs": "8px"
+              },
+              "fontFamily": {
+                      "button-md": ["Prompt"],
+                      "display-xl": ["Prompt"],
+                      "label-xs": ["Prompt"],
+                      "body-md": ["Prompt"],
+                      "body-lg": ["Prompt"],
+                      "display-md": ["Prompt"],
+                      "display-xl-mobile": ["Prompt"],
+                      "label-sm": ["Prompt"],
+                      "display-lg": ["Prompt"]
+              },
+              "fontSize": {
+                      "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                      "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                      "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                      "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                      "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                      "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background min-h-screen text-on-surface">
+<!-- TopNavBar -->
+<header class="bg-surface border-b border-outline-variant flex justify-between items-center w-full px-xl h-20 max-w-full docked full-width top-0 z-40 fixed">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer">arrow_back</span>
+<h1 class="text-display-md font-display-md text-primary">Arm Chat</h1>
+</div>
+<div class="flex-1 max-w-2xl px-xl hidden md:block">
+<div class="relative">
+<input class="w-full h-12 bg-surface-white border border-ink rounded-full px-xl text-body-md focus:ring-2 focus:ring-primary outline-none" placeholder="ค้นหาข้อความ สื่อ และลิงก์" type="text" value="โปรเจกต์"/>
+<span class="material-symbols-outlined absolute right-4 top-3 text-ink-muted">search</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="more_vert">more_vert</span>
+</div>
+</header>
+<!-- Main Layout Container -->
+<main class="pt-24 pb-24 md:pb-0 md:pl-80 flex flex-col min-h-screen">
+<!-- SideNavBar (Desktop Only) -->
+<nav class="hidden md:flex flex-col h-screen w-80 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant p-md gap-sm z-30">
+<div class="py-xl">
+<h2 class="text-display-md font-display-md text-primary">Arm Admin</h2>
+<p class="text-label-sm text-ink-muted">Enterprise Secure</p>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container py-md rounded-full font-button-md text-button-md flex items-center justify-center gap-xs mb-lg">
+<span class="material-symbols-outlined">group_add</span>
+                New Group
+            </button>
+<div class="flex flex-col gap-xs overflow-y-auto custom-scrollbar flex-1">
+<div class="flex items-center gap-md bg-primary-container text-on-primary-container rounded-full px-md py-sm cursor-pointer transition-all">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="text-body-md font-body-md">Chats</span>
+</div>
+<div class="flex items-center gap-md text-secondary px-md py-sm cursor-pointer hover:bg-secondary-container/50 rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="text-body-md font-body-md">Security</span>
+</div>
+<div class="flex items-center gap-md text-secondary px-md py-sm cursor-pointer hover:bg-secondary-container/50 rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span class="text-body-md font-body-md">Data</span>
+</div>
+<div class="flex items-center gap-md text-secondary px-md py-sm cursor-pointer hover:bg-secondary-container/50 rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="devices_other">devices_other</span>
+<span class="text-body-md font-body-md">Devices</span>
+</div>
+<div class="flex items-center gap-md text-secondary px-md py-sm cursor-pointer hover:bg-secondary-container/50 rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+<span class="text-body-md font-body-md">Archive</span>
+</div>
+<div class="flex items-center gap-md text-secondary px-md py-sm cursor-pointer hover:bg-secondary-container/50 rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-body-md font-body-md">Settings</span>
+</div>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-md flex flex-col gap-xs">
+<div class="flex items-center gap-md text-secondary px-md py-sm cursor-pointer hover:bg-secondary-container/50 rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="text-body-md font-body-md">Help</span>
+</div>
+<div class="flex items-center gap-md text-secondary px-md py-sm cursor-pointer hover:bg-secondary-container/50 rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="text-body-md font-body-md">Logout</span>
+</div>
+</div>
+</nav>
+<!-- Search Content Canvas -->
+<div class="px-xl md:px-huge py-lg flex-1">
+<!-- Filters Header -->
+<div class="flex flex-col gap-lg mb-huge">
+<div class="flex items-center justify-between">
+<h2 class="text-display-lg font-display-lg">ผลการค้นหา</h2>
+<span class="text-body-md text-ink-muted">พบ 12 รายการสำหรับ "โปรเจกต์"</span>
+</div>
+<div class="flex flex-wrap gap-md items-center border-y border-outline-variant py-lg">
+<span class="text-label-sm font-label-sm text-ink-muted uppercase tracking-widest">กรองโดย:</span>
+<!-- Filter Chips -->
+<div class="relative group">
+<button class="flex items-center gap-xs px-lg py-sm bg-surface-white border border-ink rounded-full text-body-md hover:bg-surface-container-low transition-colors">
+<span>จาก (ผู้ติดต่อ)</span>
+<span class="material-symbols-outlined text-sm">keyboard_arrow_down</span>
+</button>
+</div>
+<div class="relative group">
+<button class="flex items-center gap-xs px-lg py-sm bg-surface-white border border-ink rounded-full text-body-md hover:bg-surface-container-low transition-colors">
+<span>วันที่</span>
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+</button>
+</div>
+<div class="h-6 w-px bg-outline-variant mx-sm"></div>
+<button class="px-lg py-sm bg-primary-container text-on-primary-container border border-ink rounded-full text-body-md">ทั้งหมด</button>
+<button class="px-lg py-sm bg-surface-white border border-outline-variant rounded-full text-body-md hover:bg-surface-container-low transition-colors">ข้อความ</button>
+<button class="px-lg py-sm bg-surface-white border border-outline-variant rounded-full text-body-md hover:bg-surface-container-low transition-colors">สื่อ</button>
+<button class="px-lg py-sm bg-surface-white border border-outline-variant rounded-full text-body-md hover:bg-surface-container-low transition-colors">ลิงก์</button>
+</div>
+</div>
+<!-- Bento Search Results Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Messages Section -->
+<div class="lg:col-span-8 space-y-md">
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-primary">forum</span>
+<h3 class="text-display-md font-display-md">ข้อความ</h3>
+</div>
+<!-- Message Card -->
+<div class="bg-surface-white border border-ink p-xl rounded-lg hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="font-medium text-body-md">สมชาย รักษ์ดี</p>
+<p class="text-label-sm text-ink-muted">กลุ่ม: การตลาด 2024</p>
+</div>
+</div>
+<span class="text-label-sm text-ink-muted">วันนี้, 10:45</span>
+</div>
+<p class="text-body-lg text-on-surface-variant leading-relaxed">
+                            สวัสดีทุกคน อย่าลืมตรวจสอบรายละเอียดใน <span class="search-highlight">โปรเจกต์</span> ใหม่ที่เรากำลังจะเริ่มกันอาทิตย์หน้านะครับ มีความคืบหน้าอย่างไรแจ้งได้เลย
+                        </p>
+</div>
+<!-- Message Card -->
+<div class="bg-surface-white border border-ink p-xl rounded-lg hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="font-medium text-body-md">พัชรา วิไลพร</p>
+<p class="text-label-sm text-ink-muted">แชทส่วนตัว</p>
+</div>
+</div>
+<span class="text-label-sm text-ink-muted">เมื่อวานนี้, 15:20</span>
+</div>
+<p class="text-body-lg text-on-surface-variant leading-relaxed">
+                            ไฟล์สรุปงบประมาณของ <span class="search-highlight">โปรเจกต์</span> A อยู่ในโฟลเดอร์แชร์นะคะ ลองเช็คดูว่ายอดถูกต้องไหม
+                        </p>
+</div>
+<button class="w-full py-md border border-dashed border-outline rounded-lg text-ink-muted hover:text-primary hover:border-primary transition-all">
+                        ดูข้อความเพิ่มเติม...
+                    </button>
+</div>
+<!-- Media & Links Side Section (Bento style) -->
+<div class="lg:col-span-4 space-y-xl">
+<!-- Media Section -->
+<section class="bg-surface-container-low border border-outline-variant p-xl rounded-lg">
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-primary">image</span>
+<h3 class="font-medium text-body-lg">สื่อ (Media)</h3>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="aspect-square bg-surface-white rounded-md border border-outline-variant overflow-hidden group cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="A clean architectural photograph of a modern office space with green plants and glass walls, reflecting a calm and professional atmosphere. The lighting is soft and natural, emphasizing minimalism and high-contrast clarity in a light-mode UI context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNsA5jEC3pU2D0BSPaXiaMae3xQflD3vt_htPN-eQXCvT_vgS_NynU0uLrSrhsVgyM-pHI5_Zoh8J3q-aBB6Ur2HzjG11apn4NSPp0V-fj7mQYEkd5Vgkare2I8DUtBR-RlihOiFdp-RtusdVnmoAskrfBWwgyWZ9A0rEKgRV2P6xu_aUG_HJL59DImvCedCWbWNRHEmqYltP6MN7ASFiSzw7bU5yv4k_QFRrOF3TbXZedeGzhKfM"/>
+</div>
+<div class="aspect-square bg-surface-white rounded-md border border-outline-variant overflow-hidden group cursor-pointer relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="A detailed digital 3D render of a clean white workspace with a single laptop and a cup of green tea. The scene is illuminated with bright, editorial lighting, featuring a strictly flat design aesthetic with no shadows. The color palette centers on creams and vibrant greens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfNj6HNvzdfq4JrGi6fOB_CmGcOP6VlzvAykCMxU1S33015X7sSCyDsq5nRgZaXpw_06rJe_kRdSYRi_s0hd1BYOJDAcnv3hM4t5TdrNM4XP87fkc7S2wQNZaryF9PLYzik2lTHvPAJQshkAzhLUUkXVo6XEaJ_OwYukpdWPLyORbcogzesZjjAgwKjyVtmxLcAKAAx1zdMqkdbjdG43giWqRH2ucE1PVmN9z0jMIH_4QLlezOGKI"/>
+<div class="absolute inset-0 bg-ink/40 flex items-center justify-center text-white text-label-xs">PDF</div>
+</div>
+<div class="aspect-square bg-surface-white rounded-md border border-outline-variant overflow-hidden group cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="A minimalist infographic displaying geometric charts and data points using a palette of white, cream, and deep green. The layout is clean and spacious, emphasizing high-contrast readability and professional utility within a Thai application interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNBdrNcKXUcsDt4DE5kxU9Pgh6Vbw_oinUOoW945igBrvUPhzm4DKvV0VRWgn_49UK8h4zCqW4hsBfzRdOpgBgap3bufnRTrRtARaw680AmnTmzLORze_lJ4nRSX3H48pnneiK5Lh8SFOlwlkl98J3Nb_43Gsz0B5tedefNlbT9L_isQnxgKt0bAu2dKAz5KIXCEMDyCXxpWVyaw6-7x2kuLzBzGhDjBu_TG--3SO7qWP32GkmF5c"/>
+</div>
+<div class="aspect-square bg-surface-white rounded-md border border-outline-variant flex flex-col items-center justify-center text-primary group cursor-pointer hover:bg-primary-container/20">
+<span class="material-symbols-outlined">add</span>
+<span class="text-label-xs">ดูทั้งหมด</span>
+</div>
+</div>
+</section>
+<!-- Links Section -->
+<section class="bg-surface-white border border-ink p-xl rounded-lg">
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-primary">link</span>
+<h3 class="font-medium text-body-lg">ลิงก์ (Links)</h3>
+</div>
+<div class="space-y-md">
+<div class="group cursor-pointer">
+<p class="text-body-md font-medium text-primary group-hover:underline truncate">docs.google.com/spreadsheets/d/project-data...</p>
+<p class="text-label-xs text-ink-muted">แชร์โดย: อนันต์ • 2 วันที่แล้ว</p>
+</div>
+<div class="h-px bg-outline-variant"></div>
+<div class="group cursor-pointer">
+<p class="text-body-md font-medium text-primary group-hover:underline truncate">arm-cloud.th/internal/project-brief</p>
+<p class="text-label-xs text-ink-muted">แชร์โดย: สมชาย • 5 วันที่แล้ว</p>
+</div>
+<div class="h-px bg-outline-variant"></div>
+<div class="group cursor-pointer">
+<p class="text-body-md font-medium text-primary group-hover:underline truncate">zoom.us/j/meeting-id-project-kickoff</p>
+<p class="text-label-xs text-ink-muted">แชร์โดย: พัชรา • 1 สัปดาห์ที่แล้ว</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Empty State Illustration (Hidden if results exist) -->
+<div class="hidden flex-col items-center justify-center py-huge text-center" id="empty-state">
+<div class="w-48 h-48 mb-xl bg-surface-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-huge text-outline">search_off</span>
+</div>
+<h3 class="text-display-md font-display-md mb-md">ไม่พบข้อมูลที่ค้นหา</h3>
+<p class="text-body-lg text-ink-muted">ลองเปลี่ยนคำค้นหาหรือตัวกรองใหม่อีกครั้ง</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<footer class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm pb-md pt-sm bg-surface border-t border-outline-variant">
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xl py-base scale-95 transition-transform duration-100">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+<span class="text-label-xs font-label-xs">Chats</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-xl py-base hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+<span class="text-label-xs font-label-xs">Calls</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-xl py-base hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="text-label-xs font-label-xs">Starred</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-xl py-base hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="text-label-xs font-label-xs">Archive</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-xl py-base hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="settings_gear">settings</span>
+<span class="text-label-xs font-label-xs">Settings</span>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for filter chips
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'scale(0.95)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = 'scale(1)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'scale(1)';
+            });
+        });
+
+        // Search Input focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        if(searchInput) {
+            searchInput.addEventListener('focus', () => {
+                searchInput.parentElement.classList.add('ring-2', 'ring-primary');
+            });
+            searchInput.addEventListener('blur', () => {
+                searchInput.parentElement.classList.remove('ring-2', 'ring-primary');
+            });
+        }
+    </script>
+</body></html>

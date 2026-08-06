@@ -1,0 +1,22 @@
+{
+  "name": "Arm Chat",
+  "short_name": "ArmChat",
+  "description": "แอปพลิเคชันส่งข้อความและโทรวิดีโอเรียลไทม์ระดับพรีเมียม",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fcf5eb",
+  "theme_color": "#25d366",
+  "icons": [
+    {
+      "src": "/brand/arm-chat-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

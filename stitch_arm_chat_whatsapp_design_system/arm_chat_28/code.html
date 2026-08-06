@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>วอลเปเปอร์แชท - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e8e2d8",
+                    "inverse-primary": "#3de273",
+                    "surface-dim": "#e0d9d0",
+                    "on-primary-fixed": "#002109",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#d1eac6",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1e1b16",
+                    "surface-container": "#f4ede3",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-tint": "#006d2f",
+                    "primary-container": "#25d366",
+                    "on-tertiary-container": "#004694",
+                    "surface-container-highest": "#e8e2d8",
+                    "background": "#fff8f0",
+                    "on-primary-container": "#005523",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "outline-variant": "#bbcbb9",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#001b3f",
+                    "inverse-surface": "#33302a",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#d1eac6",
+                    "surface-dark": "#000000",
+                    "primary": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "outline": "#6c7b6b",
+                    "error": "#ba1a1a",
+                    "ink-muted": "#5e5e5e",
+                    "secondary": "#4f6448",
+                    "on-background": "#1e1b16",
+                    "tertiary": "#005cbd",
+                    "surface": "#fff8f0",
+                    "surface-container-high": "#eee7dd",
+                    "surface-container-lowest": "#ffffff",
+                    "ink": "#1c1e21",
+                    "tertiary-fixed": "#d7e2ff",
+                    "primary-fixed-dim": "#3de273",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "on-secondary-container": "#556a4d",
+                    "surface-white": "#ffffff",
+                    "on-primary-fixed-variant": "#005322",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#93b8ff",
+                    "on-secondary-fixed": "#0d200a",
+                    "surface-bright": "#fff8f0",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "huge": "80px",
+                    "xxl": "32px",
+                    "xs": "8px",
+                    "xl": "24px",
+                    "md": "16px",
+                    "lg": "20px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "display-md": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "button-md": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"]
+            },
+            "fontSize": {
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Prompt', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chat-bubble-tail-in::after {
+            content: '';
+            position: absolute;
+            left: -10px;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid white;
+        }
+        .chat-bubble-tail-out::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #e6ffda;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #6c7b6b; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-background dark:bg-surface-dark flex justify-between items-center px-xl w-full h-16 sticky top-0 z-50">
+<div class="flex items-center gap-md">
+<button class="active:scale-95 transition-transform p-xs hover:bg-surface-container-high rounded-full">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-display-md text-[24px] text-primary dark:text-primary-fixed-dim">วอลเปเปอร์แชท</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined p-xs hover:bg-surface-container-high rounded-full text-on-surface-variant transition-colors active:scale-95">security</button>
+<button class="material-symbols-outlined p-xs hover:bg-surface-container-high rounded-full text-on-surface-variant transition-colors active:scale-95">more_vert</button>
+</div>
+</header>
+<main class="flex-grow flex flex-col md:flex-row-reverse gap-huge px-xl py-xl max-w-7xl mx-auto w-full">
+<!-- Right Section: Live Preview -->
+<section class="flex-1 sticky top-xxl">
+<div class="text-center mb-xl">
+<h2 class="font-display-md text-[20px] mb-xs">ตัวอย่างวอลเปเปอร์</h2>
+<p class="font-body-md text-ink-muted">วอลเปเปอร์ของคุณจะแสดงลักษณะนี้ในการสนทนา</p>
+</div>
+<div class="relative w-full aspect-[9/16] max-w-[320px] mx-auto rounded-xl border-4 border-ink overflow-hidden bg-surface-dim transition-all duration-500 shadow-2xl" id="live-preview">
+<!-- Preview Wallpaper -->
+<div class="absolute inset-0 bg-cover bg-center transition-all duration-300" data-alt="A serene landscape with soft rolling hills bathed in the golden light of a late afternoon sun. The sky is clear with a gradient from soft orange to a pale turquoise, matching a professional and calm light-mode interface. The visual style is editorial and minimal, featuring clean lines and high geometric clarity." id="preview-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuApfIPt5uWF0FW806lgGjAR8Ig9VzHg7L00RSFe4lLbINbHWukmzmve0DkCXRqz2hberDSIDTbw61xhmaqimi0XX-4VqCG5kkt3ORchJiIVySuOHIkAg6PjZoCnygwxUHw7nAWNYhUbMMXGzmzKr5Bq9DD9YUe1SPeVv1VRdkT6SQ19wU4AhNhSJDgatm4bHHb6Xcc4Mlg0JtNgyeYyfjz2fjgpjuGSh5QPqCKJAYsciCwRsW05z9A')"></div>
+<!-- Chat UI Elements -->
+<div class="absolute inset-0 flex flex-col p-md">
+<!-- Preview Header -->
+<div class="flex items-center gap-sm bg-white/60 backdrop-blur-md p-sm rounded-lg mb-xl">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">A</div>
+<div>
+<p class="font-body-md leading-tight">Arm Support</p>
+<p class="text-[10px] text-ink-muted">Online</p>
+</div>
+</div>
+<!-- Messages -->
+<div class="flex flex-col gap-xl">
+<div class="relative bg-white text-ink p-sm rounded-[25px] rounded-bl-none max-w-[80%] self-start shadow-sm chat-bubble-tail-in">
+<p class="font-body-md text-sm">วอลเปเปอร์นี้ดูเป็นอย่างไรบ้างครับ? 😊</p>
+<span class="text-[10px] text-ink-muted absolute -bottom-5 left-0">10:42</span>
+</div>
+<div class="relative bg-[#e6ffda] text-ink p-sm rounded-[25px] rounded-br-none max-w-[80%] self-end shadow-sm chat-bubble-tail-out">
+<p class="font-body-md text-sm">ดูสบายตาดีครับ เรียบง่ายแต่หรูหรา</p>
+<span class="text-[10px] text-ink-muted absolute -bottom-5 right-0">10:43</span>
+</div>
+</div>
+<!-- Input Preview -->
+<div class="mt-auto bg-white/80 backdrop-blur-md h-12 rounded-full border border-ink flex items-center px-md gap-sm">
+<span class="material-symbols-outlined text-ink-muted">sentiment_satisfied</span>
+<div class="flex-grow text-ink-muted text-sm">พิมพ์ข้อความ...</div>
+<span class="material-symbols-outlined text-primary">send</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Left Section: Selection Grid -->
+<section class="flex-[1.5] space-y-huge">
+<!-- Custom Pick -->
+<div class="space-y-xl">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-3xl">image</span>
+<h3 class="font-display-md text-2xl">พื้นหลังที่คุณกำหนด</h3>
+</div>
+<button class="w-full flex items-center gap-md p-xl bg-surface-white border border-ink rounded-lg hover:bg-surface-container-low transition-all group">
+<div class="w-14 h-14 bg-surface-container flex items-center justify-center rounded-full border-2 border-dashed border-outline text-outline group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">add_photo_alternate</span>
+</div>
+<div class="text-left">
+<p class="font-body-lg font-medium">เลือกจากแกลเลอรี</p>
+<p class="font-body-md text-ink-muted">ใช้รูปถ่ายหรือรูปภาพส่วนตัวของคุณ</p>
+</div>
+<span class="material-symbols-outlined ml-auto text-ink-muted">chevron_right</span>
+</button>
+</div>
+<!-- Landscapes -->
+<div class="space-y-xl">
+<div class="flex justify-between items-end">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-3xl">landscape</span>
+<h3 class="font-display-md text-2xl">ทัศนียภาพ</h3>
+</div>
+<button class="text-primary font-medium hover:underline">ดูทั้งหมด</button>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-md">
+<!-- Wallpaper Items -->
+<div class="aspect-[3/4] rounded-lg border border-ink overflow-hidden cursor-pointer hover:ring-4 ring-primary-container transition-all active:scale-95 relative group" onclick="updatePreview('bg-landscape-1')">
+<div class="w-full h-full bg-cover bg-center" data-alt="A minimalist landscape of a snowy mountain peak under a deep navy night sky filled with bright, tiny stars. The scene is quiet and sophisticated, following a monochrome blue and white color palette with sharp geometric edges. The lighting is cold and clear, evoking a sense of calm and focus." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD43ED7EOnXCZYqOmxILd8yuGRLsV8xxPT3mIiaK7Lh-bWBED1QDEtrqeir4Nw0_SPm_Y-eCe1oUmWsB_BdJCIfd__ovL_Fb9dngGuvj-S9IvI3ZMwIEl9AOq5CgKiQz1vv69gfm1XvQd1jr4BrJQhlZQbTy7gCp_ikg7vha7tA7XwREgiEcPzvPPvtvTk57Wz1kau3uT7DI6uAS4bUAXmsgo6WVjtIIwglKvu7OOuAQh7g-ZRpzBA')"></div>
+<div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/20 transition-colors"></div>
+</div>
+<div class="aspect-[3/4] rounded-lg border border-ink overflow-hidden cursor-pointer hover:ring-4 ring-primary-container transition-all active:scale-95 relative group" onclick="updatePreview('bg-landscape-2')">
+<div class="w-full h-full bg-cover bg-center" data-alt="A lush tropical forest interior with large monstera leaves in the foreground, illuminated by dappled sunlight filtering through a high canopy. The aesthetic is organic and warm, utilizing various shades of emerald and forest green with golden highlights. The scene is vibrant yet peaceful, fitting for a modern communication app." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDYY3RLvVvlbdfeQPfnzP7IheIM_spkKL2bU0hucVtiWyvJNoJuWYkdwi2IhkjdAl73dGShPXbWGHmTmObscFjjW8UDVihIJpDlKJPBfukR863mbdHVVffdiDeUXB9RmLg42FZFO4hrXBnCEH0goUOMRALvadnrDBrJbdZ0pIUxe5MzGfxnv7gBzzpnYffiVETzVD97XZteKetkxx3s9bCFlrbSxjWpXSbPauMT3o0EpLIwQgZE2iQ')"></div>
+<div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/20 transition-colors"></div>
+</div>
+<div class="aspect-[3/4] rounded-lg border border-ink overflow-hidden cursor-pointer hover:ring-4 ring-primary-container transition-all active:scale-95 relative group" onclick="updatePreview('bg-landscape-3')">
+<div class="w-full h-full bg-cover bg-center" data-alt="An abstract aerial view of a calm ocean meeting a sandy beach, with soft turquoise water and warm beige sand. The composition is split diagonally, creating a strong geometric balance. The mood is vacation-like and airy, with a bright light-mode feel that emphasizes white space and clean professional design." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDX_hFeaI3ev9iPh6BwXVwYVvbQxfPXCxaVn27LF4WvDGX7w_6TFjMWK2X3AJpIIIxquVMCdrzu0FxeHOHFk2OiDBVFgKoeVO4f8jmgbtZgJBTykxofpg4yXHmk7QpkFtMs2QH3xCFs6US_WoLAhGpn6qKAq_Le2khQOozqPNp8pC57RmfpDgTfbRXbEw3KQgQmHFZ0ltTo0wT3suz99y5AwJjLi2EBzSjaQEmkIWltBjv3qFWTE7U')"></div>
+<div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/20 transition-colors"></div>
+</div>
+</div>
+</div>
+<!-- Solid Colors -->
+<div class="space-y-xl pb-huge">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-3xl">palette</span>
+<h3 class="font-display-md text-2xl">สีพื้น</h3>
+</div>
+<div class="flex flex-wrap gap-md">
+<button class="w-12 h-12 rounded-full border border-ink bg-[#fff8f0] hover:scale-110 active:scale-90 transition-transform shadow-sm" onclick="updateColor('#fff8f0')"></button>
+<button class="w-12 h-12 rounded-full border border-ink bg-[#e8e2d8] hover:scale-110 active:scale-90 transition-transform shadow-sm" onclick="updateColor('#e8e2d8')"></button>
+<button class="w-12 h-12 rounded-full border border-ink bg-[#d1eac6] hover:scale-110 active:scale-90 transition-transform shadow-sm" onclick="updateColor('#d1eac6')"></button>
+<button class="w-12 h-12 rounded-full border border-ink bg-[#abc7ff] hover:scale-110 active:scale-90 transition-transform shadow-sm" onclick="updateColor('#abc7ff')"></button>
+<button class="w-12 h-12 rounded-full border border-ink bg-[#ffdad6] hover:scale-110 active:scale-90 transition-transform shadow-sm" onclick="updateColor('#ffdad6')"></button>
+<button class="w-12 h-12 rounded-full border border-ink bg-[#1c1e21] hover:scale-110 active:scale-90 transition-transform shadow-sm" onclick="updateColor('#1c1e21')"></button>
+<div class="w-12 h-12 rounded-full border-2 border-dashed border-outline flex items-center justify-center cursor-pointer hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action for Save (Mobile Context) -->
+<div class="fixed bottom-24 right-6 md:right-12 z-40">
+<button class="bg-primary-container text-on-primary-container px-xl py-md rounded-full border border-ink font-button-md shadow-lg flex items-center gap-sm hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined">check</span>
+            ตั้งเป็นวอลเปเปอร์
+        </button>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-md py-sm bg-surface-white dark:bg-surface-dark md:hidden">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-lg py-xs hover:bg-surface-container-low transition-all active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-sm text-label-sm">แชท</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-lg py-xs hover:bg-surface-container-low transition-all active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined">call</span>
+<span class="font-label-sm text-label-sm">โทร</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-lg py-xs hover:bg-surface-container-low transition-all active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined">contacts</span>
+<span class="font-label-sm text-label-sm">ผู้ติดต่อ</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-lg py-xs hover:bg-surface-container-low transition-all active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-sm text-label-sm">คลังไฟล์</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container dark:bg-on-primary-fixed-variant text-on-primary-container dark:text-primary-fixed rounded-full px-lg py-xs active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-sm text-label-sm">ตั้งค่า</span>
+</div>
+</nav>
+<script>
+        const previewBg = document.getElementById('preview-bg');
+        
+        function updateColor(color) {
+            previewBg.style.backgroundImage = 'none';
+            previewBg.style.backgroundColor = color;
+        }
+
+        function updatePreview(type) {
+            // For demo purposes, we cycle the opacity of the current placeholder or change background style
+            previewBg.classList.add('opacity-0');
+            setTimeout(() => {
+                // In a real app, this would swap the actual source. 
+                // Here we mimic the effect by changing background attachment/scale
+                previewBg.style.backgroundColor = 'transparent';
+                previewBg.style.backgroundPosition = (Math.random() > 0.5) ? 'bottom' : 'center';
+                previewBg.classList.remove('opacity-0');
+            }, 300);
+        }
+
+        // Add visual feedback to active state logic for sidebar navigation on desktop (if we had one)
+        // Since we have a bottom nav as per JSON but this is a deep settings page, 
+        // we follow the JSON but the user requested specifically for a settings menu sub-page.
+    </script>
+</body></html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ล็อคหน้าจอ - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #fff8f0; /* surface-bright from config */
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .numpad-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .pin-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1px solid #1c1e21;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pin-dot.filled {
+            background-color: #006d2f; /* primary */
+            border-color: #006d2f;
+            transform: scale(1.2);
+        }
+
+        .numpad-btn {
+            width: 72px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid #1c1e21;
+            background: #ffffff;
+            transition: all 0.15s ease-out;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .numpad-btn:active {
+            transform: scale(0.9);
+            background-color: #25d366; /* primary-container */
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .shake-animation {
+            animation: shake 0.3s ease-in-out;
+        }
+
+        .biometric-ring {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .biometric-ring::before {
+            content: '';
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            border: 1px dashed #006d2f;
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e8e2d8",
+                    "inverse-primary": "#3de273",
+                    "surface-dim": "#e0d9d0",
+                    "on-primary-fixed": "#002109",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#d1eac6",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1e1b16",
+                    "surface-container": "#f4ede3",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-tint": "#006d2f",
+                    "primary-container": "#25d366",
+                    "on-tertiary-container": "#004694",
+                    "surface-container-highest": "#e8e2d8",
+                    "background": "#fff8f0",
+                    "on-primary-container": "#005523",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "outline-variant": "#bbcbb9",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#001b3f",
+                    "inverse-surface": "#33302a",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#d1eac6",
+                    "surface-dark": "#000000",
+                    "primary": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "outline": "#6c7b6b",
+                    "error": "#ba1a1a",
+                    "ink-muted": "#5e5e5e",
+                    "secondary": "#4f6448",
+                    "on-background": "#1e1b16",
+                    "tertiary": "#005cbd",
+                    "surface": "#fff8f0",
+                    "surface-container-high": "#eee7dd",
+                    "surface-container-lowest": "#ffffff",
+                    "ink": "#1c1e21",
+                    "tertiary-fixed": "#d7e2ff",
+                    "primary-fixed-dim": "#3de273",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "on-secondary-container": "#556a4d",
+                    "surface-white": "#ffffff",
+                    "on-primary-fixed-variant": "#005322",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#93b8ff",
+                    "on-secondary-fixed": "#0d200a",
+                    "surface-bright": "#fff8f0",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "huge": "80px",
+                    "xxl": "32px",
+                    "xs": "8px",
+                    "xl": "24px",
+                    "md": "16px",
+                    "lg": "20px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "display-md": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "button-md": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"]
+            },
+            "fontSize": {
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="flex flex-col items-center justify-between py-huge px-xl bg-background selection:bg-primary-container">
+<!-- Header Logo Section -->
+<header class="flex flex-col items-center gap-md">
+<div class="w-20 h-20 bg-primary-container rounded-full flex items-center justify-center border border-ink mb-base">
+<span class="material-symbols-outlined text-primary text-[48px]" style="font-variation-settings: 'FILL' 1;">chat</span>
+</div>
+<h1 class="font-display-md text-display-md-mobile text-primary tracking-tight">Arm Chat</h1>
+<p class="font-body-md text-ink-muted">ล็อคหน้าจอ - Arm Chat</p>
+</header>
+<!-- PIN Display Area -->
+<main class="flex flex-col items-center w-full max-w-sm gap-huge">
+<div class="flex gap-xl justify-center items-center" id="pin-indicator">
+<div class="pin-dot"></div>
+<div class="pin-dot"></div>
+<div class="pin-dot"></div>
+<div class="pin-dot"></div>
+<div class="pin-dot"></div>
+<div class="pin-dot"></div>
+</div>
+<!-- Numpad -->
+<div class="numpad-grid">
+<button class="numpad-btn font-display-md text-ink" onclick="inputPin('1')">1</button>
+<button class="numpad-btn font-display-md text-ink" onclick="inputPin('2')">2</button>
+<button class="numpad-btn font-display-md text-ink" onclick="inputPin('3')">3</button>
+<button class="numpad-btn font-display-md text-ink" onclick="inputPin('4')">4</button>
+<button class="numpad-btn font-display-md text-ink" onclick="inputPin('5')">5</button>
+<button class="numpad-btn font-display-md text-ink" onclick="inputPin('6')">6</button>
+<button class="numpad-btn font-display-md text-ink" onclick="inputPin('7')">7</button>
+<button class="numpad-btn font-display-md text-ink" onclick="inputPin('8')">8</button>
+<button class="numpad-btn font-display-md text-ink" onclick="inputPin('9')">9</button>
+<div class="flex items-center justify-center">
+<button class="w-14 h-14 rounded-full text-primary hover:bg-surface-container transition-colors flex items-center justify-center" onclick="handleBiometric()">
+<span class="material-symbols-outlined text-[32px]">fingerprint</span>
+</button>
+</div>
+<button class="numpad-btn font-display-md text-ink" onclick="inputPin('0')">0</button>
+<button class="numpad-btn border-none bg-transparent hover:bg-surface-container" onclick="deletePin()">
+<span class="material-symbols-outlined text-ink text-[28px]">backspace</span>
+</button>
+</div>
+</main>
+<!-- Footer Security Message -->
+<footer class="text-center">
+<button class="font-button-md text-ink hover:underline mb-md block mx-auto">ลืมรหัสผ่าน?</button>
+<div class="flex items-center justify-center gap-xs text-ink-muted">
+<span class="material-symbols-outlined text-[18px]">security</span>
+<span class="font-label-sm">Secured by Arm Chat Encryption</span>
+</div>
+</footer>
+<!-- Biometric Overlay (Simulated) -->
+<div class="fixed inset-0 bg-surface-dark/90 z-50 flex-col items-center justify-center hidden" id="biometric-overlay">
+<div class="biometric-ring mb-huge">
+<span class="material-symbols-outlined text-surface-white text-[80px]" style="font-variation-settings: 'FILL' 1;">fingerprint</span>
+</div>
+<p class="font-display-md text-surface-white text-center px-xl">กรุณาสแกนลายนิ้วมือ</p>
+<button class="mt-huge py-md px-xl bg-surface-white text-ink rounded-full border border-ink font-button-md" onclick="closeBiometric()">ยกเลิก</button>
+</div>
+<script>
+        let pin = "";
+        const maxPinLength = 6;
+        const dots = document.querySelectorAll('.pin-dot');
+        const pinContainer = document.getElementById('pin-indicator');
+        const bioOverlay = document.getElementById('biometric-overlay');
+
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                if (index < pin.length) {
+                    dot.classList.add('filled');
+                } else {
+                    dot.classList.remove('filled');
+                }
+            });
+        }
+
+        function inputPin(num) {
+            if (pin.length < maxPinLength) {
+                pin += num;
+                updateDots();
+                
+                // Simulate correct PIN check at 6 digits
+                if (pin.length === maxPinLength) {
+                    setTimeout(() => {
+                        if (pin === "123456") {
+                            // Success effect
+                            pinContainer.classList.add('text-primary');
+                            alert("ปลดล็อคสำเร็จ");
+                            pin = "";
+                            updateDots();
+                        } else {
+                            // Error shake
+                            pinContainer.classList.add('shake-animation');
+                            pin = "";
+                            setTimeout(() => {
+                                pinContainer.classList.remove('shake-animation');
+                                updateDots();
+                            }, 300);
+                        }
+                    }, 200);
+                }
+            }
+        }
+
+        function deletePin() {
+            if (pin.length > 0) {
+                pin = pin.slice(0, -1);
+                updateDots();
+            }
+        }
+
+        function handleBiometric() {
+            bioOverlay.classList.remove('hidden');
+            bioOverlay.classList.add('flex');
+        }
+
+        function closeBiometric() {
+            bioOverlay.classList.add('hidden');
+            bioOverlay.classList.remove('flex');
+        }
+
+        // Add some basic keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.key >= '0' && e.key <= '9') inputPin(e.key);
+            if (e.key === 'Backspace') deletePin();
+        });
+    </script>
+</body></html>

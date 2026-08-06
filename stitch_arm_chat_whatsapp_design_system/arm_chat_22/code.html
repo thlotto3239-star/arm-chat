@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>เมนูจัดการข้อความ - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .message-bubble-in {
+            border-bottom-left-radius: 4px !important;
+        }
+        .message-bubble-out {
+            border-bottom-right-radius: 4px !important;
+        }
+        .glass-overlay {
+            background: rgba(255, 248, 240, 0.85);
+            backdrop-filter: blur(8px);
+        }
+        .context-menu-animation {
+            animation: scaleUp 0.2s ease-out forwards;
+            transform-origin: top left;
+        }
+        @keyframes scaleUp {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e8e2d8",
+                    "inverse-primary": "#3de273",
+                    "surface-dim": "#e0d9d0",
+                    "on-primary-fixed": "#002109",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#d1eac6",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1e1b16",
+                    "surface-container": "#f4ede3",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-tint": "#006d2f",
+                    "primary-container": "#25d366",
+                    "on-tertiary-container": "#004694",
+                    "surface-container-highest": "#e8e2d8",
+                    "background": "#fff8f0",
+                    "on-primary-container": "#005523",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "outline-variant": "#bbcbb9",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#001b3f",
+                    "inverse-surface": "#33302a",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#d1eac6",
+                    "surface-dark": "#000000",
+                    "primary": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "outline": "#6c7b6b",
+                    "error": "#ba1a1a",
+                    "ink-muted": "#5e5e5e",
+                    "secondary": "#4f6448",
+                    "on-background": "#1e1b16",
+                    "tertiary": "#005cbd",
+                    "surface": "#fff8f0",
+                    "surface-container-high": "#eee7dd",
+                    "surface-container-lowest": "#ffffff",
+                    "ink": "#1c1e21",
+                    "tertiary-fixed": "#d7e2ff",
+                    "primary-fixed-dim": "#3de273",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "on-secondary-container": "#556a4d",
+                    "surface-white": "#ffffff",
+                    "on-primary-fixed-variant": "#005322",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#93b8ff",
+                    "on-secondary-fixed": "#0d200a",
+                    "surface-bright": "#fff8f0",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "huge": "80px",
+                    "xxl": "32px",
+                    "xs": "8px",
+                    "xl": "24px",
+                    "md": "16px",
+                    "lg": "20px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "display-md": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "button-md": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"]
+            },
+            "fontSize": {
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface min-h-screen overflow-hidden flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-background w-full h-16 flex justify-between items-center px-xl shrink-0 z-10">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 transition-transform">arrow_back</span>
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full border border-ink overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a friendly Thai person with a warm smile, wearing modern casual attire. The lighting is soft and high-key against a minimal cream-colored background, matching a calm utility aesthetic. The image is crisp, modern, and editorial in style with natural skin tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUTHt0TBrOqsN-ixwuHWGtelF4yIrXnD2kiD3M55D3UuIISckWlez5A8EFbUL5DKBwV4t4sHTGt_ZMzySAlpCx6qIwmtPO2BOtDIXYq6QiVyWjQULebLeV2sL6PBzWEQxi3qfKG2HhKDaXeGx-37mUFDmCc7BrqfUxtw3X0AhYduU4rCqQqB1Buiq6b9rX2bJxkz1SQ2KOPGhe5RJNLIf-0tlwiV9N7i_OZsUqODyXTkfo2r5wiA0"/>
+</div>
+<div>
+<h1 class="font-display-md text-body-lg leading-tight text-ink font-bold">Arm Chat</h1>
+<p class="font-label-sm text-label-xs text-primary">กำลังใช้งาน</p>
+</div>
+</div>
+</div>
+<div class="flex gap-lg">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 transition-transform" data-icon="security">security</span>
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 transition-transform" data-icon="more_vert">more_vert</span>
+</div>
+</header>
+<!-- Chat Canvas (The underlying screen) -->
+<main class="flex-1 overflow-y-auto px-md py-xl flex flex-col gap-xl relative">
+<!-- Day Divider -->
+<div class="flex justify-center">
+<span class="bg-surface-container px-lg py-xs rounded-full font-label-sm text-on-surface-variant">วันนี้</span>
+</div>
+<!-- Incoming Message -->
+<div class="flex flex-col items-start gap-xs max-w-[85%]">
+<div class="bg-surface-white text-ink p-md rounded-lg message-bubble-in border border-surface-variant/20 shadow-sm">
+<p class="font-body-md text-body-md">สวัสดีครับ วันนี้มีประชุมกี่โมงนะครับ?</p>
+<div class="text-right mt-xs">
+<span class="font-label-sm text-label-xs text-ink-muted">10:42</span>
+</div>
+</div>
+</div>
+<!-- Outgoing Message (The one we will "select") -->
+<div class="flex flex-col items-end gap-xs max-w-[85%] self-end">
+<div class="bg-secondary-container text-ink p-md rounded-lg message-bubble-out border border-ink/5">
+<p class="font-body-md text-body-md">ประชุมตอนบ่ายสองที่ห้องกระจกครับ</p>
+<div class="flex items-center justify-end gap-xs mt-xs">
+<span class="font-label-sm text-label-xs text-ink-muted">10:45</span>
+<span class="material-symbols-outlined text-primary text-[14px]" style="font-variation-settings: 'FILL' 1;">done_all</span>
+</div>
+</div>
+</div>
+<!-- Incoming Message (The Target for the Context Menu) -->
+<div class="flex flex-col items-start gap-xs max-w-[85%]">
+<div class="bg-surface-white text-ink p-md rounded-lg message-bubble-in border border-surface-variant/20 shadow-sm relative">
+<p class="font-body-md text-body-md">โอเคครับ เดี๋ยวผมเตรียมเอกสารการนำเสนอไว้ให้นะครับ</p>
+<div class="text-right mt-xs">
+<span class="font-label-sm text-label-xs text-ink-muted">10:46</span>
+</div>
+</div>
+</div>
+<!-- Fake Input Bar (Background) -->
+<div class="fixed bottom-0 left-0 w-full p-md bg-background flex items-center gap-md">
+<div class="flex-1 h-[50px] bg-surface-white border border-ink rounded-full px-xl flex items-center">
+<span class="text-ink-muted font-body-md">พิมพ์ข้อความ...</span>
+</div>
+<div class="w-[50px] h-[50px] bg-primary-container border border-ink rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-ink">mic</span>
+</div>
+</div>
+<!-- OVERLAY: Context Menu & Reactions -->
+<div class="fixed inset-0 z-50 glass-overlay flex flex-col justify-center px-md overflow-hidden" onclick="window.location.reload()">
+<div class="max-w-[500px] mx-auto w-full flex flex-col gap-md">
+<!-- Highlighted Message Duplicate -->
+<div class="flex flex-col items-start gap-xs max-w-[85%] mb-md">
+<div class="bg-surface-white text-ink p-md rounded-lg message-bubble-in border-2 border-primary shadow-lg scale-[1.02] transition-transform">
+<p class="font-body-md text-body-md">โอเคครับ เดี๋ยวผมเตรียมเอกสารการนำเสนอไว้ให้นะครับ</p>
+<div class="text-right mt-xs">
+<span class="font-label-sm text-label-xs text-ink-muted">10:46</span>
+</div>
+</div>
+</div>
+<!-- Reactions Bar -->
+<div class="context-menu-animation flex gap-md bg-surface-white border border-ink p-sm rounded-full shadow-xl w-max">
+<button class="w-10 h-10 flex items-center justify-center text-2xl hover:bg-surface-container-low rounded-full transition-colors active:scale-90">👍</button>
+<button class="w-10 h-10 flex items-center justify-center text-2xl hover:bg-surface-container-low rounded-full transition-colors active:scale-90">❤️</button>
+<button class="w-10 h-10 flex items-center justify-center text-2xl hover:bg-surface-container-low rounded-full transition-colors active:scale-90">😂</button>
+<button class="w-10 h-10 flex items-center justify-center text-2xl hover:bg-surface-container-low rounded-full transition-colors active:scale-90">😮</button>
+<button class="w-10 h-10 flex items-center justify-center text-2xl hover:bg-surface-container-low rounded-full transition-colors active:scale-90">😢</button>
+<button class="w-10 h-10 flex items-center justify-center text-2xl hover:bg-surface-container-low rounded-full transition-colors active:scale-90">🙏</button>
+</div>
+<!-- Context Menu -->
+<div class="context-menu-animation bg-surface-white border border-ink rounded-lg shadow-2xl w-64 overflow-hidden" style="animation-delay: 0.1s;">
+<button class="w-full px-xl py-md flex items-center justify-between hover:bg-surface-container-low transition-colors active:bg-surface-container-high">
+<span class="font-body-md text-ink">ตอบกลับ</span>
+<span class="material-symbols-outlined text-ink-muted">reply</span>
+</button>
+<div class="h-[1px] bg-surface-variant mx-xl"></div>
+<button class="w-full px-xl py-md flex items-center justify-between hover:bg-surface-container-low transition-colors active:bg-surface-container-high">
+<span class="font-body-md text-ink">คัดลอก</span>
+<span class="material-symbols-outlined text-ink-muted">content_copy</span>
+</button>
+<div class="h-[1px] bg-surface-variant mx-xl"></div>
+<button class="w-full px-xl py-md flex items-center justify-between hover:bg-surface-container-low transition-colors active:bg-surface-container-high">
+<span class="font-body-md text-ink">ส่งต่อ</span>
+<span class="material-symbols-outlined text-ink-muted">forward</span>
+</button>
+<div class="h-[1px] bg-surface-variant mx-xl"></div>
+<button class="w-full px-xl py-md flex items-center justify-between hover:bg-surface-container-low transition-colors active:bg-surface-container-high">
+<span class="font-body-md text-ink">ติดดาว</span>
+<span class="material-symbols-outlined text-ink-muted">star</span>
+</button>
+<div class="h-[1px] bg-surface-variant mx-xl"></div>
+<button class="w-full px-xl py-md flex items-center justify-between hover:bg-surface-container-low transition-colors active:bg-surface-container-high text-error">
+<span class="font-body-md">ลบ</span>
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+<!-- Dismiss instruction -->
+<div class="absolute bottom-huge left-0 w-full text-center pointer-events-none opacity-50">
+<p class="font-label-sm text-ink-muted">แตะที่ใดก็ได้เพื่อปิดเมนู</p>
+</div>
+</div>
+</main>
+<!-- Floating Action Button Suppression - As per mandate, FAB not visible on details/transactional screens, suppressed here for clarity -->
+<!-- Micro-interaction Script -->
+<script>
+        // Prevent clicking menu from closing it
+        document.querySelector('.context-menu-animation').addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+        
+        // Add click events to reaction buttons
+        const reactions = document.querySelectorAll('.context-menu-animation button');
+        reactions.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                btn.classList.add('bg-primary-container');
+                setTimeout(() => {
+                   window.location.reload(); 
+                }, 400);
+            });
+        });
+    </script>
+</body></html>

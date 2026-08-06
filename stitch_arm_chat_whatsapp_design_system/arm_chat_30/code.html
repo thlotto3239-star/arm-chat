@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>เกิดข้อผิดพลาด - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e8e2d8",
+                    "inverse-primary": "#3de273",
+                    "surface-dim": "#e0d9d0",
+                    "on-primary-fixed": "#002109",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#d1eac6",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1e1b16",
+                    "surface-container": "#f4ede3",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-tint": "#006d2f",
+                    "primary-container": "#25d366",
+                    "on-tertiary-container": "#004694",
+                    "surface-container-highest": "#e8e2d8",
+                    "background": "#fff8f0",
+                    "on-primary-container": "#005523",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "outline-variant": "#bbcbb9",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#001b3f",
+                    "inverse-surface": "#33302a",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#d1eac6",
+                    "surface-dark": "#000000",
+                    "primary": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "outline": "#6c7b6b",
+                    "error": "#ba1a1a",
+                    "ink-muted": "#5e5e5e",
+                    "secondary": "#4f6448",
+                    "on-background": "#1e1b16",
+                    "tertiary": "#005cbd",
+                    "surface": "#fff8f0",
+                    "surface-container-high": "#eee7dd",
+                    "surface-container-lowest": "#ffffff",
+                    "ink": "#1c1e21",
+                    "tertiary-fixed": "#d7e2ff",
+                    "primary-fixed-dim": "#3de273",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "on-secondary-container": "#556a4d",
+                    "surface-white": "#ffffff",
+                    "on-primary-fixed-variant": "#005322",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#93b8ff",
+                    "on-secondary-fixed": "#0d200a",
+                    "surface-bright": "#fff8f0",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "huge": "80px",
+                    "xxl": "32px",
+                    "xs": "8px",
+                    "xl": "24px",
+                    "md": "16px",
+                    "lg": "20px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "display-md": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "button-md": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"]
+            },
+            "fontSize": {
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #fff8f0; /* background from theme */
+            overflow: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ripple {
+            animation: ripple-effect 3s infinite;
+        }
+        @keyframes ripple-effect {
+            0% { transform: scale(1); opacity: 0.4; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body class="text-ink selection:bg-primary-container">
+<!-- Top Navigation Bar (Suppressed because this is a task-focused error screen, but following structure for branding) -->
+<header class="w-full h-16 flex justify-between items-center px-xl bg-background fixed top-0 left-0 z-50">
+<div class="font-display-md text-display-md-mobile text-primary">Arm Chat</div>
+<div class="flex items-center gap-md">
+<button class="hover:bg-surface-container-high p-xs rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-on-surface-variant">security</span>
+</button>
+<button class="hover:bg-surface-container-high p-xs rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</div>
+</header>
+<main class="relative min-h-screen flex flex-col items-center justify-center p-xl overflow-hidden">
+<!-- Background Atmospheric Element (Subtle Animated Ripple) -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-64 h-64 border-2 border-primary/10 rounded-full ripple"></div>
+<div class="w-64 h-64 border-2 border-primary/5 rounded-full ripple" style="animation-delay: 1s;"></div>
+</div>
+<!-- Illustration Section -->
+<div class="relative w-full max-w-md aspect-square flex flex-col items-center justify-center mb-xl floating">
+<!-- Central Illustration Concept: A broken satellite drifting in a calm green-cream space -->
+<div class="relative w-64 h-64 bg-surface-white rounded-full border border-ink flex items-center justify-center overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A minimalist flat-style illustration of a stylized satellite drifting in a void. The satellite has a broken antenna and is colored in deep forest green and cream white. The background is a soft off-white with tiny subtle floating geometric particles. The lighting is soft and high-key, maintaining a clean editorial aesthetic with high contrast sharp edges and no shadows. The overall mood is peaceful but disconnected, matching a professional Thai app interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW9MraroqOsDMlvRKaMix5EaA-LW424ujupV6MyvV-uJ1etExzINZD8mOumW8ReIs9kzZaHXMs9FvBfKRbfJJ95FeRG3j-1NybG-cEiCTguRjO4BWRQtILraLPSjOEtVTr_V_CfQICiLGHF0aohvO3jWuGzoLFDt-VFJysofDr43Ryy4Cn-GHnyO0DshPStPXgy0z0EahilBQSi3_WYcQR0Ggr0zMAJDnyOwVK5nFoW4Ioq5ofabQ"/>
+<!-- Signal Interference Overlay (CSS-based) -->
+<div class="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent"></div>
+</div>
+<!-- Disconnected Warning Badge -->
+<div class="absolute bottom-10 -right-4 bg-error text-on-error px-md py-xs rounded-lg border border-ink font-label-sm text-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">wifi_off</span>
+                OFFLINE
+            </div>
+</div>
+<!-- Typography & Messaging -->
+<div class="text-center space-y-md max-w-sm">
+<h1 class="font-display-md text-display-md-mobile text-ink leading-tight">
+                ไม่มีการเชื่อมต่ออินเทอร์เน็ต
+            </h1>
+<p class="font-body-md text-body-md text-ink-muted px-md">
+                เราหาทางพาคุณกลับเข้าสู่การสนทนาไม่ได้ โปรดตรวจสอบการเชื่อมต่อ Wi-Fi หรือข้อมูลมือถือของคุณ
+            </p>
+</div>
+<!-- Action Button -->
+<div class="mt-huge">
+<button class="group relative flex items-center justify-center bg-primary-container text-ink px-xl py-md rounded-full border border-ink font-button-md text-button-md transition-all active:scale-90 hover:bg-primary hover:text-white duration-200" onclick="handleRetry(this)">
+<span class="flex items-center gap-sm" id="button-text">
+                    ลองใหม่อีกครั้ง
+                    <span class="material-symbols-outlined transition-transform group-hover:rotate-180">refresh</span>
+</span>
+<!-- Loading Spinner (Hidden by default) -->
+<div class="hidden" id="loading-spinner">
+<svg class="animate-spin h-5 w-5 text-ink" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+</svg>
+</div>
+</button>
+</div>
+<!-- Bottom Status Bar -->
+<div class="mt-xl flex flex-col items-center gap-xs">
+<div class="flex gap-xs items-center opacity-40">
+<div class="w-2 h-2 rounded-full bg-error animate-pulse"></div>
+<span class="font-label-xs text-label-xs uppercase tracking-widest text-ink">Socket: Disconnected</span>
+</div>
+</div>
+</main>
+<!-- Navigation suppressed per rules for Transactional/Error Screens -->
+<!-- However, we ensure the background stays the branded Cream -->
+<script>
+        function handleRetry(btn) {
+            const text = document.getElementById('button-text');
+            const spinner = document.getElementById('loading-spinner');
+            
+            // Disable button
+            btn.classList.add('opacity-80', 'pointer-events-none');
+            text.classList.add('hidden');
+            spinner.classList.remove('hidden');
+
+            // Simulate network check
+            setTimeout(() => {
+                // Return to normal
+                btn.classList.remove('opacity-80', 'pointer-events-none');
+                text.classList.remove('hidden');
+                spinner.classList.add('hidden');
+                
+                // Add a small shake effect to show it still failed
+                btn.classList.add('animate-shake');
+                setTimeout(() => btn.classList.remove('animate-shake'), 500);
+            }, 1500);
+        }
+
+        // Add shake animation style dynamically
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+            .animate-shake {
+                animation: shake 0.2s ease-in-out 0s 2;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body></html>

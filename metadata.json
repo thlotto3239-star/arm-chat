@@ -1,0 +1,11 @@
+{
+  "name": "arm-chat",
+  "description": "Imported from GitHub: thlotto3239-star/arm-chat",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

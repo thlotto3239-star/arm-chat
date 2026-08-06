@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ส่งออกข้อมูล - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom transitions for the progress bar and buttons */
+        .progress-bar-fill {
+            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .flat-card {
+            border: 1px solid #1c1e21;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#faf3e9",
+                      "inverse-primary": "#3de273",
+                      "surface-tint": "#006d2f",
+                      "secondary": "#4f6448",
+                      "surface": "#fff8f0",
+                      "outline-variant": "#bbcbb9",
+                      "on-tertiary-container": "#004694",
+                      "inverse-surface": "#33302a",
+                      "tertiary-fixed-dim": "#abc7ff",
+                      "on-primary": "#ffffff",
+                      "outline": "#6c7b6b",
+                      "on-error": "#ffffff",
+                      "secondary-container": "#d1eac6",
+                      "primary-fixed-dim": "#3de273",
+                      "error-container": "#ffdad6",
+                      "tertiary-container": "#93b8ff",
+                      "primary-fixed": "#66ff8e",
+                      "on-surface": "#1e1b16",
+                      "surface-dim": "#e0d9d0",
+                      "on-tertiary-fixed-variant": "#004590",
+                      "secondary-fixed-dim": "#b5cdab",
+                      "on-surface-variant": "#3c4a3d",
+                      "secondary-fixed": "#d1eac6",
+                      "primary-container": "#25d366",
+                      "on-primary-fixed-variant": "#005322",
+                      "on-primary-container": "#005523",
+                      "tertiary-fixed": "#d7e2ff",
+                      "surface-bright": "#fff8f0",
+                      "ink": "#1c1e21",
+                      "on-secondary-container": "#556a4d",
+                      "surface-container-high": "#eee7dd",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-fixed": "#002109",
+                      "background": "#fff8f0",
+                      "surface-container-highest": "#e8e2d8",
+                      "surface-white": "#ffffff",
+                      "tertiary": "#005cbd",
+                      "surface-variant": "#e8e2d8",
+                      "surface-container": "#f4ede3",
+                      "inverse-on-surface": "#f7f0e6",
+                      "surface-dark": "#000000",
+                      "on-tertiary": "#ffffff",
+                      "on-background": "#1e1b16",
+                      "on-secondary-fixed-variant": "#384c32",
+                      "on-secondary-fixed": "#0d200a",
+                      "error": "#ba1a1a",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-fixed": "#001b3f",
+                      "ink-muted": "#5e5e5e",
+                      "on-error-container": "#93000a",
+                      "primary": "#006d2f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xxl": "32px",
+                      "sm": "12px",
+                      "md": "16px",
+                      "lg": "20px",
+                      "base": "4px",
+                      "xl": "24px",
+                      "huge": "80px",
+                      "xs": "8px"
+              },
+              "fontFamily": {
+                      "button-md": ["Prompt"],
+                      "display-xl": ["Prompt"],
+                      "label-xs": ["Prompt"],
+                      "body-md": ["Prompt"],
+                      "body-lg": ["Prompt"],
+                      "display-md": ["Prompt"],
+                      "display-xl-mobile": ["Prompt"],
+                      "label-sm": ["Prompt"],
+                      "display-lg": ["Prompt"]
+              },
+              "fontSize": {
+                      "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                      "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                      "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                      "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                      "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                      "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<!-- Side Navigation (Web) -->
+<nav class="hidden md:flex flex-col h-screen w-80 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant p-md gap-sm z-40">
+<div class="mb-huge px-md">
+<h1 class="text-display-md font-display-md text-primary">Arm Admin</h1>
+<p class="text-body-md font-body-md text-ink-muted">Enterprise Secure</p>
+</div>
+<div class="space-y-xs flex-grow">
+<a class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="text-body-md font-body-md">Chats</span>
+</a>
+<a class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="text-body-md font-body-md">Security</span>
+</a>
+<a class="flex items-center gap-md bg-primary-container text-on-primary-container rounded-full px-md py-sm transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span class="text-body-md font-body-md">Data</span>
+</a>
+<a class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="devices_other">devices_other</span>
+<span class="text-body-md font-body-md">Devices</span>
+</a>
+<a class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+<span class="text-body-md font-body-md">Archive</span>
+</a>
+<a class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-body-md font-body-md">Settings</span>
+</a>
+</div>
+<div class="pt-huge border-t border-outline-variant space-y-xs">
+<a class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="text-body-md font-body-md">Help</span>
+</a>
+<a class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="text-body-md font-body-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="md:ml-80 min-h-screen">
+<!-- Top Bar (Mobile/Web Header) -->
+<header class="flex justify-between items-center w-full px-xl h-20 bg-surface border-b border-outline-variant sticky top-0 z-30">
+<div class="flex items-center gap-md">
+<button class="md:hidden text-ink">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h2 class="text-display-md font-display-md text-primary">ส่งออกข้อมูล</h2>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden sm:flex bg-surface-container-low px-md py-xs rounded-full border border-ink items-center gap-xs">
+<span class="material-symbols-outlined text-ink-muted" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md w-32 md:w-64" placeholder="ค้นหาการตั้งค่า" type="text"/>
+</div>
+<span class="material-symbols-outlined text-ink p-xs cursor-pointer" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="material-symbols-outlined text-ink p-xs cursor-pointer" data-icon="more_vert">more_vert</span>
+</div>
+</header>
+<section class="max-w-4xl mx-auto px-xl py-huge space-y-huge">
+<!-- Hero Security Section -->
+<div class="bg-ink text-surface p-xl rounded-lg flex flex-col md:flex-row items-center gap-xl">
+<div class="flex-1 space-y-md">
+<div class="inline-flex items-center gap-xs px-md py-xs bg-primary-container text-on-primary-container rounded-full">
+<span class="material-symbols-outlined" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="text-label-sm font-label-sm">ความปลอดภัยสูง</span>
+</div>
+<h3 class="text-display-lg font-display-lg leading-tight">ข้อมูลของคุณ เข้ารหัสและปลอดภัย</h3>
+<p class="text-body-lg font-body-lg text-surface-container-high opacity-80">เราเตรียมไฟล์ส่งออกข้อมูลส่วนบุคคลของคุณด้วยการเข้ารหัสแบบ End-to-end คุณสามารถดาวน์โหลดประวัติการแชท สื่อ และรายชื่อติดต่อได้ในรูปแบบที่เลือก</p>
+</div>
+<div class="w-full md:w-64 h-64 relative overflow-hidden rounded-lg">
+
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[100px] text-primary" data-icon="lock_open">lock_open</span>
+</div>
+</div>
+</div>
+<!-- Configuration Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl" id="export-form">
+<!-- Date Range Selection -->
+<div class="bg-surface-white flat-card p-xl space-y-lg rounded-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_today">calendar_today</span>
+<h4 class="text-body-lg font-body-lg text-ink">ช่วงเวลาของข้อมูล</h4>
+</div>
+<div class="space-y-md">
+<label class="block">
+<span class="text-label-sm font-label-sm text-ink-muted block mb-xs">เริ่มต้น</span>
+<input class="w-full h-12 rounded-full border-ink bg-surface px-md text-body-md focus:ring-primary focus:border-primary" type="date"/>
+</label>
+<label class="block">
+<span class="text-label-sm font-label-sm text-ink-muted block mb-xs">สิ้นสุด</span>
+<input class="w-full h-12 rounded-full border-ink bg-surface px-md text-body-md focus:ring-primary focus:border-primary" type="date"/>
+</label>
+</div>
+</div>
+<!-- Format Selection -->
+<div class="bg-surface-container-low p-xl space-y-lg rounded-lg border border-outline-variant">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
+<h4 class="text-body-lg font-body-lg text-ink">รูปแบบไฟล์</h4>
+</div>
+<div class="flex flex-col gap-sm">
+<button class="format-btn flex items-center justify-between p-md bg-surface-white border border-ink rounded-full transition-all hover:bg-primary-container group" onclick="selectFormat('zip')">
+<span class="text-body-md font-body-md">ZIP (สื่อและแชท)</span>
+<span class="material-symbols-outlined text-primary group-hover:text-ink" data-icon="check_circle">check_circle</span>
+</button>
+<button class="format-btn flex items-center justify-between p-md bg-surface-white border border-outline text-ink-muted rounded-full transition-all hover:border-ink" onclick="selectFormat('json')">
+<span class="text-body-md font-body-md">JSON (ข้อมูลทางเทคนิค)</span>
+<span class="material-symbols-outlined opacity-0" data-icon="check_circle">check_circle</span>
+</button>
+</div>
+</div>
+<!-- Data Types Selection -->
+<div class="md:col-span-2 bg-surface-white flat-card p-xl space-y-xl rounded-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="fact_check">fact_check</span>
+<h4 class="text-body-lg font-body-lg text-ink">ประเภทข้อมูลที่ต้องการส่งออก</h4>
+</div>
+<button class="text-primary text-label-sm font-label-sm underline">เลือกทั้งหมด</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-md">
+<label class="flex items-center p-xl bg-surface rounded-lg cursor-pointer border border-transparent hover:border-primary transition-colors group">
+<input checked="" class="hidden peer" type="checkbox"/>
+<div class="flex flex-col items-center gap-sm w-full">
+<span class="material-symbols-outlined text-display-md text-ink-muted peer-checked:text-primary transition-colors" data-icon="forum">forum</span>
+<span class="text-body-md font-body-md">ข้อความแชท</span>
+</div>
+</label>
+<label class="flex items-center p-xl bg-surface rounded-lg cursor-pointer border border-transparent hover:border-primary transition-colors group">
+<input checked="" class="hidden peer" type="checkbox"/>
+<div class="flex flex-col items-center gap-sm w-full">
+<span class="material-symbols-outlined text-display-md text-ink-muted peer-checked:text-primary transition-colors" data-icon="image">image</span>
+<span class="text-body-md font-body-md">สื่อและไฟล์</span>
+</div>
+</label>
+<label class="flex items-center p-xl bg-surface rounded-lg cursor-pointer border border-transparent hover:border-primary transition-colors group">
+<input checked="" class="hidden peer" type="checkbox"/>
+<div class="flex flex-col items-center gap-sm w-full">
+<span class="material-symbols-outlined text-display-md text-ink-muted peer-checked:text-primary transition-colors" data-icon="contacts">contacts</span>
+<span class="text-body-md font-body-md">รายชื่อติดต่อ</span>
+</div>
+</label>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<div class="flex flex-col items-center gap-md">
+<button class="w-full md:w-auto px-huge py-md bg-primary-container border border-ink text-ink rounded-full font-button-md text-button-md hover:scale-105 transition-transform active:scale-95" id="submit-request" onclick="handleExport()">
+                    สร้างไฟล์ข้อมูลและส่งออก
+                </button>
+<p class="text-label-sm font-label-sm text-ink-muted text-center max-w-sm">
+                    การดำเนินการอาจใช้เวลาหลายนาที ขึ้นอยู่กับขนาดของข้อมูล เราจะแจ้งเตือนเมื่อไฟล์พร้อมดาวน์โหลด
+                </p>
+</div>
+<!-- Processing Overlay (Hidden initially) -->
+<div class="hidden fixed inset-0 z-50 bg-surface/90 backdrop-blur-sm flex items-center justify-center p-xl" id="processing-overlay">
+<div class="bg-surface-white flat-card p-huge rounded-lg max-w-lg w-full text-center space-y-xl">
+<div class="relative w-32 h-32 mx-auto">
+
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-display-md text-primary animate-pulse" data-icon="sync">sync</span>
+</div>
+</div>
+<div class="space-y-md">
+<h4 class="text-display-md font-display-md" id="status-title">กำลังเตรียมข้อมูล...</h4>
+<p class="text-body-md font-body-md text-ink-muted" id="status-msg">กรุณาอย่าปิดหน้านี้ ระบบกำลังรวบรวมไฟล์และเข้ารหัสความปลอดภัย</p>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden border border-ink">
+<div class="progress-bar-fill bg-primary h-full w-0" id="progress-bar"></div>
+</div>
+<div class="hidden pt-lg space-y-md" id="success-actions">
+<button class="w-full py-sm bg-primary-container border border-ink rounded-full text-ink font-button-md" onclick="closeOverlay()">ดาวน์โหลดไฟล์ตอนนี้</button>
+<button class="text-primary text-label-sm underline" onclick="closeOverlay()">กลับไปยังการตั้งค่า</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Illustration Spacer -->
+<section class="w-full overflow-hidden py-huge">
+<div class="flex gap-xl animate-marquee whitespace-nowrap">
+<div class="w-80 h-80 rounded-lg flex-shrink-0 bg-cover bg-center" data-alt="A collection of minimalist digital interface components floating in a void of soft cream and emerald green. The objects include semi-transparent glass folders, encrypted shields, and data packet icons arranged in a clean, editorial composition. The lighting is bright and ethereal, emphasizing the theme of secure data utility." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJ2V6woqJzSSnoejyQKUUOi76RLeKTQFD9YC07zCa2jUC_nLoOP-G3Sl0zS7A1ZSf5IdlEp4iFixsc_w9pRro_6inkMPfQ3MvGWi_GnMnnqgW1mfX163UBoHzYzfZiRGHOJyunF_pNBGx8D-L1XVpL-VGaXXVcYunaFL72I502cwxcq2_BxaLBoZd7cm4F23yrqCMo8IV278fNqJEi8WsvvT-MbksfxxsyZ06ZjpSoiCMJlqZ2df0')"></div>
+<div class="w-80 h-80 rounded-lg flex-shrink-0 bg-cover bg-center" data-alt="Close-up of a high-tech security authentication screen featuring abstract fingerprint patterns and glowing green encryption codes. The aesthetic is extremely minimalist, focusing on sharp line-art and organic shapes on a pristine white background. The mood is calm, professional, and highly trustworthy." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwbRleCiPBPpYpTUO_BixwX8AwgpBaQr8nFb8mRUILr-LgSHFUBwetPERfCnhGH84KP31Y48ty_oE1CsVZvfe7zBhSnqSi1NieVrt0rVLVxZn9j0KeJUD_JHvya-uG9wwsFbItrRg64EWuGWvGiZ_FB-2dNGmWe_TMIso7apVqw0IIFfVJD0fSIsdXMy-H6ZfJ5AyMN4UlicF6s83NvjJBm4OVu49UPAkZLoTa4FvyOX7LLcUulN8')"></div>
+<div class="w-80 h-80 rounded-lg flex-shrink-0 bg-cover bg-center" data-alt="A modern architectural space with large windows overlooking a serene green forest. Inside, a floating digital display shows a progress circle for a data export process. The scene uses a sophisticated palette of light cream, deep green, and black accents, reflecting a professional and organic tech environment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDrLxZO1Tt4zxN6vuKRp7vC31bFANw8wiZrbbouauUNqE758hbxBSt-SKm8AcvO03IpJeVAKpdM2hazxpv05HoDwoTTLiClgE4jVbiEeVo-rJpIT7gUpt5V-3FYxM9s4W7v3NRl4NgaxyhtouL3DYzRuBpPvCTRD6zZRBNEeQgHhgzow9UOyvE4czZJeXbu0QLh257Ewv6OKeVUffS2OLiKlCoySBSZZoxiwsHtfueleopJZaUnhMQ')"></div>
+<div class="w-80 h-80 rounded-lg flex-shrink-0 bg-cover bg-center" data-alt="An artistic representation of data flow, where small geometric cubes move along defined green pathways into a larger secure vault icon. The background is a clean cream color with no shadows, strictly following the flat design philosophy. The lighting is soft and even across the entire minimalist composition." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDiisE6U7qEdxY-NPlVgGEVFfeh0LidxuxsPQP_lPHnAGoNx6p6WmGF8U3YXqh8tNkRUX2I6OASgPkw3z9PZkwvwi5pcUH2Ih51ux8vmjW8x8lZ2t5UwjqEFpiqlc329OQOm93VGa6PztYjNOas3NE0Y-eAo-r5kGM3E59agcykzdpKeVEK0JZehgwa_YMpJJUjRCN3rH93UHd6AKpgynphdMXZUzIoSKRVNbV-YKM0y5WjbWvkybQ')"></div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm pb-md pt-sm bg-surface border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-ink-muted px-xl py-base" href="#">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+<span class="text-label-xs font-label-xs">Chats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-muted px-xl py-base" href="#">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+<span class="text-label-xs font-label-xs">Calls</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-muted px-xl py-base" href="#">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="text-label-xs font-label-xs">Starred</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-muted px-xl py-base" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="text-label-xs font-label-xs">Archive</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xl py-base" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-label-xs font-label-xs">Settings</span>
+</a>
+</nav>
+<script>
+        function selectFormat(type) {
+            const btns = document.querySelectorAll('.format-btn');
+            btns.forEach(btn => {
+                btn.classList.remove('bg-primary-container', 'border-ink');
+                btn.classList.add('bg-surface-white', 'border-outline', 'text-ink-muted');
+                btn.querySelector('span:last-child').classList.add('opacity-0');
+            });
+
+            const activeBtn = event.currentTarget;
+            activeBtn.classList.remove('bg-surface-white', 'border-outline', 'text-ink-muted');
+            activeBtn.classList.add('bg-primary-container', 'border-ink');
+            activeBtn.querySelector('span:last-child').classList.remove('opacity-0');
+        }
+
+        function handleExport() {
+            const overlay = document.getElementById('processing-overlay');
+            const progressBar = document.getElementById('progress-bar');
+            const title = document.getElementById('status-title');
+            const msg = document.getElementById('status-msg');
+            const actions = document.getElementById('success-actions');
+
+            overlay.classList.remove('hidden');
+            
+            // Simulate progress
+            setTimeout(() => {
+                progressBar.style.width = '100%';
+            }, 100);
+
+            setTimeout(() => {
+                title.innerText = "ส่งคำขอเรียบร้อยแล้ว!";
+                msg.innerText = "ไฟล์ข้อมูลของคุณถูกสร้างและตรวจสอบความปลอดภัยแล้ว คุณสามารถดาวน์โหลดได้ทันที หรือรอรับลิงก์ทางอีเมล";
+                actions.classList.remove('hidden');
+            }, 2500);
+        }
+
+        function closeOverlay() {
+            document.getElementById('processing-overlay').classList.add('hidden');
+            // Reset for next time
+            document.getElementById('progress-bar').style.width = '0%';
+            document.getElementById('status-title').innerText = "กำลังเตรียมข้อมูล...";
+            document.getElementById('success-actions').classList.add('hidden');
+        }
+    </script>
+</body></html>

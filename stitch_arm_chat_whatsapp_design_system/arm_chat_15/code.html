@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Starred Messages - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #fff8f0; /* background from config */
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .star-filled {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom scrollbar for better fit with the "Calm Utility" aesthetic */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #bbcbb9;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- THE THEME CONFIG -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#006d2f",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#005523",
+                        "on-primary-fixed": "#002109",
+                        "secondary-fixed-dim": "#b5cdab",
+                        "tertiary-fixed-dim": "#abc7ff",
+                        "surface-variant": "#e8e2d8",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#6c7b6b",
+                        "surface-tint": "#006d2f",
+                        "on-surface-variant": "#3c4a3d",
+                        "background": "#fff8f0",
+                        "surface": "#fff8f0",
+                        "on-primary-fixed-variant": "#005322",
+                        "surface-bright": "#fff8f0",
+                        "surface-container-high": "#eee7dd",
+                        "surface-dark": "#000000",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#d7e2ff",
+                        "tertiary-container": "#93b8ff",
+                        "surface-dim": "#e0d9d0",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#0d200a",
+                        "inverse-on-surface": "#f7f0e6",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e8e2d8",
+                        "on-tertiary-container": "#004694",
+                        "inverse-surface": "#33302a",
+                        "primary-container": "#25d366",
+                        "tertiary": "#005cbd",
+                        "outline-variant": "#bbcbb9",
+                        "surface-white": "#ffffff",
+                        "on-secondary-container": "#556a4d",
+                        "inverse-primary": "#3de273",
+                        "primary-fixed": "#66ff8e",
+                        "secondary-container": "#d1eac6",
+                        "ink": "#1c1e21",
+                        "surface-container": "#f4ede3",
+                        "on-tertiary-fixed": "#001b3f",
+                        "on-background": "#1e1b16",
+                        "ink-muted": "#5e5e5e",
+                        "on-secondary-fixed-variant": "#384c32",
+                        "surface-container-low": "#faf3e9",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#3de273",
+                        "secondary": "#4f6448",
+                        "on-tertiary-fixed-variant": "#004590",
+                        "secondary-fixed": "#d1eac6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1e1b16",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xxl": "32px",
+                        "base": "4px",
+                        "xs": "8px",
+                        "md": "16px",
+                        "xl": "24px",
+                        "sm": "12px",
+                        "lg": "20px",
+                        "huge": "80px"
+                    },
+                    "fontFamily": {
+                        "label-xs": ["Prompt"],
+                        "label-sm": ["Prompt"],
+                        "button-md": ["Prompt"],
+                        "display-lg": ["Prompt"],
+                        "body-lg": ["Prompt"],
+                        "display-xl": ["Prompt"],
+                        "body-md": ["Prompt"],
+                        "display-xl-mobile": ["Prompt"],
+                        "display-md": ["Prompt"]
+                    },
+                    "fontSize": {
+                        "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                        "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                        "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar (Desktop Only) -->
+<!-- Logic: Using 'Chat' as active if 'Starred' isn't explicitly in the 4 labels, 
+             but typically Favorites sits in Settings or a sub-menu. Here we render as is. -->
+<aside class="hidden md:flex flex-col h-full p-md bg-surface-container-lowest border-r border-outline w-64 docked left-0">
+<div class="flex items-center gap-md mb-xl">
+<div class="w-12 h-12 rounded-full border border-ink overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A high-quality studio portrait of a professional Thai man in his late 20s, with a warm and approachable expression. The lighting is soft and even, highlighting the clean, modern aesthetic of the application's user profile. The background is a solid cream color that matches the brand's sophisticated and calm utility palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhvRgqziDFv9WhAlTdMiV0ivH38p1cUnUwKNwkp6Q5Qi_sSkdr68OQr4IvFcLvGc2lzFAPB-G3Qwg3n8RUZZYZ3cYwgQYCzlK1_gdqcFNotZVAs9sVTUNNfFzG8MsG6lDnHDkcPHRyohCFarlK5o7GhBxhwmszMHpRPe0703Qj7LZyrWretdd3QkHGhFe2ON7DW-O9Oo4fFvpMQrd2uMR8mPH5afRzrz98UoZ7CeuR4IMjrE5-Upg"/>
+</div>
+<div class="flex flex-col">
+<span class="font-display-md text-display-md text-primary leading-tight">Arm Chat</span>
+<span class="font-body-md text-body-md text-ink-muted">ออนไลน์</span>
+</div>
+</div>
+<button class="mb-xl w-full py-sm px-md bg-primary-container text-on-primary-container rounded-full border border-ink active:scale-98 duration-200 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined">add</span>
+<span class="font-body-md text-body-md">สร้างแชทใหม่</span>
+</button>
+<nav class="flex flex-col gap-xs flex-grow">
+<!-- Mapping active navigation manually based on prompt: "Side navigation active on a Starred or Favorites section" -->
+<!-- Since JSON only gives 4 labels, I'll add 'ข้อความที่ติดดาว' as the active contextual item if it was there, 
+                     otherwise I will follow the JSON but highlight the one that contains settings/favs logic. -->
+<a class="flex items-center gap-md px-md py-sm text-ink-muted hover:bg-surface-container rounded-xl transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-body-md text-body-md">แชท</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-ink-muted hover:bg-surface-container rounded-xl transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-body-md text-body-md">กลุ่ม</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-ink-muted hover:bg-surface-container rounded-xl transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined">call</span>
+<span class="font-body-md text-body-md">การโทร</span>
+</a>
+<!-- Active Item for Starred Logic -->
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container rounded-full transition-all active:scale-98 shadow-sm" href="#">
+<span class="material-symbols-outlined star-filled" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-body-md text-body-md">ติดดาวไว้</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-ink-muted hover:bg-surface-container rounded-xl transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">ตั้งค่า</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col relative overflow-hidden h-full">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-xl py-md w-full bg-surface border-b border-outline top-0 z-10">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined md:hidden text-primary cursor-pointer">menu</span>
+<h1 class="font-display-md text-display-md text-primary leading-none">ข้อความที่ติดดาว</h1>
+</div>
+<div class="flex items-center gap-lg">
+<div class="hidden md:flex items-center bg-surface-container px-md py-xs rounded-full border border-ink">
+<span class="material-symbols-outlined text-ink-muted mr-xs">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md p-0 w-48" placeholder="ค้นหาข้อความ..." type="text"/>
+</div>
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 transition-transform">search</span>
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 transition-transform">notifications</span>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-grow overflow-y-auto px-xl py-huge space-y-huge bg-surface-container-low">
+<!-- Group 1: Modern Bento-ish List -->
+<section class="max-w-4xl mx-auto">
+<div class="flex items-center gap-sm mb-xl">
+<span class="material-symbols-outlined text-primary">forum</span>
+<h2 class="font-display-md text-display-md leading-none">ทีมการตลาด (5)</h2>
+</div>
+<div class="grid grid-cols-1 gap-md">
+<!-- Message Card -->
+<div class="group relative bg-surface-white border border-ink p-xl rounded-lg hover:bg-surface-container transition-colors">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full border border-ink overflow-hidden bg-secondary-container">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a Thai creative director woman in a minimalist workspace. Soft natural lighting, clean composition, and a serene expression. The color palette follows the Arm Chat brand with soft creams and deep greens. Professional and approachable vibes for a corporate messaging environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTkHooRqr9Nx6W-CcDgubvIf-V4O46FilluoZatj_ckEHf7BQvVpwA2hDeBmhX0W28dIZs3HZpHVnsWXd0yx3UiC3rS20uIeH7mWt4BvsRfV2z9RXJwTz0UH0wOnWMMeNiQgIbuZ6vGYyWKpIGYsApfBAYvXWwe6QjSSQ63mkUDeWPPGOSm84FPLxu9_WbseDKKA4-yI7Kaie849KA4aMzGoVqYlp_4pCnD5SmSa22ZzvqOuAhhXg"/>
+</div>
+<div>
+<p class="font-body-md text-body-md leading-none">คุณรินรดา</p>
+<p class="font-label-sm text-label-sm text-ink-muted">14:20 • 20 ต.ค. 2566</p>
+</div>
+</div>
+<span class="material-symbols-outlined star-filled text-primary cursor-pointer">star</span>
+</div>
+<div class="pl-[56px]">
+<p class="font-body-md text-body-md text-ink leading-relaxed">สรุปงบประมาณของแคมเปญ Q4 อยู่ในไฟล์ PDF นี้รบกวนตรวจสอบก่อนส่งให้ทางบอร์ดบริหารด้วยนะคะ ถ้ามีตรงไหนต้องแก้บอกได้เลยค่ะ</p>
+<div class="mt-md inline-flex items-center gap-xs px-md py-xs bg-secondary-container rounded-full border border-ink cursor-pointer hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-secondary-container">description</span>
+<span class="font-label-sm text-label-sm">Budget_Q4_Final.pdf</span>
+</div>
+</div>
+</div>
+<!-- Message Card -->
+<div class="group relative bg-surface-white border border-ink p-xl rounded-lg hover:bg-surface-container transition-colors">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full border border-ink overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover" data-alt="A high-quality avatar image of a young Thai male designer, wearing trendy round glasses and a casual green hoodie. Minimalist studio background with soft directional lighting. Clean, editorial feel that aligns with the Calm Utility aesthetic of the messaging application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqQ1u3MhyWPiLSqnNjSrDG34CSXDEyJV7gTzotkR84rXVUN963E2ywnxv3YhGQvORa6_PuvzqSRir9BgHlUoHqw_kdfQcT6AXkHU2ax3gGEUi68Jhl9eu050DzWwiIgA87fX-BuEavsdroithXgns24XZezsPaQ_zHSEvFtlYTGVXjGhtRmPaiuweDmj-SMqmf0GPh0t8nvwMZjYSD7Ctk3DnW1d-T3nlT22s7IBnODDEpCAHBIfU"/>
+</div>
+<div>
+<p class="font-body-md text-body-md leading-none">นนท์ (Design)</p>
+<p class="font-label-sm text-label-sm text-ink-muted">10:05 • 19 ต.ค. 2566</p>
+</div>
+</div>
+<span class="material-symbols-outlined star-filled text-primary cursor-pointer">star</span>
+</div>
+<div class="pl-[56px]">
+<p class="font-body-md text-body-md text-ink leading-relaxed">สีหลักที่เราจะใช้คือ #006d2f ครับ เป็นโทนเขียวที่ให้ความรู้สึกเชื่อมั่นแต่ยังมีความเป็นธรรมชาติสูง</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Group 2 -->
+<section class="max-w-4xl mx-auto">
+<div class="flex items-center gap-sm mb-xl">
+<span class="material-symbols-outlined text-primary">person</span>
+<h2 class="font-display-md text-display-md leading-none">วิศวะ (HR)</h2>
+</div>
+<div class="grid grid-cols-1 gap-md">
+<div class="group relative bg-surface-white border border-ink p-xl rounded-lg hover:bg-surface-container transition-colors">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full border border-ink overflow-hidden bg-surface-dim">
+<img class="w-full h-full object-cover" data-alt="A portrait of a Thai HR professional, male, in his late 30s, wearing a smart casual blazer. He has a friendly, trustworthy smile. The lighting is bright and clean, mimicking a modern office environment. The style is minimalist and high-contrast, fitting the 'The Calm Utility' brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIsaKBOXvzcwh5epZYqdzurD-D4qAB38bCqCszCDwYeyVYiFVnH3FFoxfRZEQJ4Z5troN1SHHiMNF527WFYaAZOXoWqPUEBCRZLsYehHz7cdTh_ADdhKtNINVkCIfufqPTGBu34H7PEX2u8UZXpNWXkk9lyELYI3Gk8B3mG-X31T-_aN3N-HmtO8ocD3PGhn4EOu2-OiAoKpt_-kVdTNHe7nVQWozLXYFRP-Jjq6XT8Wa2CQa294U"/>
+</div>
+<div>
+<p class="font-body-md text-body-md leading-none">คุณวิศวะ</p>
+<p class="font-label-sm text-label-sm text-ink-muted">09:15 • 18 ต.ค. 2566</p>
+</div>
+</div>
+<span class="material-symbols-outlined star-filled text-primary cursor-pointer">star</span>
+</div>
+<div class="pl-[56px]">
+<p class="font-body-md text-body-md text-ink leading-relaxed italic">"อย่าลืมส่งเอกสารประกันสังคมภายในวันศุกร์นี้นะครับ ทุกคนเลย"</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Group 3: Empty State / Asymmetric Illustration Concept -->
+<section class="max-w-4xl mx-auto pt-xl">
+<div class="rounded-xl bg-ink p-huge text-center text-on-primary">
+<span class="material-symbols-outlined text-[64px] mb-xl block" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h3 class="font-display-md text-display-md mb-md">เพิ่มข้อความโปรดของคุณ</h3>
+<p class="font-body-lg text-body-lg text-surface-variant max-w-md mx-auto mb-xl">
+                            เพียงกดค้างที่ข้อความใดก็ได้ แล้วเลือก "ติดดาว" เพื่อบันทึกข้อมูลสำคัญไว้ที่นี่
+                        </p>
+<button class="px-xl py-md bg-primary-container text-on-primary-container rounded-full border border-surface-white font-button-md text-button-md hover:bg-primary transition-colors hover:text-on-primary">
+                            เรียนรู้วิธีการใช้งาน
+                        </button>
+</div>
+</section>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-md pb-safe bg-surface border-t border-outline rounded-t-xl h-20 shadow-lg">
+<a class="flex flex-col items-center justify-center text-ink-muted px-md py-xs active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-sm text-label-sm-mobile">แชท</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-muted px-md py-xs active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-sm text-label-sm-mobile">กลุ่ม</span>
+</a>
+<!-- Active Mobile Tab for Starred (Favs) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-md py-xs active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined star-filled" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm-mobile">ติดดาว</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-muted px-md py-xs active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm-mobile">ตั้งค่า</span>
+</a>
+</nav>
+</main>
+</div>
+<!-- Floating Action Button Contextual Logic -->
+<!-- Not rendered as per instructions: "You MUST suppress the FAB on Settings, Profile, Details, and Transactional screens." 
+         Starred messages is a focused detail/reference screen. -->
+<script>
+        // Micro-interactions
+        document.querySelectorAll('.material-symbols-outlined.star-filled').forEach(star => {
+            star.addEventListener('click', function() {
+                const parentCard = this.closest('.group');
+                parentCard.style.opacity = '0.5';
+                parentCard.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    parentCard.classList.add('hidden');
+                }, 300);
+            });
+        });
+
+        // Search highlight interaction
+        const searchInput = document.querySelector('input');
+        if (searchInput) {
+            searchInput.addEventListener('focus', () => {
+                searchInput.parentElement.classList.add('border-primary');
+                searchInput.parentElement.classList.add('ring-2');
+                searchInput.parentElement.classList.add('ring-primary-container');
+            });
+            searchInput.addEventListener('blur', () => {
+                searchInput.parentElement.classList.remove('border-primary');
+                searchInput.parentElement.classList.remove('ring-2');
+                searchInput.parentElement.classList.remove('ring-primary-container');
+            });
+        }
+    </script>
+</body></html>

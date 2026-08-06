@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Arm Chat - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#f7f0e6",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "ink-muted": "#5e5e5e",
+                    "surface-variant": "#e8e2d8",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "on-secondary": "#ffffff",
+                    "outline": "#6c7b6b",
+                    "secondary-container": "#d1eac6",
+                    "on-primary-fixed": "#002109",
+                    "inverse-surface": "#33302a",
+                    "surface-dark": "#000000",
+                    "surface-dim": "#e0d9d0",
+                    "background": "#fff8f0",
+                    "ink": "#1c1e21",
+                    "on-secondary-fixed": "#0d200a",
+                    "on-background": "#1e1b16",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "secondary": "#4f6448",
+                    "surface-white": "#ffffff",
+                    "surface-container-high": "#eee7dd",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#66ff8e",
+                    "primary": "#006d2f",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#faf3e9",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#25d366",
+                    "on-tertiary-container": "#004694",
+                    "tertiary-container": "#93b8ff",
+                    "inverse-primary": "#3de273",
+                    "on-surface": "#1e1b16",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "surface-container": "#f4ede3",
+                    "surface-bright": "#fff8f0",
+                    "tertiary-fixed": "#d7e2ff",
+                    "on-primary-container": "#005523",
+                    "secondary-fixed": "#d1eac6",
+                    "surface": "#fff8f0",
+                    "surface-container-highest": "#e8e2d8",
+                    "tertiary": "#005cbd",
+                    "on-surface-variant": "#3c4a3d",
+                    "primary-fixed-dim": "#3de273",
+                    "on-secondary-container": "#556a4d",
+                    "outline-variant": "#bbcbb9",
+                    "surface-tint": "#006d2f",
+                    "on-primary-fixed-variant": "#005322",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "on-tertiary-fixed": "#001b3f",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "xxl": "32px",
+                    "huge": "80px",
+                    "md": "16px",
+                    "xl": "24px",
+                    "base": "4px",
+                    "sm": "12px",
+                    "lg": "20px"
+            },
+            "fontFamily": {
+                    "button-md": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"],
+                    "display-md": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "label-sm": ["Prompt"]
+            },
+            "fontSize": {
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #fff8f0; /* surface / background */
+            color: #1c1e21; /* ink */
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom UI Micro-interactions */
+        .onboarding-card {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .step-transition {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .step-hidden {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+<!-- TopNavBar (Shared Component Logic - Suppressed as per Task-Focused/Onboarding Rule) -->
+<main class="flex-grow flex items-center justify-center px-md py-huge">
+<div class="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 gap-xxl items-start">
+<!-- Left Side: Branding & Progress -->
+<div class="lg:col-span-5 flex flex-col gap-xl">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-[28px]" data-icon="forum">forum</span>
+</div>
+<span class="font-display-md text-display-md text-primary tracking-tight">Arm Chat</span>
+</div>
+<div class="mt-md">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-tight mb-sm">
+                        ยินดีต้อนรับสู่พื้นที่แชทของคุณ
+                    </h1>
+<p class="font-body-lg text-body-lg text-ink-muted max-w-md">
+                        ตั้งค่าโปรไฟล์ของคุณในไม่กี่ขั้นตอนเพื่อเริ่มต้นการเชื่อมต่อที่เรียบง่ายและเป็นส่วนตัว
+                    </p>
+</div>
+<!-- Progress Steps Indicator -->
+<nav class="flex flex-col gap-md mt-xl">
+<div class="flex items-center gap-md group" id="step-indicator-1">
+<div class="w-8 h-8 rounded-full border-2 border-primary bg-primary text-on-primary flex items-center justify-center font-bold transition-all duration-300">1</div>
+<span class="font-body-md text-body-md text-on-surface">ข้อมูลพื้นฐาน</span>
+</div>
+<div class="flex items-center gap-md opacity-40 transition-opacity duration-300" id="step-indicator-2">
+<div class="w-8 h-8 rounded-full border-2 border-outline flex items-center justify-center font-bold">2</div>
+<span class="font-body-md text-body-md text-on-surface">รหัสประจำตัวของคุณ</span>
+</div>
+<div class="flex items-center gap-md opacity-40 transition-opacity duration-300" id="step-indicator-3">
+<div class="w-8 h-8 rounded-full border-2 border-outline flex items-center justify-center font-bold">3</div>
+<span class="font-body-md text-body-md text-on-surface">พร้อมใช้งาน</span>
+</div>
+</nav>
+</div>
+<!-- Right Side: Content Canvas (Bento Grid Inspired) -->
+<div class="lg:col-span-7 bg-surface-white border border-ink p-xl md:p-xxl rounded-xl shadow-none onboarding-card relative overflow-hidden">
+<!-- Background Atmospheric Effect -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-secondary-container/30 rounded-full blur-3xl pointer-events-none"></div>
+<form class="relative z-10 space-y-xl" id="onboarding-form">
+<!-- Step 1: Profile Details -->
+<div class="step-transition" id="step-1">
+<div class="flex flex-col items-center mb-xl">
+<div class="relative group">
+<div class="w-32 h-32 rounded-full border border-ink bg-surface-container overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist studio portrait of a friendly Thai person with soft natural lighting, set against a warm cream-colored background consistent with a high-end lifestyle app aesthetic. The image features high contrast, professional photography style, and a focus on approachable professional branding." id="avatar-preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXLFNCd1u04b8WR60-dLtipA1frWQKqxvifhybVayqIN1WGwWgNQEzH5TkzkF87eUSBMAmFWJ9R55V7qgZDuLTCJSCDUAk8W4i3YQj1wgHirtaqQOS3r1TjAA5DAeIV0BK0_RLmu-Mzvs7jdW-4L-Y2wBbb4Cg4qPRMQKNN_VIU_1myRaiHQstKyIvWUEi-rj2xQ6-hdOraEVrua8hqa3rxkm3fKuHuVs3TZ83vb4iueAxIhwOxt4"/>
+<div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="photo_camera">photo_camera</span>
+</div>
+</div>
+<button class="absolute bottom-0 right-0 w-10 h-10 bg-primary-container border border-ink rounded-full flex items-center justify-center shadow-md" type="button">
+<span class="material-symbols-outlined text-ink" data-icon="add">add</span>
+</button>
+<input accept="image/*" class="hidden" id="avatar-input" type="file"/>
+</div>
+<p class="font-label-sm text-label-sm text-ink-muted mt-sm">อัปโหลดรูปภาพโปรไฟล์</p>
+</div>
+<div class="space-y-lg">
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface px-md">ชื่อที่แสดงผล</label>
+<input class="w-full h-[50px] px-xl border border-ink rounded-full bg-white font-body-md text-body-md focus:ring-2 focus:ring-primary-container outline-none transition-all" placeholder="ระบุชื่อของคุณ..." type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface px-md">Username (@unique)</label>
+<div class="relative">
+<span class="absolute left-xl top-1/2 -translate-y-1/2 text-ink-muted font-body-md">@</span>
+<input class="w-full h-[50px] pl-11 pr-xl border border-ink rounded-full bg-white font-body-md text-body-md focus:ring-2 focus:ring-primary-container outline-none transition-all" placeholder="username" type="text"/>
+</div>
+<p class="font-label-xs text-label-xs text-primary px-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    Username นี้สามารถใช้งานได้
+                                </p>
+</div>
+</div>
+<div class="pt-xl">
+<button class="w-full h-12 bg-primary-container border border-ink rounded-full font-button-md text-button-md text-ink flex items-center justify-center gap-sm hover:scale-[0.98] transition-transform active:opacity-80" onclick="goToStep(2)" type="button">
+                                ดำเนินการต่อ
+                                <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Step 2: Unique ID & Invitation -->
+<div class="step-transition step-hidden" id="step-2">
+<h2 class="font-display-md text-[24px] text-on-surface mb-md">เอกลักษณ์ส่วนตัวของคุณ</h2>
+<div class="bg-surface-container-low rounded-lg p-xl border border-dashed border-outline-variant space-y-lg">
+<div class="flex flex-col gap-xs">
+<label class="font-label-xs text-label-xs text-ink-muted">User ID อัตโนมัติ</label>
+<div class="flex items-center justify-between bg-white border border-ink rounded-md p-md">
+<span class="font-body-md text-body-md font-mono tracking-wider">ARM-8829-TH</span>
+<span class="material-symbols-outlined text-ink cursor-pointer" data-icon="content_copy">content_copy</span>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-xs text-label-xs text-ink-muted">ลิงก์เชิญเพื่อน</label>
+<div class="flex items-center justify-between bg-white border border-ink rounded-md p-md">
+<span class="font-body-md text-body-md truncate mr-md text-primary underline">arm.chat/u/somchai_k</span>
+<span class="material-symbols-outlined text-ink cursor-pointer" data-icon="share">share</span>
+</div>
+</div>
+</div>
+<div class="pt-xl flex gap-md">
+<button class="flex-1 h-12 border border-ink rounded-full font-button-md text-button-md text-ink flex items-center justify-center gap-sm hover:bg-surface-container-low transition-colors" onclick="goToStep(1)" type="button">
+                                ย้อนกลับ
+                            </button>
+<button class="flex-[2] h-12 bg-primary-container border border-ink rounded-full font-button-md text-button-md text-ink flex items-center justify-center gap-sm hover:scale-[0.98] transition-transform" onclick="goToStep(3)" type="button">
+                                ตรวจสอบ QR Code
+                                <span class="material-symbols-outlined" data-icon="qr_code_2">qr_code_2</span>
+</button>
+</div>
+</div>
+<!-- Step 3: QR Code & Final -->
+<div class="step-transition step-hidden" id="step-3">
+<div class="text-center space-y-md">
+<h2 class="font-display-md text-[24px] text-on-surface">พร้อมแล้ว! เริ่มการแชทได้เลย</h2>
+<p class="font-body-md text-body-md text-ink-muted px-xl">เพื่อนๆ สามารถสแกน QR Code นี้เพื่อเพิ่มคุณเป็นเพื่อนได้ทันที</p>
+</div>
+<div class="flex flex-col items-center justify-center my-xl">
+<div class="p-xl bg-white border-2 border-ink rounded-lg relative">
+<!-- Minimalist QR Placeholder -->
+<div class="w-48 h-48 bg-ink rounded-md flex items-center justify-center overflow-hidden">
+<div class="grid grid-cols-5 gap-2 w-full h-full p-4 opacity-10">
+<div class="bg-white"></div><div class="bg-white"></div><div class="bg-white"></div><div class="bg-white"></div><div class="bg-white"></div>
+<div class="bg-white"></div><div class="bg-white"></div><div class="bg-white"></div><div class="bg-white"></div><div class="bg-white"></div>
+<div class="bg-white"></div><div class="bg-white"></div><div class="bg-white"></div><div class="bg-white"></div><div class="bg-white"></div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-32 h-32 bg-white rounded flex items-center justify-center border-4 border-ink">
+<span class="material-symbols-outlined text-ink text-5xl" data-icon="qr_code_scanner">qr_code_scanner</span>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-4 -right-4 w-12 h-12 bg-primary-container rounded-full border border-ink flex items-center justify-center">
+<span class="material-symbols-outlined text-ink" data-icon="download">download</span>
+</div>
+</div>
+</div>
+<div class="pt-xl flex flex-col gap-md">
+<button class="w-full h-14 bg-primary-container border border-ink rounded-full font-button-md text-button-md font-bold text-on-primary-container flex items-center justify-center gap-md hover:scale-[0.98] transition-all duration-200 shadow-[4px_4px_0px_0px_#1c1e21]" type="button">
+                                เสร็จสิ้นและเริ่มแชท
+                                <span class="material-symbols-outlined" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</button>
+<button class="w-full h-10 font-label-sm text-label-sm text-ink-muted hover:text-ink transition-colors" onclick="goToStep(2)" type="button">
+                                แก้ไขรหัสประจำตัว
+                            </button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</main>
+<!-- Simple Footer (Shared Component Logic) -->
+<footer class="w-full py-xl px-xl flex flex-col md:flex-row justify-between items-center gap-md bg-surface-container-lowest border-t border-outline">
+<p class="font-label-xs text-label-xs text-ink-muted">© 2024 Arm Chat. พัฒนาด้วยความใส่ใจในประเทศไทย</p>
+<div class="flex gap-xl">
+<a class="font-label-xs text-label-xs text-ink-muted hover:text-primary transition-colors" href="#">ข้อกำหนดการใช้งาน</a>
+<a class="font-label-xs text-label-xs text-ink-muted hover:text-primary transition-colors" href="#">ความเป็นส่วนตัว</a>
+<a class="font-label-xs text-label-xs text-ink-muted hover:text-primary transition-colors" href="#">ติดต่อเรา</a>
+</div>
+</footer>
+<script>
+        function goToStep(stepNumber) {
+            // Hide all steps
+            const steps = [1, 2, 3];
+            steps.forEach(num => {
+                const stepEl = document.getElementById(`step-${num}`);
+                const indicatorEl = document.getElementById(`step-indicator-${num}`);
+                
+                if (num === stepNumber) {
+                    stepEl.classList.remove('step-hidden');
+                    indicatorEl.classList.remove('opacity-40');
+                    // Style active indicator
+                    const bubble = indicatorEl.querySelector('div');
+                    bubble.classList.add('bg-primary', 'text-on-primary', 'border-primary');
+                    bubble.classList.remove('border-outline');
+                } else {
+                    stepEl.classList.add('step-hidden');
+                    if (num > stepNumber) {
+                        indicatorEl.classList.add('opacity-40');
+                        const bubble = indicatorEl.querySelector('div');
+                        bubble.classList.remove('bg-primary', 'text-on-primary', 'border-primary');
+                        bubble.classList.add('border-outline');
+                    }
+                }
+            });
+        }
+
+        // Avatar input trigger
+        const avatarPreview = document.getElementById('avatar-preview');
+        const avatarInput = document.getElementById('avatar-input');
+        
+        if(avatarPreview && avatarInput) {
+            avatarPreview.parentElement.addEventListener('click', () => {
+                avatarInput.click();
+            });
+
+            avatarInput.addEventListener('change', function(e) {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        avatarPreview.src = e.target.result;
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        }
+    </script>
+</body></html>

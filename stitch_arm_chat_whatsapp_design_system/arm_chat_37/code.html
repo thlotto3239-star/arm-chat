@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #fff8f0; /* surface color */
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-radio:checked {
+            background-color: #006d2f;
+            border-color: #1c1e21;
+        }
+        .custom-checkbox:checked {
+            background-color: #006d2f;
+            border-color: #1c1e21;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#faf3e9",
+                    "inverse-primary": "#3de273",
+                    "surface-tint": "#006d2f",
+                    "secondary": "#4f6448",
+                    "surface": "#fff8f0",
+                    "outline-variant": "#bbcbb9",
+                    "on-tertiary-container": "#004694",
+                    "inverse-surface": "#33302a",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "on-primary": "#ffffff",
+                    "outline": "#6c7b6b",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#d1eac6",
+                    "primary-fixed-dim": "#3de273",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#93b8ff",
+                    "primary-fixed": "#66ff8e",
+                    "on-surface": "#1e1b16",
+                    "surface-dim": "#e0d9d0",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "on-surface-variant": "#3c4a3d",
+                    "secondary-fixed": "#d1eac6",
+                    "primary-container": "#25d366",
+                    "on-primary-fixed-variant": "#005322",
+                    "on-primary-container": "#005523",
+                    "tertiary-fixed": "#d7e2ff",
+                    "surface-bright": "#fff8f0",
+                    "ink": "#1c1e21",
+                    "on-secondary-container": "#556a4d",
+                    "surface-container-high": "#eee7dd",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#002109",
+                    "background": "#fff8f0",
+                    "surface-container-highest": "#e8e2d8",
+                    "surface-white": "#ffffff",
+                    "tertiary": "#005cbd",
+                    "surface-variant": "#e8e2d8",
+                    "surface-container": "#f4ede3",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-dark": "#000000",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#1e1b16",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "on-secondary-fixed": "#0d200a",
+                    "error": "#ba1a1a",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#001b3f",
+                    "ink-muted": "#5e5e5e",
+                    "on-error-container": "#93000a",
+                    "primary": "#006d2f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xxl": "32px",
+                    "sm": "12px",
+                    "md": "16px",
+                    "lg": "20px",
+                    "base": "4px",
+                    "xl": "24px",
+                    "huge": "80px",
+                    "xs": "8px"
+            },
+            "fontFamily": {
+                    "button-md": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "display-md": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "display-lg": ["Prompt"]
+            },
+            "fontSize": {
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopNavBar (Shell) -->
+<header class="bg-surface border-b border-outline-variant flex justify-between items-center w-full px-xl h-20 max-w-full docked full-width top-0 sticky z-50">
+<div class="flex items-center gap-md">
+<button class="hover:bg-surface-container-low p-xs rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="text-display-md font-display-md text-primary">Arm Chat</h1>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="material-symbols-outlined text-primary" data-icon="more_vert">more_vert</span>
+</div>
+</header>
+<main class="max-w-3xl mx-auto px-xl py-huge">
+<!-- Breadcrumb / Header -->
+<section class="mb-xxl">
+<h2 class="text-display-lg font-display-lg text-ink mb-sm">รายงานปัญหา</h2>
+<p class="text-body-lg font-body-lg text-ink-muted">ความปลอดภัยของคุณคือสิ่งสำคัญ โปรดระบุเหตุผลในการรายงานผู้ใช้หรือกลุ่มนี้เพื่อให้ทีมงานตรวจสอบ</p>
+</section>
+<!-- Main Form Container -->
+<form class="bg-surface-white border border-ink p-xl rounded-lg space-y-xxl shadow-none">
+<!-- User Info Card (Visual Context) -->
+<div class="flex items-center gap-md bg-surface-container-low p-md rounded-full border border-outline-variant">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-ink">
+<img class="w-full h-full object-cover" data-alt="A portrait of a friendly Thai man in his late 20s with short black hair, wearing a professional green linen shirt. The background is a soft, blurred minimalist office with warm cream tones and natural light. The visual style is clean, modern, and high-key, aligning with a professional Thai communication app's identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlyS94Z5FeWYEnmb6wIppiKRW4G19hnAMomPBLdJ1mWSAMoG6Cdj-AnNgueyIR-Zdllx1nJW2DJcE-Y5fe-htpolAcZlCGEtVzpTgcQHJHR6fw-S1kHIw7u-sZxxjiJifMaa3ICskrrTCoQeaLmBh0QXDVj7vNeSxUDFTgqykO16NrKCK3OhWs2etZAMBr3cg_uFO_-yxLKFbrucU0q_dtOtctKV5t7gXON2wxHgqsGTVx4C6f_nc"/>
+</div>
+<div>
+<h3 class="text-body-md font-body-md font-bold text-ink">สมชาย ใจดี</h3>
+<p class="text-label-sm font-label-sm text-ink-muted">@somchai_dev</p>
+</div>
+</div>
+<!-- Categories Section -->
+<fieldset class="space-y-md">
+<legend class="text-body-lg font-body-lg font-bold text-ink mb-md">ทำไมคุณจึงรายงานรายชื่อนี้?</legend>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-sm">
+<label class="flex items-center gap-md p-md border border-ink rounded-full cursor-pointer hover:bg-surface-container-low transition-all duration-150">
+<input class="custom-radio w-5 h-5 border-ink text-primary focus:ring-primary" name="category" type="radio" value="spam"/>
+<span class="text-body-md font-body-md">สแปม (Spam)</span>
+</label>
+<label class="flex items-center gap-md p-md border border-ink rounded-full cursor-pointer hover:bg-surface-container-low transition-all duration-150">
+<input class="custom-radio w-5 h-5 border-ink text-primary focus:ring-primary" name="category" type="radio" value="harassment"/>
+<span class="text-body-md font-body-md">การคุกคาม (Harassment)</span>
+</label>
+<label class="flex items-center gap-md p-md border border-ink rounded-full cursor-pointer hover:bg-surface-container-low transition-all duration-150">
+<input class="custom-radio w-5 h-5 border-ink text-primary focus:ring-primary" name="category" type="radio" value="inappropriate"/>
+<span class="text-body-md font-body-md">เนื้อหาไม่เหมาะสม</span>
+</label>
+<label class="flex items-center gap-md p-md border border-ink rounded-full cursor-pointer hover:bg-surface-container-low transition-all duration-150">
+<input class="custom-radio w-5 h-5 border-ink text-primary focus:ring-primary" name="category" type="radio" value="scam"/>
+<span class="text-body-md font-body-md">การหลอกลวง (Scam/Phishing)</span>
+</label>
+<label class="flex items-center gap-md p-md border border-ink rounded-full cursor-pointer hover:bg-surface-container-low transition-all duration-150">
+<input class="custom-radio w-5 h-5 border-ink text-primary focus:ring-primary" name="category" type="radio" value="hate_speech"/>
+<span class="text-body-md font-body-md">วาจาสร้างความเกลียดชัง</span>
+</label>
+<label class="flex items-center gap-md p-md border border-ink rounded-full cursor-pointer hover:bg-surface-container-low transition-all duration-150">
+<input class="custom-radio w-5 h-5 border-ink text-primary focus:ring-primary" name="category" type="radio" value="other"/>
+<span class="text-body-md font-body-md">อื่นๆ</span>
+</label>
+</div>
+</fieldset>
+<!-- Details Section -->
+<div class="space-y-sm">
+<label class="text-body-lg font-body-lg font-bold text-ink block" for="details">รายละเอียดเพิ่มเติม (ไม่บังคับ)</label>
+<textarea class="w-full bg-surface-white border border-ink rounded-lg p-md text-body-md font-body-md focus:ring-2 focus:ring-primary outline-none placeholder:text-ink-muted" id="details" placeholder="กรุณาระบุรายละเอียดเพิ่มเติมเพื่อให้เราตรวจสอบได้รวดเร็วยิ่งขึ้น..." rows="4"></textarea>
+</div>
+<!-- Block Checkbox -->
+<div class="flex items-center gap-md p-md bg-error-container/20 border border-error/20 rounded-lg">
+<input class="custom-checkbox w-6 h-6 border-ink rounded-md text-primary focus:ring-primary" id="block_user" type="checkbox"/>
+<label class="text-body-md font-body-md cursor-pointer flex flex-col" for="block_user">
+<span class="font-bold text-ink">บล็อกผู้ใช้รายนี้</span>
+<span class="text-label-sm text-ink-muted">คุณจะไม่ได้รับข้อความหรือการโทรจากบุคคลนี้อีกต่อไป</span>
+</label>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col md:flex-row gap-md pt-md">
+<button class="flex-1 bg-primary-container text-ink border border-ink py-md px-xl rounded-full text-button-md font-button-md hover:opacity-90 transition-opacity active:scale-95 duration-100" type="submit">
+                    ส่งรายงาน
+                </button>
+<button class="flex-1 bg-transparent text-ink border border-ink py-md px-xl rounded-full text-button-md font-button-md hover:bg-surface-container-low transition-all active:scale-95 duration-100" type="button">
+                    ยกเลิก
+                </button>
+</div>
+</form>
+<!-- Informational Footer -->
+<section class="mt-huge text-center">
+<div class="inline-flex items-center gap-sm text-secondary mb-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="text-body-md font-body-md">ความปลอดภัยและความเป็นส่วนตัวเป็นหัวใจสำคัญของเรา</span>
+</div>
+<p class="text-label-sm font-label-sm text-ink-muted max-w-lg mx-auto">
+                รายงานของคุณจะเป็นความลับ ผู้ถูกรายงานจะไม่ทราบว่าใครเป็นผู้รายงาน ทีมงานของเราจะดำเนินการตรวจสอบภายใน 24 ชั่วโมง
+            </p>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm pb-md pt-sm bg-surface border-t border-outline-variant">
+<div class="flex flex-col items-center justify-center text-ink-muted px-xl py-base">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+<span class="text-label-xs font-label-xs">แชท</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-xl py-base">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+<span class="text-label-xs font-label-xs">โทร</span>
+</div>
+<div class="flex flex-col items-center justify-center text-ink-muted px-xl py-base">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="text-label-xs font-label-xs">สำคัญ</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xl py-base">
+<span class="material-symbols-outlined" data-icon="settings_gear">settings</span>
+<span class="text-label-xs font-label-xs">ตั้งค่า</span>
+</div>
+</nav>
+<!-- Micro-interactions Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerText;
+                
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-ink">sync</span> กำลังส่ง...';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = '<span class="material-symbols-outlined text-ink">check_circle</span> ส่งเรียบร้อยแล้ว';
+                    submitBtn.classList.remove('bg-primary-container');
+                    submitBtn.classList.add('bg-secondary-container');
+                    
+                    setTimeout(() => {
+                        window.history.back();
+                    }, 1500);
+                }, 2000);
+            });
+
+            // Radio button selection visual feedback
+            const radios = document.querySelectorAll('input[name="category"]');
+            radios.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    radios.forEach(r => {
+                        r.closest('label').classList.remove('bg-primary-container/20', 'border-primary');
+                        r.closest('label').classList.add('border-ink');
+                    });
+                    if (radio.checked) {
+                        radio.closest('label').classList.add('bg-primary-container/20', 'border-primary');
+                        radio.closest('label').classList.remove('border-ink');
+                    }
+                });
+            });
+        });
+    </script>
+</body></html>

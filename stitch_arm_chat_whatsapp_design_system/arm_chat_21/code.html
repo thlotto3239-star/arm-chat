@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#006d2f",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#005523",
+                    "on-primary-fixed": "#002109",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "surface-variant": "#e8e2d8",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#6c7b6b",
+                    "surface-tint": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "background": "#fff8f0",
+                    "surface": "#fff8f0",
+                    "on-primary-fixed-variant": "#005322",
+                    "surface-bright": "#fff8f0",
+                    "surface-container-high": "#eee7dd",
+                    "surface-dark": "#000000",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#d7e2ff",
+                    "tertiary-container": "#93b8ff",
+                    "surface-dim": "#e0d9d0",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e8e2d8",
+                    "on-tertiary-container": "#004694",
+                    "inverse-surface": "#33302a",
+                    "primary-container": "#25d366",
+                    "tertiary": "#005cbd",
+                    "outline-variant": "#bbcbb9",
+                    "surface-white": "#ffffff",
+                    "on-secondary-container": "#556a4d",
+                    "inverse-primary": "#3de273",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#d1eac6",
+                    "ink": "#1c1e21",
+                    "surface-container": "#f4ede3",
+                    "on-tertiary-fixed": "#001b3f",
+                    "on-background": "#1e1b16",
+                    "ink-muted": "#5e5e5e",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#3de273",
+                    "secondary": "#4f6448",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "secondary-fixed": "#d1eac6",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1e1b16",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xxl": "32px",
+                    "base": "4px",
+                    "xs": "8px",
+                    "md": "16px",
+                    "xl": "24px",
+                    "sm": "12px",
+                    "lg": "20px",
+                    "huge": "80px"
+            },
+            "fontFamily": {
+                    "label-xs": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "button-md": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"],
+                    "display-md": ["Prompt"]
+            },
+            "fontSize": {
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #fff8f0;
+            color: #1c1e21;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .flat-border {
+            border: 1px solid #1c1e21;
+        }
+    </style>
+</head>
+<body class="bg-surface selection:bg-primary-container">
+<!-- Shell Logic: Navigation is suppressed as this is a focused task/sub-page screen -->
+<main class="min-h-screen flex flex-col items-center">
+<!-- Header Section -->
+<header class="w-full max-w-2xl px-xl pt-huge pb-xl">
+<div class="flex items-center gap-md mb-lg">
+<a class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined text-ink">arrow_back</span>
+</a>
+<h1 class="font-display-md text-display-md text-ink">รายชื่อที่บล็อก</h1>
+</div>
+<p class="font-body-md text-body-md text-ink-muted mb-xl">
+                ผู้ที่อยู่ในรายการนี้จะไม่สามารถส่งข้อความหรือโทรหาคุณได้ คุณจะไม่เห็นการแจ้งเตือนจากพวกเขา
+            </p>
+<!-- Search/Add Blocked CTA -->
+<div class="flex flex-col sm:flex-row gap-md items-center mb-huge">
+<button class="w-full sm:w-auto h-[50px] px-xl rounded-full bg-primary-container flat-border flex items-center justify-center gap-xs text-ink active:scale-95 transition-transform">
+<span class="material-symbols-outlined">person_add</span>
+<span class="font-button-md text-button-md">เพิ่มรายชื่อที่บล็อก</span>
+</button>
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-ink-muted">search</span>
+<input class="w-full h-[50px] pl-huge pr-md rounded-full bg-surface-white flat-border focus:ring-0 focus:outline-none font-body-md text-body-md text-ink placeholder:text-ink-muted" placeholder="ค้นหาคนที่จะบล็อก..." type="text"/>
+</div>
+</div>
+</header>
+<!-- Blocked List Section -->
+<section class="w-full max-w-2xl px-xl pb-huge">
+<h2 class="font-body-lg text-body-lg text-ink mb-lg px-xs">ผู้ติดต่อที่ถูกบล็อก (5)</h2>
+<div class="space-y-sm">
+<!-- Blocked Item 1 -->
+<div class="flex items-center justify-between p-md bg-surface-white rounded-[25px] flat-border hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden flat-border">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a young Thai woman with a friendly expression, set against a minimalist cream-colored background. The lighting is soft and even, highlighting the clean editorial aesthetic of the high-contrast design system. The image uses a natural color palette consistent with professional utility brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA75C0ho9upd_ox9hN3bcLq0wuT7TbALLnQE0VTTOmzPja88BG0GFLa6oS9F7tR96-kinhrR91GlVUwR33JEO1brV47VWE46dthG3tyfGV8xPQK27RSKpCCrdXTaW8dRHw8ZP0ePIu2eUR8-CT08_4eRqsJnMZbfDEdaQohik4FV45x7Jf4s0Fp2yWDx67tbNFTLFeKk88_0wN8BzJSZk01qFT4AK1y2raUxNS5RM1rk6-_JVdmk3A"/>
+</div>
+<div>
+<p class="font-body-md text-body-md text-ink">วิภาวดี มานะดี</p>
+<p class="font-label-sm text-label-sm text-ink-muted">บล็อกเมื่อ 2 วันที่แล้ว</p>
+</div>
+</div>
+<button class="px-lg py-xs rounded-full bg-surface-white flat-border text-ink font-button-md text-button-md hover:bg-ink hover:text-white transition-all active:scale-95">เลิกบล็อก</button>
+</div>
+<!-- Blocked Item 2 -->
+<div class="flex items-center justify-between p-md bg-surface-white rounded-[25px] flat-border hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden flat-border">
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a Thai man with glasses looking calmly into the camera, featuring a clean and professional background. The style is minimalist with a focus on high-quality light-mode photography. The lighting is soft and professional, emphasizing a modern human-centric design aesthetic with earthy, organic tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZ9CSvhXp3DIOVx02dIrHQzDWN5q5gwRD691tfcYPCX4Uvo_81K_GkEufyGkJsiKkEe4xuet58kKEsbXkhDkOggdSD4nGakd-JZWI7z5TYElhtFXVrkTcD7NcayrfU_tHr7oNLnFf845eXBuWal2Jfi-tJNGhyxdHjbMA4AdsCJ8QFFHPCwF26QaP3RFWzcm2diwDhaTgM9ZFy9dNkTLX70K2r0DZFhGvoAGpNbwGV-LDATY7jkbc"/>
+</div>
+<div>
+<p class="font-body-md text-body-md text-ink">สมชาย แซ่ลี้</p>
+<p class="font-label-sm text-label-sm text-ink-muted">บล็อกเมื่อ 1 สัปดาห์ที่แล้ว</p>
+</div>
+</div>
+<button class="px-lg py-xs rounded-full bg-surface-white flat-border text-ink font-button-md text-button-md hover:bg-ink hover:text-white transition-all active:scale-95">เลิกบล็อก</button>
+</div>
+<!-- Blocked Item 3 -->
+<div class="flex items-center justify-between p-md bg-surface-white rounded-[25px] flat-border hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden flat-border bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-ink text-2xl">person</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-ink">081-XXX-4567</p>
+<p class="font-label-sm text-label-sm text-ink-muted">บล็อกเมื่อ 12 พ.ค. 2567</p>
+</div>
+</div>
+<button class="px-lg py-xs rounded-full bg-surface-white flat-border text-ink font-button-md text-button-md hover:bg-ink hover:text-white transition-all active:scale-95">เลิกบล็อก</button>
+</div>
+<!-- Blocked Item 4 -->
+<div class="flex items-center justify-between p-md bg-surface-white rounded-[25px] flat-border hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden flat-border">
+<img class="w-full h-full object-cover" data-alt="Minimalist headshot of a person with a bright, welcoming smile, captured in a clean and editorial style. The lighting is airy and high-key, using soft shadows to create a sense of depth without traditional effects. The color palette follows the organic and professional green and cream theme of the application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjKEMOW2oXxQpO3Mw1E13JzcBbFekKtYmXIIzZ2WQbv4q3FabtpOg5Fbo7SY60Yg029tHQfYQvVgTmHm66CiHrTGaVxoY8fdP8NMAncxjgdjLh4ud0ZwR3l3tZ1ugYYIR6prJmBzRWFwz53A11uEQX4e9MciIh7l-dlMyDren3Sd7hwNZZEHb_MkPGywyy_T06PKXzG9Y5hC_pN9nX2eyQcvx8b3upXZ0BFXq6EHEufZC-8ZFMfDY"/>
+</div>
+<div>
+<p class="font-body-md text-body-md text-ink">ณัฐพล สุขใจ</p>
+<p class="font-label-sm text-label-sm text-ink-muted">บล็อกเมื่อ 5 เม.ย. 2567</p>
+</div>
+</div>
+<button class="px-lg py-xs rounded-full bg-surface-white flat-border text-ink font-button-md text-button-md hover:bg-ink hover:text-white transition-all active:scale-95">เลิกบล็อก</button>
+</div>
+<!-- Blocked Item 5 -->
+<div class="flex items-center justify-between p-md bg-surface-white rounded-[25px] flat-border hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden flat-border bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-ink text-2xl">group</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-ink">สแปมกลุ่มการลงทุน</p>
+<p class="font-label-sm text-label-sm text-ink-muted">บล็อกเมื่อ 1 มี.ค. 2567</p>
+</div>
+</div>
+<button class="px-lg py-xs rounded-full bg-surface-white flat-border text-ink font-button-md text-button-md hover:bg-ink hover:text-white transition-all active:scale-95">เลิกบล็อก</button>
+</div>
+</div>
+</section>
+<!-- Footer / Policy Note -->
+<footer class="w-full max-w-2xl px-xl py-xl mt-auto">
+<div class="p-lg rounded-xl bg-ink text-white flex items-start gap-md">
+<span class="material-symbols-outlined text-primary-container">verified_user</span>
+<div>
+<h4 class="font-body-md text-body-md font-medium mb-xs">ความเป็นส่วนตัวคือหัวใจสำคัญ</h4>
+<p class="font-label-sm text-label-sm text-surface-variant">รายชื่อที่คุณบล็อกจะถูกเก็บเป็นความลับ และเราจะไม่แจ้งให้คนเหล่านั้นทราบเมื่อคุณทำการบล็อก พวกเขาจะเพียงแค่ไม่สามารถติดต่อคุณผ่าน Arm Chat ได้เท่านั้น</p>
+</div>
+</div>
+</footer>
+</main>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if(this.innerText === 'เลิกบล็อก') {
+                    const row = this.closest('.flex.items-center.justify-between');
+                    row.style.transition = 'all 0.3s ease';
+                    row.style.opacity = '0';
+                    row.style.transform = 'translateX(20px)';
+                    setTimeout(() => {
+                        row.remove();
+                        // Update counter logic would go here
+                    }, 300);
+                }
+            });
+        });
+    </script>
+</body></html>

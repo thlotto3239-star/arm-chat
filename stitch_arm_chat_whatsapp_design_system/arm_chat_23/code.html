@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>โทรด้วยเสียง - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e8e2d8",
+                    "inverse-primary": "#3de273",
+                    "surface-dim": "#e0d9d0",
+                    "on-primary-fixed": "#002109",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#d1eac6",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1e1b16",
+                    "surface-container": "#f4ede3",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-tint": "#006d2f",
+                    "primary-container": "#25d366",
+                    "on-tertiary-container": "#004694",
+                    "surface-container-highest": "#e8e2d8",
+                    "background": "#fff8f0",
+                    "on-primary-container": "#005523",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "outline-variant": "#bbcbb9",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#001b3f",
+                    "inverse-surface": "#33302a",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#d1eac6",
+                    "surface-dark": "#000000",
+                    "primary": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "outline": "#6c7b6b",
+                    "error": "#ba1a1a",
+                    "ink-muted": "#5e5e5e",
+                    "secondary": "#4f6448",
+                    "on-background": "#1e1b16",
+                    "tertiary": "#005cbd",
+                    "surface": "#fff8f0",
+                    "surface-container-high": "#eee7dd",
+                    "surface-container-lowest": "#ffffff",
+                    "ink": "#1c1e21",
+                    "tertiary-fixed": "#d7e2ff",
+                    "primary-fixed-dim": "#3de273",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "on-secondary-container": "#556a4d",
+                    "surface-white": "#ffffff",
+                    "on-primary-fixed-variant": "#005322",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#93b8ff",
+                    "on-secondary-fixed": "#0d200a",
+                    "surface-bright": "#fff8f0",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "huge": "80px",
+                    "xxl": "32px",
+                    "xs": "8px",
+                    "xl": "24px",
+                    "md": "16px",
+                    "lg": "20px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "display-md": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "button-md": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"]
+            },
+            "fontSize": {
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fff8f0; /* Use surface color */
+            font-family: 'Prompt', sans-serif;
+            overflow: hidden;
+        }
+
+        .pulse-ring {
+            position: absolute;
+            border: 2px solid #25d366;
+            border-radius: 50%;
+            animation: pulse-out 3s infinite ease-out;
+            opacity: 0;
+        }
+
+        .pulse-ring:nth-child(2) { animation-delay: 1s; }
+        .pulse-ring:nth-child(3) { animation-delay: 2s; }
+
+        @keyframes pulse-out {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .control-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #1c1e21;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .control-btn:active {
+            transform: scale(0.9);
+        }
+
+        .control-btn.active {
+            background-color: #1c1e21;
+            color: #ffffff;
+        }
+
+        .end-call-btn {
+            background-color: #ff3b30;
+            color: #ffffff;
+            border: none;
+        }
+
+        .end-call-btn:active {
+            transform: scale(0.9);
+            background-color: #d12f26;
+        }
+    </style>
+</head>
+<body class="flex flex-col h-screen max-w-md mx-auto relative text-ink overflow-hidden">
+<!-- Top Bar (Minimalist Header) -->
+<header class="flex flex-col items-center pt-xxl pb-md">
+<div class="flex items-center gap-xs mb-base">
+<span class="material-symbols-outlined text-primary text-[16px]" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="font-label-sm text-label-sm text-ink-muted">เข้ารหัสแบบต้นทางถึงปลายทาง</span>
+</div>
+<h1 class="font-body-lg text-body-lg text-ink-muted">Adisak M.</h1>
+<div class="font-display-md text-display-md mt-xs" id="call-timer">00:12</div>
+</header>
+<!-- Main Avatar Content Area -->
+<main class="flex-grow flex items-center justify-center relative px-xl">
+<!-- Pulse Animation Rings -->
+<div class="pulse-ring w-48 h-48"></div>
+<div class="pulse-ring w-48 h-48"></div>
+<div class="pulse-ring w-48 h-48"></div>
+<!-- Profile Avatar -->
+<div class="relative z-10 w-48 h-48 rounded-full border border-ink overflow-hidden bg-surface-white">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a handsome Thai man named Adisak, with a friendly expression and short black hair. He is wearing a clean white linen shirt against a soft cream background. The image has a minimalist, high-end editorial feel with soft natural lighting and high clarity, consistent with a professional communication app interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA14otHQYmA28gySGfVDuAzX6e9KgkC4Ia2pz2YMn1eqBXfdc45t0HBx6oFwn_o4H1l37cFFVmcaipLfZVHtH-9it0eMdG_Z_X7MP0tvvU5RChWuNLbABp1EJbVhfWeCRP2NHdSghpmNJ9RRnu8F1VkfXYUKgq4gcUtCt9dBiiEe3RLeJAeR55eINTrTBssEm9WRbpTwuZwtZO7VtR9f5_zsZ5oeIxElDnfz6PNBclNsAcLVuorghY"/>
+</div>
+</main>
+<!-- Bottom Controls Shell -->
+<div class="bg-surface-dark w-full pt-xxl pb-huge rounded-t-xl px-xl flex flex-col items-center gap-xl transition-all duration-500 transform translate-y-0">
+<!-- Main Actions Row -->
+<div class="flex justify-between w-full items-center">
+<!-- Mute -->
+<button class="flex flex-col items-center gap-xs">
+<div class="control-btn border-white/20 text-white hover:bg-white/10" id="mute-toggle">
+<span class="material-symbols-outlined" id="mute-icon">mic_off</span>
+</div>
+<span class="text-white/60 text-label-sm font-label-sm">ปิดเสียง</span>
+</button>
+<!-- Speaker -->
+<button class="flex flex-col items-center gap-xs">
+<div class="control-btn border-white/20 text-white hover:bg-white/10" id="speaker-toggle">
+<span class="material-symbols-outlined">volume_up</span>
+</div>
+<span class="text-white/60 text-label-sm font-label-sm">ลำโพง</span>
+</button>
+<!-- Dial Pad -->
+<button class="flex flex-col items-center gap-xs">
+<div class="control-btn border-white/20 text-white hover:bg-white/10">
+<span class="material-symbols-outlined">apps</span>
+</div>
+<span class="text-white/60 text-label-sm font-label-sm">ปุ่มกด</span>
+</button>
+<!-- End Call -->
+<button class="flex flex-col items-center gap-xs">
+<div class="control-btn end-call-btn">
+<span class="material-symbols-outlined rotate-[135deg]">call_end</span>
+</div>
+<span class="text-white/60 text-label-sm font-label-sm">วางสาย</span>
+</button>
+</div>
+<!-- Meta info -->
+<div class="text-white/40 text-label-xs font-label-xs tracking-widest uppercase">
+            Arm Chat Voice Call Service
+        </div>
+</div>
+<!-- Scripts for Interaction -->
+<script>
+        // Simple Call Timer
+        let seconds = 12;
+        const timerElement = document.getElementById('call-timer');
+        
+        setInterval(() => {
+            seconds++;
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            timerElement.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }, 1000);
+
+        // UI Toggles
+        const muteBtn = document.getElementById('mute-toggle');
+        const muteIcon = document.getElementById('mute-icon');
+        let isMuted = false;
+
+        muteBtn.addEventListener('click', () => {
+            isMuted = !isMuted;
+            if(isMuted) {
+                muteBtn.classList.add('bg-white', 'text-black');
+                muteBtn.classList.remove('text-white');
+                muteIcon.textContent = 'mic';
+                muteIcon.style.fontVariationSettings = "'FILL' 1";
+            } else {
+                muteBtn.classList.remove('bg-white', 'text-black');
+                muteBtn.classList.add('text-white');
+                muteIcon.textContent = 'mic_off';
+                muteIcon.style.fontVariationSettings = "'FILL' 0";
+            }
+        });
+
+        const speakerBtn = document.getElementById('speaker-toggle');
+        let isSpeaker = false;
+
+        speakerBtn.addEventListener('click', () => {
+            isSpeaker = !isSpeaker;
+            if(isSpeaker) {
+                speakerBtn.classList.add('bg-white', 'text-black');
+                speakerBtn.classList.remove('text-white');
+                speakerBtn.querySelector('span').style.fontVariationSettings = "'FILL' 1";
+            } else {
+                speakerBtn.classList.remove('bg-white', 'text-black');
+                speakerBtn.classList.add('text-white');
+                speakerBtn.querySelector('span').style.fontVariationSettings = "'FILL' 0";
+            }
+        });
+
+        // "End Call" navigation simulation
+        const endCall = document.querySelector('.end-call-btn');
+        endCall.addEventListener('click', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-out';
+            setTimeout(() => {
+                alert('Call Ended');
+                location.reload(); // Refresh to simulate returning to chat
+            }, 500);
+        });
+    </script>
+</body></html>

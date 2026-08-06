@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="light" lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Flow &amp; Architecture - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#f7f0e6",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "ink-muted": "#5e5e5e",
+                    "surface-variant": "#e8e2d8",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "on-secondary": "#ffffff",
+                    "outline": "#6c7b6b",
+                    "secondary-container": "#d1eac6",
+                    "on-primary-fixed": "#002109",
+                    "inverse-surface": "#33302a",
+                    "surface-dark": "#000000",
+                    "surface-dim": "#e0d9d0",
+                    "background": "#fff8f0",
+                    "ink": "#1c1e21",
+                    "on-secondary-fixed": "#0d200a",
+                    "on-background": "#1e1b16",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "secondary": "#4f6448",
+                    "surface-white": "#ffffff",
+                    "surface-container-high": "#eee7dd",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#66ff8e",
+                    "primary": "#006d2f",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#faf3e9",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#25d366",
+                    "on-tertiary-container": "#004694",
+                    "tertiary-container": "#93b8ff",
+                    "inverse-primary": "#3de273",
+                    "on-surface": "#1e1b16",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "surface-container": "#f4ede3",
+                    "surface-bright": "#fff8f0",
+                    "tertiary-fixed": "#d7e2ff",
+                    "on-primary-container": "#005523",
+                    "secondary-fixed": "#d1eac6",
+                    "surface": "#fff8f0",
+                    "surface-container-highest": "#e8e2d8",
+                    "tertiary": "#005cbd",
+                    "on-surface-variant": "#3c4a3d",
+                    "primary-fixed-dim": "#3de273",
+                    "on-secondary-container": "#556a4d",
+                    "outline-variant": "#bbcbb9",
+                    "surface-tint": "#006d2f",
+                    "on-primary-fixed-variant": "#005322",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "on-tertiary-fixed": "#001b3f",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "xxl": "32px",
+                    "huge": "80px",
+                    "md": "16px",
+                    "xl": "24px",
+                    "base": "4px",
+                    "sm": "12px",
+                    "lg": "20px"
+            },
+            "fontFamily": {
+                    "button-md": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"],
+                    "display-md": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "label-sm": ["Prompt"]
+            },
+            "fontSize": {
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        font-family: 'Prompt', sans-serif;
+        background-color: #fff8f0;
+      }
+      .flow-path {
+        stroke-dasharray: 8;
+        animation: dash 20s linear infinite;
+      }
+      @keyframes dash {
+        to { stroke-dashoffset: -1000; }
+      }
+      .node-card {
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .node-card:hover {
+        transform: scale(1.05);
+      }
+    </style>
+</head>
+<body class="bg-background text-on-background overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full h-[64px] bg-surface-white border-b border-outline-variant flex justify-between items-center px-xxl z-50">
+<div class="flex items-center gap-sm">
+<span class="font-display-md text-display-md text-primary leading-none">Arm Chat</span>
+</div>
+<div class="hidden md:flex gap-xl">
+<a class="text-primary font-bold border-b-2 border-primary font-label-sm text-label-sm px-xs py-base" href="#">Flow Diagram</a>
+<a class="text-ink-muted hover:bg-surface-container transition-colors font-label-sm text-label-sm px-xs py-base rounded-md" href="#">Documentation</a>
+<a class="text-ink-muted hover:bg-surface-container transition-colors font-label-sm text-label-sm px-xs py-base rounded-md" href="#">Architecture</a>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-ink cursor-pointer p-xs hover:bg-surface-container rounded-full" data-icon="search">search</span>
+<span class="material-symbols-outlined text-ink cursor-pointer p-xs hover:bg-surface-container rounded-full" data-icon="notifications">notifications</span>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-xs border border-ink">A</div>
+</div>
+</nav>
+<!-- SideNavBar (Desktop Only) -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low border-r border-outline-variant pt-[80px] px-md hidden md:flex flex-col z-40">
+<div class="mb-huge px-md">
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-widest opacity-60">Main Flow</p>
+</div>
+<div class="flex flex-col gap-sm">
+<div class="flex items-center gap-md bg-primary-container text-on-primary-container rounded-xl px-md py-sm">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span class="font-label-sm text-label-sm">แผนผังระบบ</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest transition-all px-md py-sm rounded-xl cursor-pointer">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+<span class="font-label-sm text-label-sm">สถาปัตยกรรม</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest transition-all px-md py-sm rounded-xl cursor-pointer">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+<span class="font-label-sm text-label-sm">การเพิ่มเพื่อน</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest transition-all px-md py-sm rounded-xl cursor-pointer">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm">การตั้งค่า</span>
+</div>
+</div>
+<div class="mt-auto pb-xl">
+<div class="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-highest transition-all px-md py-sm rounded-xl cursor-pointer">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-label-sm text-label-sm">ความช่วยเหลือ</span>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="md:ml-64 pt-huge pb-huge px-xl md:px-huge min-h-screen">
+<!-- Header Section -->
+<section class="mb-huge">
+<h1 class="font-display-xl-mobile md:font-display-xl text-display-xl-mobile md:text-display-xl text-ink mb-md">Arm Chat <br/><span class="text-primary">User Journey</span></h1>
+<p class="font-body-lg text-body-lg text-ink-muted max-w-2xl">แผนผังการทำงานและการเชื่อมต่อข้อมูลเชิงลึกของแอปพลิเคชันส่งข้อความสำหรับยุคใหม่ เน้นความเรียบง่าย ประสิทธิภาพ และความปลอดภัยสูงสุด</p>
+</section>
+<!-- User Flow Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-xl mb-huge relative">
+<!-- Path Visualizer (Abstract Lines for background effect) -->
+<div class="absolute inset-0 -z-10 opacity-20 hidden md:block">
+<svg fill="none" height="100%" viewbox="0 0 1200 800" width="100%" xmlns="http://www.w3.org/2000/svg">
+<path class="flow-path" d="M100 200 C 300 200, 300 400, 600 400 S 900 600, 1100 600" stroke="#006d2f" stroke-width="2"></path>
+<path class="flow-path" d="M100 200 C 300 200, 300 100, 600 100 S 900 300, 1100 300" stroke="#4f6448" stroke-width="1"></path>
+</svg>
+</div>
+<!-- Node 1: Landing -->
+<div class="md:col-span-4 bg-surface-white border border-ink p-xl node-card flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center mb-md border border-ink">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<h3 class="font-display-md text-[24px] text-ink mb-sm">1. Landing Page</h3>
+<p class="font-body-md text-body-md text-ink-muted">หน้าแรกที่ผู้ใช้พบเจอ นำเสนอคุณสมบัติหลัก ระบบความปลอดภัย และปุ่ม Call to Action เพื่อเริ่มต้นใช้งาน</p>
+</div>
+<div class="mt-xl flex items-center gap-sm text-primary">
+<span class="font-label-sm text-label-sm font-bold">ไปยังขั้นตอนถัดไป</span>
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Node 2: Login/Register -->
+<div class="md:col-span-4 bg-surface-white border border-ink p-xl node-card">
+<div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center mb-md border border-ink">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="login">login</span>
+</div>
+<h3 class="font-display-md text-[24px] text-ink mb-sm">2. Authentication</h3>
+<p class="font-body-md text-body-md text-ink-muted mb-md">ระบบสมัครสมาชิกและเข้าสู่ระบบผ่าน OTP หรือ Social Login เก็บข้อมูลด้วย Supabase Auth อย่างปลอดภัย</p>
+<div class="flex flex-wrap gap-xs">
+<span class="px-sm py-xs bg-surface-container rounded-full font-label-xs text-label-xs">สมัครสมาชิก</span>
+<span class="px-sm py-xs bg-surface-container rounded-full font-label-xs text-label-xs">OTP</span>
+<span class="px-sm py-xs bg-surface-container rounded-full font-label-xs text-label-xs">Email</span>
+</div>
+</div>
+<!-- Node 3: Onboarding -->
+<div class="md:col-span-4 bg-surface-white border border-ink p-xl node-card">
+<div class="w-12 h-12 bg-tertiary-container rounded-full flex items-center justify-center mb-md border border-ink">
+<span class="material-symbols-outlined text-on-tertiary-container" data-icon="person_edit">person_edit</span>
+</div>
+<h3 class="font-display-md text-[24px] text-ink mb-sm">3. Onboarding</h3>
+<p class="font-body-md text-body-md text-ink-muted">ตั้งชื่อผู้ใช้ อัปโหลดรูปโปรไฟล์ และเลือกหัวข้อความสนใจเบื้องต้น เพื่อสร้างประสบการณ์ที่ตรงใจ</p>
+</div>
+<!-- Node 4: Inbox (Centerpiece) -->
+<div class="md:col-span-8 bg-ink text-surface-white p-xl md:p-xxl node-card flex flex-col md:flex-row gap-xl items-center">
+<div class="flex-1">
+<div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center mb-md border border-surface-white">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="inbox" data-weight="fill" style="font-variation-settings: 'FILL' 1;">inbox</span>
+</div>
+<h3 class="font-display-md text-[32px] mb-sm">4. Main Inbox Hub</h3>
+<p class="font-body-md text-body-md opacity-80 mb-xl">ศูนย์กลางการเชื่อมต่อที่รวม Chat, Call Log และ Group Management ไว้ในที่เดียว อัปเดตสถานะแบบ Real-time</p>
+<div class="grid grid-cols-2 gap-md">
+<div class="border border-surface-variant p-md rounded-lg">
+<span class="material-symbols-outlined text-primary-fixed mb-xs" data-icon="forum">forum</span>
+<p class="font-label-sm text-label-sm">รายการแชท</p>
+</div>
+<div class="border border-surface-variant p-md rounded-lg">
+<span class="material-symbols-outlined text-primary-fixed mb-xs" data-icon="phone_callback">phone_callback</span>
+<p class="font-label-sm text-label-sm">ประวัติการโทร</p>
+</div>
+</div>
+</div>
+<div class="w-full md:w-64 h-64 bg-surface-dark/50 rounded-xl overflow-hidden relative border border-outline">
+
+<div class="relative z-10 p-md flex flex-col justify-center h-full items-center text-center">
+<span class="font-label-sm text-label-sm text-primary-fixed mb-xs">ศูนย์กลางข้อมูล</span>
+<div class="w-16 h-1 bg-primary-fixed rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Node 5: Chat/Call Details -->
+<div class="md:col-span-4 bg-secondary text-surface-white p-xl node-card">
+<div class="w-12 h-12 bg-surface-white rounded-full flex items-center justify-center mb-md border border-ink">
+<span class="material-symbols-outlined text-secondary" data-icon="video_call">video_call</span>
+</div>
+<h3 class="font-display-md text-[24px] mb-sm">5. Chat &amp; Call</h3>
+<p class="font-body-md text-body-md opacity-90 mb-md">หน้าต่างสนทนาเชิงลึก รองรับการส่งไฟล์ สติ๊กเกอร์ และการโทรด้วยเสียง/วิดีโอคุณภาพสูงผ่าน LiveKit</p>
+<div class="flex gap-sm">
+<button class="flex-1 bg-primary-container text-on-primary-container py-xs rounded-full font-label-sm text-label-sm border border-ink">ทดสอบการโทร</button>
+</div>
+</div>
+</section>
+<!-- Feature Section: Adding Friends -->
+<section class="mb-huge bg-surface-container-low p-xl md:p-xxl border border-ink">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-huge gap-md">
+<div>
+<h2 class="font-display-md text-display-md text-ink">การเพิ่มเพื่อน (Add Friends)</h2>
+<p class="font-body-md text-body-md text-ink-muted">ขั้นตอนการสร้างเครือข่ายความสัมพันธ์ที่ง่ายและรวดเร็ว</p>
+</div>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-ink p-sm border border-ink rounded-full" data-icon="qr_code_2">qr_code_2</span>
+<span class="material-symbols-outlined text-ink p-sm border border-ink rounded-full" data-icon="link">link</span>
+<span class="material-symbols-outlined text-ink p-sm border border-ink rounded-full" data-icon="fingerprint">fingerprint</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+<!-- Method 1 -->
+<div class="bg-surface-white p-xl border border-outline-variant">
+<h4 class="font-body-lg font-bold text-ink mb-sm">1. ระบบ ID</h4>
+<p class="font-body-md text-body-md text-ink-muted mb-md">ค้นหาด้วยชื่อผู้ใช้ที่ไม่ซ้ำกัน (Unique Username) โดยระบบจะค้นหาในฐานข้อมูล Supabase แบบ Real-time</p>
+</div>
+<!-- Method 2 -->
+<div class="bg-surface-white p-xl border border-outline-variant">
+<h4 class="font-body-lg font-bold text-ink mb-sm">2. QR Code</h4>
+<p class="font-body-md text-body-md text-ink-muted mb-md">สร้าง QR Code ส่วนตัวที่สามารถสแกนได้ทันที เหมาะสำหรับการเพิ่มเพื่อนในระยะใกล้</p>
+</div>
+<!-- Method 3 -->
+<div class="bg-surface-white p-xl border border-outline-variant">
+<h4 class="font-body-lg font-bold text-ink mb-sm">3. Invite Link</h4>
+<p class="font-body-md text-body-md text-ink-muted mb-md">สร้างลิงก์เชิญพิเศษที่ส่งผ่านแอปพลิเคชันอื่น เมื่อคลิกจะเปิดแอป Arm Chat และเพิ่มเพื่อนโดยอัตโนมัติ</p>
+</div>
+</div>
+</section>
+<!-- Technical Architecture Section -->
+<section class="mb-huge">
+<div class="text-center mb-huge">
+<h2 class="font-display-md text-display-md text-ink mb-sm">Technical Architecture</h2>
+<p class="font-body-md text-body-md text-ink-muted max-w-xl mx-auto">สถาปัตยกรรมระดับเอนเตอร์ไพรส์ที่เลือกสรรเทคโนโลยีที่ดีที่สุดเพื่อประสิทธิภาพสูงสุด</p>
+</div>
+<div class="relative flex flex-col items-center gap-huge">
+<!-- Stack Row 1 -->
+<div class="w-full flex flex-col md:flex-row justify-center items-center gap-xl">
+<div class="w-full md:w-72 bg-surface-white border-2 border-ink p-xl text-center">
+<div class="font-display-md text-primary mb-sm">Vercel</div>
+<p class="font-label-sm text-label-sm text-ink-muted uppercase">Deployment &amp; Frontend</p>
+<p class="mt-sm font-body-md text-body-md">โฮสต์แอปพลิเคชัน Next.js ให้ความเร็วระดับขอบโลก</p>
+</div>
+<div class="hidden md:block w-16 h-[2px] bg-ink"></div>
+<div class="w-full md:w-72 bg-surface-white border-2 border-ink p-xl text-center ring-offset-4 ring-2 ring-primary">
+<div class="font-display-md text-primary mb-sm">Next.js</div>
+<p class="font-label-sm text-label-sm text-ink-muted uppercase">Core Framework</p>
+<p class="mt-sm font-body-md text-body-md">จัดการ Routing, SSR และ State Management</p>
+</div>
+</div>
+<!-- Vertical Connector -->
+<div class="hidden md:block w-[2px] h-20 bg-ink"></div>
+<!-- Stack Row 2 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl w-full max-w-4xl">
+<div class="bg-surface-container-low border border-ink p-xl rounded-2xl relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-display-md text-[24px] text-ink mb-sm">Supabase</h4>
+<p class="font-body-md text-body-md text-ink-muted">จัดการฐานข้อมูล PostgreSQL, Real-time Sync และ Authentication</p>
+<ul class="mt-md space-y-xs">
+<li class="flex items-center gap-xs font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px] text-primary" data-icon="check_circle">check_circle</span> PostgreSQL DB</li>
+<li class="flex items-center gap-xs font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px] text-primary" data-icon="check_circle">check_circle</span> Auth Service</li>
+<li class="flex items-center gap-xs font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px] text-primary" data-icon="check_circle">check_circle</span> Storage (Images/Files)</li>
+</ul>
+</div>
+<div class="absolute -bottom-8 -right-8 w-32 h-32 opacity-10">
+<span class="material-symbols-outlined text-[120px]" data-icon="database">database</span>
+</div>
+</div>
+<div class="bg-surface-container-low border border-ink p-xl rounded-2xl relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-display-md text-[24px] text-ink mb-sm">LiveKit</h4>
+<p class="font-body-md text-body-md text-ink-muted">โครงสร้างพื้นฐานสำหรับการโทรผ่านวิดีโอและเสียงแบบ WebRTC</p>
+<ul class="mt-md space-y-xs">
+<li class="flex items-center gap-xs font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px] text-secondary" data-icon="check_circle">check_circle</span> SFU Multimedia Engine</li>
+<li class="flex items-center gap-xs font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px] text-secondary" data-icon="check_circle">check_circle</span> Low Latency Audio/Video</li>
+<li class="flex items-center gap-xs font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px] text-secondary" data-icon="check_circle">check_circle</span> Screen Sharing</li>
+</ul>
+</div>
+<div class="absolute -bottom-8 -right-8 w-32 h-32 opacity-10">
+<span class="material-symbols-outlined text-[120px]" data-icon="wifi_calling">wifi_calling</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="mt-huge py-huge text-center border-t border-ink">
+<h2 class="font-display-xl-mobile md:font-display-lg text-ink mb-md">พร้อมสร้างสรรค์ประสบการณ์ใหม่?</h2>
+<p class="font-body-lg text-body-lg text-ink-muted mb-xl max-w-xl mx-auto">เริ่มติดตั้งระบบด้วยคู่มือการใช้งานที่ละเอียดและตัวอย่างโค้ดที่พร้อมใช้งานทันที</p>
+<div class="flex flex-col md:flex-row justify-center gap-md">
+<button class="px-xl py-md bg-primary-container text-on-primary-container border border-ink rounded-full font-button-md text-button-md hover:scale-105 transition-transform">ดาวน์โหลดคู่มือ (PDF)</button>
+<button class="px-xl py-md bg-surface-white text-ink border border-ink rounded-full font-button-md text-button-md hover:bg-surface-container transition-colors">ดูโค้ดบน GitHub</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-huge px-xl md:ml-64 bg-surface-container-lowest border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-display-md text-primary mb-xs">Arm Chat</span>
+<p class="font-label-xs text-label-xs text-ink-muted">© 2024 Arm Chat. พัฒนาด้วยความใส่ใจในประเทศไทย</p>
+</div>
+<div class="flex gap-xl">
+<a class="text-ink-muted hover:text-primary transition-colors font-label-xs text-label-xs" href="#">ข้อกำหนดการใช้งาน</a>
+<a class="text-ink-muted hover:text-primary transition-colors font-label-xs text-label-xs" href="#">ความเป็นส่วนตัว</a>
+<a class="text-ink-muted hover:text-primary transition-colors font-label-xs text-label-xs" href="#">ติดต่อเรา</a>
+</div>
+</footer>
+<!-- Micro-interaction script -->
+<script>
+        document.querySelectorAll('.node-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.borderColor = '#006d2f';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.borderColor = '#1c1e21';
+            });
+        });
+    </script>
+</body></html>

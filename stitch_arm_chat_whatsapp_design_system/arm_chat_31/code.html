@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>เชื่อมต่ออุปกรณ์ - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#faf3e9",
+                    "inverse-primary": "#3de273",
+                    "surface-tint": "#006d2f",
+                    "secondary": "#4f6448",
+                    "surface": "#fff8f0",
+                    "outline-variant": "#bbcbb9",
+                    "on-tertiary-container": "#004694",
+                    "inverse-surface": "#33302a",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "on-primary": "#ffffff",
+                    "outline": "#6c7b6b",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#d1eac6",
+                    "primary-fixed-dim": "#3de273",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#93b8ff",
+                    "primary-fixed": "#66ff8e",
+                    "on-surface": "#1e1b16",
+                    "surface-dim": "#e0d9d0",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "on-surface-variant": "#3c4a3d",
+                    "secondary-fixed": "#d1eac6",
+                    "primary-container": "#25d366",
+                    "on-primary-fixed-variant": "#005322",
+                    "on-primary-container": "#005523",
+                    "tertiary-fixed": "#d7e2ff",
+                    "surface-bright": "#fff8f0",
+                    "ink": "#1c1e21",
+                    "on-secondary-container": "#556a4d",
+                    "surface-container-high": "#eee7dd",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#002109",
+                    "background": "#fff8f0",
+                    "surface-container-highest": "#e8e2d8",
+                    "surface-white": "#ffffff",
+                    "tertiary": "#005cbd",
+                    "surface-variant": "#e8e2d8",
+                    "surface-container": "#f4ede3",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-dark": "#000000",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#1e1b16",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "on-secondary-fixed": "#0d200a",
+                    "error": "#ba1a1a",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#001b3f",
+                    "ink-muted": "#5e5e5e",
+                    "on-error-container": "#93000a",
+                    "primary": "#006d2f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xxl": "32px",
+                    "sm": "12px",
+                    "md": "16px",
+                    "lg": "20px",
+                    "base": "4px",
+                    "xl": "24px",
+                    "huge": "80px",
+                    "xs": "8px"
+            },
+            "fontFamily": {
+                    "button-md": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "display-md": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "display-lg": ["Prompt"]
+            },
+            "fontSize": {
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fff8f0;
+            color: #1c1e21;
+            font-family: 'Prompt', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .qr-scanner-glow {
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.15);
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid #1c1e21;
+        }
+    </style>
+</head>
+<body class="bg-background">
+<!-- TopNavBar -->
+<nav class="flex justify-between items-center w-full px-xl h-20 max-w-full bg-surface border-b border-outline-variant fixed top-0 z-50">
+<div class="text-display-md font-display-md text-primary tracking-tighter">Arm Chat</div>
+<div class="hidden md:flex gap-xl">
+<a class="text-ink-muted hover:bg-surface-container-low px-md py-sm rounded-full transition-colors font-body-md text-body-md" href="#">แชท</a>
+<a class="text-primary border-b-2 border-primary px-md py-sm font-body-md text-body-md" href="#">เชื่อมต่ออุปกรณ์</a>
+<a class="text-ink-muted hover:bg-surface-container-low px-md py-sm rounded-full transition-colors font-body-md text-body-md" href="#">ความปลอดภัย</a>
+<a class="text-ink-muted hover:bg-surface-container-low px-md py-sm rounded-full transition-colors font-body-md text-body-md" href="#">การตั้งค่า</a>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="material-symbols-outlined text-ink-muted cursor-pointer" data-icon="more_vert">more_vert</span>
+</div>
+</nav>
+<!-- SideNavBar (Desktop Only) -->
+<aside class="hidden md:flex flex-col h-full p-md gap-sm bg-surface-container-low border-r border-outline-variant fixed left-0 top-0 w-80 pt-24">
+<div class="flex flex-col mb-xl px-md">
+<div class="flex items-center gap-md mb-md">
+<div class="w-12 h-12 rounded-full border border-ink overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a Thai business executive in a modern tech office environment. The lighting is soft and natural, emphasizing a calm and secure professional atmosphere. The color palette features warm creams and subtle green accents, maintaining a high-end minimalist editorial feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-afwQAl9zzG05vjycMGxAMCth8JUPhRxRdhGswQwTp-Zjh8gugkTXjG2enCwQrqMoqx4wAuxtP3pQ8R07RYmWBCgeiUtdEphyXO-2fO3_iU4FvYPNuMf4ULZFWbCPOFdS31Zt6JqSpx14vP6w467cH_SIpGew1REutTSqP3ysnbmcjNOI625K7ea98vwhOkGD9ErfekTQGkdoiaVnwDzuEwQoemnrw9E-Kxqi6_CQuF2rH1eU3UY"/>
+</div>
+<div>
+<div class="font-display-md text-primary text-[20px] leading-tight">Arm Admin</div>
+<div class="font-body-md text-ink-muted text-[14px]">Enterprise Secure</div>
+</div>
+</div>
+<button class="w-full py-sm px-md bg-primary-container border border-ink rounded-full text-ink font-button-md text-button-md hover:bg-opacity-90 transition-all flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                สร้างกลุ่มใหม่
+            </button>
+</div>
+<div class="flex flex-col gap-xs">
+<a class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="font-body-md text-body-md">ข้อความ</span>
+</a>
+<a class="flex items-center gap-md bg-primary-container text-on-primary-container rounded-full px-md py-sm transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="devices_other">devices_other</span>
+<span class="font-body-md text-body-md">อุปกรณ์ที่เชื่อมต่อ</span>
+</a>
+<a class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="font-body-md text-body-md">ความปลอดภัย</span>
+</a>
+<a class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span class="font-body-md text-body-md">ข้อมูล</span>
+</a>
+<a class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+<span class="font-body-md text-body-md">คลังข้อความ</span>
+</a>
+<a class="flex items-center gap-md text-secondary px-md py-sm hover:bg-secondary-container/50 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">การตั้งค่า</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col gap-xs">
+<a class="flex items-center gap-md text-ink-muted px-md py-sm hover:bg-secondary-container/50 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-body-md text-body-md">ความช่วยเหลือ</span>
+</a>
+<a class="flex items-center gap-md text-error px-md py-sm hover:bg-error-container rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md text-body-md">ออกจากระบบ</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="md:ml-80 pt-24 pb-32 px-xl max-w-7xl mx-auto">
+<!-- Header Section -->
+<header class="mb-huge text-center md:text-left">
+<h1 class="font-display-lg text-display-lg text-ink mb-md">เชื่อมต่ออุปกรณ์</h1>
+<p class="font-body-lg text-body-lg text-ink-muted max-w-2xl">เข้าถึงข้อความของคุณได้ทุกที่อย่างปลอดภัย เชื่อมต่อคอมพิวเตอร์หรือแท็บเล็ตของคุณด้วยการสแกนเพียงครั้งเดียว</p>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start">
+<!-- Left: QR Code & Instructions -->
+<section class="lg:col-span-7 bg-surface-white border border-ink p-xl rounded-lg qr-scanner-glow">
+<div class="flex flex-col md:flex-row gap-huge items-center md:items-start">
+<!-- QR Container -->
+<div class="flex-shrink-0">
+<div class="bg-white p-lg rounded-xl border border-outline relative">
+<div class="absolute -top-base -left-base w-8 h-8 border-t-2 border-l-2 border-primary"></div>
+<div class="absolute -top-base -right-base w-8 h-8 border-t-2 border-r-2 border-primary"></div>
+<div class="absolute -bottom-base -left-base w-8 h-8 border-b-2 border-l-2 border-primary"></div>
+<div class="absolute -bottom-base -right-base w-8 h-8 border-b-2 border-r-2 border-primary"></div>
+<!-- Large Placeholder QR Image -->
+<div class="w-64 h-64 bg-surface-container-lowest flex items-center justify-center">
+<img class="w-full h-full opacity-90" data-alt="A clean, minimalist QR code for a high-security tech application. The QR code is perfectly centered and sharp, set against a pristine white background. The aesthetic is digital, professional, and reliable, utilizing a flat vector style that fits into a modern light-mode interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7AAvj75zkAZow3mPgHsBNx_XJmeHCukVRKcl0D75HZhiSFTa62V8-6sS7UGiny166XV2zp7xTWeixyP-ME9sWLJjIDmAp_R15o8aZS3ahbovIZBZpC4PbTvzb1BVKgFmWCV7IYRf0q4VAkkQwKMoSUDMESrhmSMOu_TQu6vmjfzuECqqnnD7r9mzNrxSc0UXFAA5y_yMtTMWj-sCdzM4w18iUDaDfqQX9NQhfWt7C8WsKwAedlF8"/>
+</div>
+</div>
+<p class="mt-md text-center text-label-sm font-label-sm text-ink-muted uppercase tracking-widest">ต่ออายุใน 24 วินาที</p>
+</div>
+<!-- Steps -->
+<div class="flex flex-col gap-xl w-full">
+<h2 class="font-display-md text-[24px] text-ink mb-md">ขั้นตอนการเชื่อมต่อ</h2>
+<div class="flex gap-md">
+<div class="step-number flex-shrink-0 text-primary font-bold">1</div>
+<div>
+<p class="font-body-lg text-body-lg text-ink">เปิด <span class="text-primary">Arm Chat</span> บนโทรศัพท์ของคุณ</p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="step-number flex-shrink-0 text-primary font-bold">2</div>
+<div>
+<p class="font-body-lg text-body-lg text-ink">ไปที่ <span class="font-bold">การตั้งค่า</span> &gt; <span class="font-bold">อุปกรณ์ที่เชื่อมต่อ</span></p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="step-number flex-shrink-0 text-primary font-bold">3</div>
+<div>
+<p class="font-body-lg text-body-lg text-ink">เลือก "เชื่อมต่ออุปกรณ์" และชี้กล้องมาที่หน้าจอนี้</p>
+</div>
+</div>
+<div class="mt-xl pt-xl border-t border-outline-variant">
+<button class="text-primary font-button-md text-button-md hover:underline flex items-center gap-xs">
+                                ต้องการความช่วยเหลือ?
+                                <span class="material-symbols-outlined text-sm" data-icon="open_in_new">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Right: Active Sessions -->
+<section class="lg:col-span-5 flex flex-col gap-xl">
+<div class="bg-surface-container border border-outline-variant p-xl rounded-lg">
+<div class="flex justify-between items-center mb-xl">
+<h2 class="font-display-md text-[24px] text-ink">อุปกรณ์ที่ใช้งานอยู่</h2>
+<span class="bg-primary text-on-primary text-label-xs px-sm py-1 rounded-full">3 ออนไลน์</span>
+</div>
+<div class="flex flex-col gap-md">
+<!-- Session 1 -->
+<div class="bg-surface-white border border-ink p-md rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-primary-container/20 rounded-full flex items-center justify-center border border-primary">
+<span class="material-symbols-outlined text-primary" data-icon="laptop_mac">laptop_mac</span>
+</div>
+<div>
+<div class="font-body-md text-ink font-bold">MacBook Pro 14"</div>
+<div class="font-label-sm text-ink-muted">กรุงเทพฯ, ประเทศไทย • ใช้งานตอนนี้</div>
+</div>
+</div>
+<button class="text-error hover:bg-error-container p-sm rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+</button>
+</div>
+<!-- Session 2 -->
+<div class="bg-surface-white border border-outline p-md rounded-lg flex items-center justify-between opacity-80">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-surface-container-highest rounded-full flex items-center justify-center border border-outline">
+<span class="material-symbols-outlined text-ink-muted" data-icon="desktop_windows">desktop_windows</span>
+</div>
+<div>
+<div class="font-body-md text-ink">Windows PC (Office)</div>
+<div class="font-label-sm text-ink-muted">นนทบุรี, ประเทศไทย • เมื่อวานนี้ 18:42</div>
+</div>
+</div>
+<button class="text-error hover:bg-error-container p-sm rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+</button>
+</div>
+<!-- Session 3 -->
+<div class="bg-surface-white border border-outline p-md rounded-lg flex items-center justify-between opacity-80">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-surface-container-highest rounded-full flex items-center justify-center border border-outline">
+<span class="material-symbols-outlined text-ink-muted" data-icon="tablet_android">tablet_android</span>
+</div>
+<div>
+<div class="font-body-md text-ink">iPad Air</div>
+<div class="font-label-sm text-ink-muted">เชียงใหม่, ประเทศไทย • 3 วันที่แล้ว</div>
+</div>
+</div>
+<button class="text-error hover:bg-error-container p-sm rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+</button>
+</div>
+</div>
+<button class="w-full mt-xl py-sm text-error font-button-md text-button-md border border-error rounded-full hover:bg-error hover:text-white transition-all">
+                        ออกจากระบบทุกอุปกรณ์
+                    </button>
+</div>
+<!-- Security Tip Card -->
+<div class="bg-ink text-surface p-xl rounded-lg">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="verified_user">verified_user</span>
+<div>
+<h3 class="font-display-md text-[18px] mb-xs">เคล็ดลับความปลอดภัย</h3>
+<p class="font-body-md text-[14px] opacity-80">การเข้ารหัสแบบ End-to-end ปกป้องข้อความของคุณบนทุกอุปกรณ์ อย่าลืมล็อกหน้าจอคอมพิวเตอร์ของคุณเมื่อไม่ได้ใช้งาน</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm pb-md pt-sm bg-surface border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-ink-muted px-xl py-base" href="#">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+<span class="text-label-xs font-label-xs">แชท</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-muted px-xl py-base" href="#">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+<span class="text-label-xs font-label-xs">โทร</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xl py-base" href="#">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="text-label-xs font-label-xs">สแกน</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-muted px-xl py-base" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="text-label-xs font-label-xs">คลัง</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ink-muted px-xl py-base" href="#">
+<span class="material-symbols-outlined" data-icon="settings_gear">file_export</span>
+<span class="text-label-xs font-label-xs">ตั้งค่า</span>
+</a>
+</nav>
+<!-- Interactions Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const logoutButtons = document.querySelectorAll('.text-error');
+            logoutButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const confirmLogout = confirm('คุณต้องการยกเลิกการเชื่อมต่ออุปกรณ์นี้ใช่หรือไม่?');
+                    if (confirmLogout) {
+                        const row = e.target.closest('.flex-row') || e.target.closest('.bg-surface-white');
+                        if (row) {
+                            row.style.opacity = '0';
+                            row.style.transform = 'scale(0.95)';
+                            setTimeout(() => row.remove(), 300);
+                        }
+                    }
+                });
+            });
+
+            // Atmospheric QR refresh simulation
+            let seconds = 24;
+            const timerText = document.querySelector('.text-label-sm');
+            setInterval(() => {
+                seconds--;
+                if (seconds < 0) seconds = 24;
+                if (timerText) timerText.textContent = `ต่ออายุใน ${seconds} วินาที`;
+            }, 1000);
+        });
+    </script>
+</body></html>

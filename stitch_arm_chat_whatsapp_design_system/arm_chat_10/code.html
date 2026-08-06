@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html class="light" lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>คลังไฟล์และสื่อ - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fff8f0",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#d7e2ff",
+                    "primary-container": "#25d366",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "ink": "#1c1e21",
+                    "on-error-container": "#93000a",
+                    "secondary": "#4f6448",
+                    "on-surface": "#1e1b16",
+                    "outline-variant": "#bbcbb9",
+                    "outline": "#6c7b6b",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed": "#002109",
+                    "on-tertiary-container": "#004694",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-container-low": "#faf3e9",
+                    "primary-fixed-dim": "#3de273",
+                    "on-tertiary-fixed": "#001b3f",
+                    "on-secondary-fixed": "#0d200a",
+                    "error": "#ba1a1a",
+                    "surface-container-highest": "#e8e2d8",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "secondary-fixed": "#d1eac6",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#3c4a3d",
+                    "inverse-primary": "#3de273",
+                    "surface-dim": "#e0d9d0",
+                    "primary-fixed": "#66ff8e",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "tertiary": "#005cbd",
+                    "background": "#fff8f0",
+                    "surface-dark": "#000000",
+                    "ink-muted": "#5e5e5e",
+                    "surface-tint": "#006d2f",
+                    "surface-bright": "#fff8f0",
+                    "inverse-surface": "#33302a",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#005322",
+                    "on-secondary-container": "#556a4d",
+                    "surface-container": "#f4ede3",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#d1eac6",
+                    "on-primary-container": "#005523",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "primary": "#006d2f",
+                    "surface-variant": "#e8e2d8",
+                    "surface-white": "#ffffff",
+                    "surface-container-high": "#eee7dd",
+                    "tertiary-container": "#93b8ff",
+                    "on-background": "#1e1b16"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "base": "4px",
+                    "huge": "80px",
+                    "xxl": "32px",
+                    "xl": "24px",
+                    "sm": "12px",
+                    "lg": "20px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "display-xl-mobile": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "display-md": ["Prompt"],
+                    "button-md": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "display-lg": ["Prompt"]
+            },
+            "fontSize": {
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #fff8f0; /* surface */
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab {
+            border-bottom: 2px solid #006d2f;
+            color: #006d2f;
+            font-weight: 700;
+        }
+        /* Custom Scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #bbcbb9;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="overflow-hidden">
+<!-- SideNavBar Anchor -->
+<aside class="fixed left-0 top-0 h-full flex flex-col py-xl px-md z-40 bg-surface-container-low dark:bg-surface-dark border-r border-outline dark:border-outline-variant w-64 hidden md:flex">
+<div class="mb-huge px-md">
+<h1 class="text-display-md font-display-md text-primary dark:text-primary-fixed">Arm Chat</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">คลังสื่อและไฟล์</p>
+</div>
+<nav class="flex flex-col gap-base flex-1">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="font-label-sm text-label-sm">แชท</span>
+</a>
+<a class="flex items-center gap-md bg-primary-container dark:bg-on-primary-fixed-variant text-on-primary-container dark:text-primary-fixed rounded-xl px-md py-sm scale-95 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="folder" style="font-variation-settings: 'FILL' 1;">folder</span>
+<span class="font-label-sm text-label-sm">คลังไฟล์</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-sm text-label-sm">กลุ่ม</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+<span class="font-label-sm text-label-sm">โทร</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all rounded-xl mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm">การตั้งค่า</span>
+</a>
+</nav>
+<div class="mt-xl pt-md border-t border-outline-variant">
+<div class="flex items-center gap-md px-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center border border-ink overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a friendly Thai male user, soft warm lighting, clean minimalist background, high-definition photography style, natural skin textures, wearing a modern casual linen shirt in cream color, representing the professional yet approachable brand persona." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeRBrhXWUeVHqXH7FvDSRdq4cTudIWH8qA8f6MmlaXb_1Rtw-3A4rncGoqqJDy1VpKRl7QONCXL5CebQVZl39ELslu2elMWebIOOgI-pi-VByH1ExZoVafdgsNpNrgNw8Anw2KXAIjqMTue0YIOqs8mCe9cCesabPsFZJYpJtJdE4w42Z5MBDl3p_xQgtt__U-PQb3UXIe8Ea6dY26TZ_bVGoGSjTB5lJS9AsyyJ5cDS72hjbDdMU"/>
+</div>
+<div class="overflow-hidden">
+<p class="font-label-sm text-label-sm font-bold truncate">User Profile</p>
+<p class="text-[10px] text-ink-muted">ผู้ใช้งานทั่วไป</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<main class="md:ml-64 flex flex-col h-screen bg-surface">
+<!-- TopNavBar Anchor -->
+<header class="flex justify-between items-center w-full px-xxl h-[64px] z-50 bg-surface-white dark:bg-surface-dark border-b border-outline dark:border-outline-variant sticky top-0">
+<div class="flex items-center gap-md">
+<h2 class="font-display-md text-[24px] text-primary dark:text-primary-fixed">คลังไฟล์และสื่อ</h2>
+</div>
+<div class="flex-1 max-w-md mx-xl relative hidden md:block">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-ink-muted" data-icon="search">search</span>
+<input class="w-full h-[40px] pl-[44px] pr-md rounded-full bg-surface-container border border-ink focus:outline-none focus:ring-2 focus:ring-primary-container font-body-md text-body-md" placeholder="ค้นหาชื่อไฟล์ รูปภาพ หรือลิงก์..." type="text"/>
+</div>
+<div class="flex items-center gap-lg">
+<button class="material-symbols-outlined text-ink hover:bg-surface-container rounded-full p-xs transition-colors" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-ink hover:bg-surface-container rounded-full p-xs transition-colors" data-icon="more_vert">more_vert</button>
+</div>
+</header>
+<!-- Secondary Navigation (Categories) -->
+<nav class="px-xxl py-md bg-surface-white flex items-center gap-xl border-b border-outline-variant overflow-x-auto no-scrollbar">
+<button class="active-tab flex items-center gap-xs py-xs whitespace-nowrap" onclick="switchTab(this, 'media')">
+<span class="material-symbols-outlined" data-icon="image">image</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">รูปภาพ</span>
+</button>
+<button class="text-ink-muted hover:text-primary transition-colors flex items-center gap-xs py-xs whitespace-nowrap" onclick="switchTab(this, 'video')">
+<span class="material-symbols-outlined" data-icon="movie">movie</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">วิดีโอ</span>
+</button>
+<button class="text-ink-muted hover:text-primary transition-colors flex items-center gap-xs py-xs whitespace-nowrap" onclick="switchTab(this, 'docs')">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">ไฟล์เอกสาร</span>
+</button>
+<button class="text-ink-muted hover:text-primary transition-colors flex items-center gap-xs py-xs whitespace-nowrap" onclick="switchTab(this, 'links')">
+<span class="material-symbols-outlined" data-icon="link">link</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">ลิงก์</span>
+</button>
+</nav>
+<!-- Content Area -->
+<section class="flex-1 overflow-y-auto px-xxl py-xl">
+<!-- Section Header -->
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h3 class="font-display-md text-[32px] text-ink">สื่อทั้งหมด</h3>
+<p class="font-body-md text-ink-muted">1,248 รายการ • พื้นที่ที่ใช้ 4.2 GB</p>
+</div>
+<div class="flex gap-md">
+<button class="flex items-center gap-xs px-lg py-sm rounded-full border border-ink font-button-md text-button-md hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+                        กรองข้อมูล
+                    </button>
+<button class="flex items-center gap-xs px-lg py-sm rounded-full bg-primary-container border border-ink font-button-md text-button-md hover:opacity-80 transition-all">
+<span class="material-symbols-outlined" data-icon="upload">upload</span>
+                        อัปโหลด
+                    </button>
+</div>
+</div>
+<!-- Bento Grid - Media Preview -->
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-md" id="media-grid">
+<!-- Large Featured Card -->
+<div class="col-span-2 row-span-2 rounded-xl overflow-hidden border border-ink group relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A breathtaking aerial view of a tropical Thai beach with turquoise waters and white limestone cliffs, vibrant lush greenery, warm golden hour sunlight, ultra-high resolution, minimalist aesthetic, serene and professional travel photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMSxCVl0IFxeeUJ4yOHWF0dk2iaNl2v6wEg2ztIO7kyYCff6P6KKIEZb-p338MBZwVY6L1TByUtYiqIi5rCpbUWIjXEOEgkUGri3O_Kaz9sCbmBuWb4p0q8WqXOTAnzTPHV6KPcWmOB4L81x4x6SLiSbM-LxIyrWvpPvwEguhEIdT5QbvDLaPg3DzPDZH_5gj0_lweQWMesrDZD-LDgsQ7zOvKVjgZKxicp0Q3bGenX3eBqZk0Oh8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-md text-white">
+<p class="font-label-sm font-bold">beach_vacation_2024.jpg</p>
+<p class="text-[10px]">2.4 MB • 12 ต.ค. 2024</p>
+</div>
+</div>
+<!-- Regular Cards -->
+<div class="rounded-xl overflow-hidden border border-ink group relative aspect-square">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up architectural detail of a modern Thai building, clean lines, geometric patterns, sophisticated light beige and white palette, soft shadows, editorial photography style, minimalist and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4sGhyPjh-4DctdfjltEU3pml_2bMVG2MbfAvXK9gSdx5KWizFlz6LwDGqmO9SDMZYJSxprfLDYN-fG4dIRzODnbM3pgztGJGcgswv-YPscj--7x3gVCeXVi1ajkykbdalEoSJwdumoNt7wK-jLy1HBV6cVkXwCwd-_WfU_d66rIqRCZWjHoyUkBqB9BNumkVXOHuKTf3nDziHWsnxiKk2FGAWMOiSSjxui-lcg_7lo1T8jGKPx6I"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</div>
+</div>
+<div class="rounded-xl overflow-hidden border border-ink group relative aspect-square">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist overhead shot of a clean workspace with a laptop, a notebook, and a small green plant, neutral tones, soft natural lighting, high contrast, professional and organized aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2zxcDhIFLKTv-5tKL_JeE4ErQJvxKE_RYK8wQCQEOQx-wuTMbOBDeSEnTqan4JOJ1F2JcZs9lqjoyH0JvlcGGb2mjq1Fx64v6TzvH5ZEzHJqkMmIvNyCrOcDy-n7VR_AuDA0SrVwwW90zZaEwYZogvWxUpBhels9PKIiNDHKUJQJKvukhKIjbDO3aFyBGlawSdcaPwDD640gw7vLKZPgMQPECgIb5RgoesGqUcjwUL6VMl5oaeBU"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</div>
+</div>
+<div class="rounded-xl overflow-hidden border border-ink group relative aspect-square">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Vibrant street food scene in Bangkok at night, neon lights reflecting on wet pavement, cinematic lighting, deep blacks and vivid greens, high energy, professional documentary photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm8Tf0FK3P2KabvnyrCyAM3lXnw2DBFKmZSfWUrOdPyVuTBYsFrFlQaTQYRPqHmQGMDE5NUkEF5IYZbwJajl6BbUrN03ikqLhdwdDATdpEeSaQw67VmHLcV9fbkD8ROEHXNz1CNnpiSH_ZMJjhKcZQ6ysm9ZPP89HblUPEM5FNIuM-mV14RRsBmJumb6l3chvyb67wE8Okx-M7hYHfEryfJGYUmen41X2grgZhflPja0HP5OX_7FA"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</div>
+</div>
+<div class="rounded-xl overflow-hidden border border-ink group relative aspect-square">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Abstract macro shot of a green leaf showing intricate vein patterns, organic textures, soft morning light, fresh and calm mood, minimalist nature photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-2EfCQNavf-cFdzLrqxM16bVYt18J0AGOj3z8qp3gvWj5QcODmVb1VnjseBQDa_kZFIrjjx5iGARrmBevMpl99YGXzJsghMIXQ5xZeczRppaWieWeGrdQjMgQS68gMR1_byGeyvzAQ1OkXA0IpGbmz39VEbvglkyoff6vm9kjCgI_6jd4_l59kJLuJaxlLXhSaUpCvelXcP3YM_9cZfYCEYUREHkuCrUQkoOn_GALjZ2KR3zPApM"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</div>
+</div>
+<!-- Document Style Preview in Grid -->
+<div class="col-span-2 bg-surface-white rounded-xl border border-ink p-lg flex flex-col justify-between hover:bg-primary-container/10 transition-colors cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-lg bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[32px]" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<span class="material-symbols-outlined text-ink-muted" data-icon="more_horiz">more_horiz</span>
+</div>
+<div>
+<h4 class="font-label-sm font-bold mt-md text-ink">Project_Proposal_Draft_V2.pdf</h4>
+<p class="text-[11px] text-ink-muted">8.4 MB • แก้ไขเมื่อ 2 ชม. ที่แล้ว</p>
+</div>
+</div>
+<div class="rounded-xl overflow-hidden border border-ink group relative aspect-square">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Minimalist portrait of a young professional woman in a bright office space, soft focus background, professional attire, warm lighting, calm and focused expression, high-quality editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsBhksPJbmrwnJuazb2J5ZCdxyMl7IQ6FJgj02rfmVmxIakiRm9pshmsbnvL4QloW2lxqjduiyml4-ebLSaodO_6Lm9IWr0X3SnhRIIi84ZDtTBHQetg3ZKRJwASWMZeou1Wp0XwOuvh5Kgprvdba5Tjn2OYc9lDH3U4CQi6lisAjem3c5zNL64D5pUHDetXqmaF9v7jdXN5AHMNuEWT4sAyO6rCp8TZ1Lx8xVIQ_CS9UbpgS1QA0"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</div>
+</div>
+<div class="rounded-xl overflow-hidden border border-ink group relative aspect-square">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Aerial view of a mountain range shrouded in mist, deep forest greens, moody and atmospheric, professional landscape photography, minimalist composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYM5-DHVsvwcnrDYrhUVTZ_vpr2pIcNwj65W1YaWboxUV3w_QdVjQPKUAB5lkVsr_Krr0CfOS9vdWKusKjVSxUWfE2bZdpOrCBN0pyhq4HFcVEg-fh2HZHjllIK1irXL_OxA0goEklnplzNA5ser7-Tt5RTTT-AcWn7BEsZ0RyNo0fpfk-OFke4G68-1pg84Ul6zbATa1gWn0XfSCqKdPB2L3QVujBCzmO5F7cIoorIijXHx6UJbI"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</div>
+</div>
+<div class="rounded-xl overflow-hidden border border-ink group relative aspect-square">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close up of coffee latte art in a white ceramic cup, wooden table, soft window light, professional cafe photography, warm tones, cozy atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCojPwAj6YRHWhHSNhTr5eiTz71Ei_wk2ANvB0w89NAuj4_U5Rb1EI6Fkm9UrCF7fb8Kz8_H29uk4TmR5KQ-aeNxoodaSQyve9zZ88rSoOxXlfNwY-tKnZ8Q5yXGocNqrNP_lGRPsTjXaEMC2nDkkEL93MHBYKBDkITQGGxGlAfczHzSJP2ufMJrMW-UM-XmbIdcZySPhdY1qNcKyzt2BNBROs9JmL4hMRRX95oyMbq4mbhwEkCLNk"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</div>
+</div>
+<div class="rounded-xl overflow-hidden border border-ink group relative aspect-square">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern interior design of a living room, Scandinavian style, minimalist furniture, cream and light wood palette, soft indirect lighting, high-end real estate photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYRyFmJ6A5cylHNtoYfkqBs5nGiUsPYsk1p_2MKbJ3RIzZ8If8v1jiRRa2BVCqBuaAyAh75kgmkQYIsqa2VaW_la6rRQDkitrcetv45aBBqzjM6vGlJUPnZDXQW4J8jXz49wxPSXh_fCMAGwDnztDTRiBmtteAM_EueB8u_x64TjBQrR5Xm6tmCw49uCTW-pIXUVTWhlXuCx0qkuu2THzLPlbpeHkeKK69RB4-BtFRQkaSyfZ7yDQ"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</div>
+</div>
+</div>
+<!-- Empty Space Footer -->
+<div class="h-xxl"></div>
+</section>
+<!-- Document List View (Hidden initially, shown for docs tab) -->
+<section class="hidden flex-1 overflow-y-auto px-xxl py-xl" id="docs-list">
+<div class="space-y-sm">
+<!-- Doc Item -->
+<div class="flex items-center justify-between p-lg bg-surface-white border border-ink rounded-xl hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-lg">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="table_chart">table_chart</span>
+</div>
+<div>
+<h4 class="font-body-md font-bold text-ink">Budget_Report_Q3_2024.xlsx</h4>
+<p class="font-label-xs text-ink-muted">Excel Spreadsheet • 1.2 MB • โดย สมชาย</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</div>
+<!-- Doc Item -->
+<div class="flex items-center justify-between p-lg bg-surface-white border border-ink rounded-xl hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-lg">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" data-icon="article">article</span>
+</div>
+<div>
+<h4 class="font-body-md font-bold text-ink">Company_Policy_Updated.docx</h4>
+<p class="font-label-xs text-ink-muted">Word Document • 450 KB • โดย วิภา</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</div>
+<!-- Doc Item -->
+<div class="flex items-center justify-between p-lg bg-surface-white border border-ink rounded-xl hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-lg">
+<div class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-error" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<div>
+<h4 class="font-body-md font-bold text-ink">Design_Specs_Mobile_App.pdf</h4>
+<p class="font-label-xs text-ink-muted">PDF Document • 15.6 MB • โดย กิตติ</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Anchor -->
+<footer class="w-full py-md px-xl flex flex-col md:flex-row justify-between items-center gap-md bg-surface-container-lowest dark:bg-surface-dark border-t border-outline dark:border-outline-variant mt-auto">
+<p class="font-label-xs text-label-xs text-ink-muted">© 2024 Arm Chat. พัฒนาด้วยความใส่ใจในประเทศไทย</p>
+<div class="flex gap-lg">
+<a class="font-label-xs text-label-xs text-ink-muted hover:text-primary transition-colors" href="#">ข้อกำหนดการใช้งาน</a>
+<a class="font-label-xs text-label-xs text-ink-muted hover:text-primary transition-colors" href="#">ความเป็นส่วนตัว</a>
+<a class="font-label-xs text-label-xs text-ink-muted hover:text-primary transition-colors" href="#">ติดต่อเรา</a>
+</div>
+</footer>
+</main>
+<!-- Floating Action Button for mobile -->
+<button class="fixed bottom-xl right-xl w-14 h-14 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center border border-ink shadow-lg md:hidden z-50">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<script>
+        function switchTab(element, type) {
+            // Update UI for Tabs
+            const tabs = element.parentElement.querySelectorAll('button');
+            tabs.forEach(tab => {
+                tab.classList.remove('active-tab');
+                tab.classList.add('text-ink-muted');
+            });
+            element.classList.add('active-tab');
+            element.classList.remove('text-ink-muted');
+
+            // Switch content views
+            const mediaGrid = document.getElementById('media-grid');
+            const docsList = document.getElementById('docs-list');
+            
+            if (type === 'docs') {
+                mediaGrid.classList.add('hidden');
+                docsList.classList.remove('hidden');
+            } else {
+                mediaGrid.classList.remove('hidden');
+                docsList.classList.add('hidden');
+            }
+        }
+
+        // Search bar micro-interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.02]');
+            searchInput.parentElement.classList.add('transition-transform');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.02]');
+        });
+    </script>
+</body></html>

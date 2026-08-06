@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>โทรวิดีโอ (1-ต่อ-1) - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #000000;
+            margin: 0;
+            overflow: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pip-shadow {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        .control-gradient {
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+        }
+        .top-gradient {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+        }
+        .active-pill {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e8e2d8",
+                    "inverse-primary": "#3de273",
+                    "surface-dim": "#e0d9d0",
+                    "on-primary-fixed": "#002109",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#d1eac6",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1e1b16",
+                    "surface-container": "#f4ede3",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-tint": "#006d2f",
+                    "primary-container": "#25d366",
+                    "on-tertiary-container": "#004694",
+                    "surface-container-highest": "#e8e2d8",
+                    "background": "#fff8f0",
+                    "on-primary-container": "#005523",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "outline-variant": "#bbcbb9",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#001b3f",
+                    "inverse-surface": "#33302a",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#d1eac6",
+                    "surface-dark": "#000000",
+                    "primary": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "outline": "#6c7b6b",
+                    "error": "#ba1a1a",
+                    "ink-muted": "#5e5e5e",
+                    "secondary": "#4f6448",
+                    "on-background": "#1e1b16",
+                    "tertiary": "#005cbd",
+                    "surface": "#fff8f0",
+                    "surface-container-high": "#eee7dd",
+                    "surface-container-lowest": "#ffffff",
+                    "ink": "#1c1e21",
+                    "tertiary-fixed": "#d7e2ff",
+                    "primary-fixed-dim": "#3de273",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "on-secondary-container": "#556a4d",
+                    "surface-white": "#ffffff",
+                    "on-primary-fixed-variant": "#005322",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#93b8ff",
+                    "on-secondary-fixed": "#0d200a",
+                    "surface-bright": "#fff8f0",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "huge": "80px",
+                    "xxl": "32px",
+                    "xs": "8px",
+                    "xl": "24px",
+                    "md": "16px",
+                    "lg": "20px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "display-md": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "button-md": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"]
+            },
+            "fontSize": {
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="relative h-screen w-screen bg-surface-dark overflow-hidden select-none">
+<!-- Immersive Background Video (Apinya K.) -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="A cinematic, high-definition close-up portrait of a friendly Thai woman with long dark hair, Apinya K., smiling warmly during a video call. She is in a softly lit, modern minimalist living room with warm wood accents and lush indoor plants in the background. The lighting is soft and natural, emphasizing her professional yet approachable demeanor. The visual style follows the Calm Utility brand aesthetic with clean lines and organic textures." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZfKsNJAWoA6uUET3xMuL7oFSRHml9TS9SqrHjgz91VASZhKnoU8LNXz9Hl27Nk6DzqjhY97rkvo_o5gDwIFe1d5iZ05rT1NpaCsatAH1DS5m5wQUz078l2DMFRv9cM0vYLVBgErhqBmYtORUfkDSporwc5R_ooFV7atYBOm8FVenERtkk_i6rDrNx2pjutOM4MDASmh0oxlQ_l9ZbZxHEHOzLieRfZiNInArdMD_taDxSHlTEj-k')">
+</div>
+<!-- Ambient Overlay for UI Legibility -->
+<div class="absolute inset-0 bg-black/10"></div>
+</div>
+<!-- Top Status Bar Area -->
+<div class="absolute top-0 left-0 w-full z-20 px-xl py-lg top-gradient">
+<div class="flex flex-col items-center justify-center space-y-xs">
+<div class="flex items-center space-x-xs bg-black/30 backdrop-blur-md px-md py-base rounded-full border border-white/10">
+<span class="material-symbols-outlined text-primary-fixed-dim text-[14px]">security</span>
+<span class="font-label-sm text-label-sm text-white">End-to-end encrypted</span>
+</div>
+<h1 class="font-body-lg text-body-lg text-white font-medium">Apinya K.</h1>
+<p class="font-label-sm text-label-sm text-white/80 tabular-nums tracking-widest" id="call-timer">04:12</p>
+</div>
+</div>
+<!-- Self-View Picture-in-Picture (PiP) -->
+<div class="absolute top-xl right-xl z-30 w-32 h-44 md:w-48 md:h-64 rounded-lg overflow-hidden border-2 border-white/20 pip-shadow bg-surface-dark">
+<div class="w-full h-full bg-cover bg-center" data-alt="A smaller, vertical self-view window showing a young man with a friendly expression looking into the camera. He is sitting in a brightly lit, clean-lined office environment with a minimalist white desk and a high-end microphone visible. The lighting is crisp and modern, matching the professional but approachable Arm Chat design system. The background is slightly out of focus to keep the attention on the caller." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBLeN4L3YFzKosoKvpPrhC3ZKf6N4mnwNee9Q1Pdz0P9zjwPWLTb5o95KygyDq7pnhkIFqaZVnkVD6U5H3acLLQd_zXm7E1yhCgbOvWoZ5PcObDRUAoOue_B1RMOUOUJazxqVZNxo1p1RyOqUVoWaVFepth5bxHZBkTya52mQ8hb2BShBwu57BNxlew0cAbVNP75vxtXFJpxMAlgmxyS-s-obz0WPkV9j9aJdEoGHVB7WqvhnxDgc')">
+</div>
+<!-- Pip Controls Overlay -->
+<div class="absolute bottom-base right-base">
+<div class="bg-black/50 p-base rounded-md">
+<span class="material-symbols-outlined text-white text-[18px]">cached</span>
+</div>
+</div>
+</div>
+<!-- Bottom Controls Area -->
+<div class="absolute bottom-0 left-0 w-full z-40 control-gradient pb-huge pt-xxl">
+<div class="flex flex-col items-center justify-center space-y-xl">
+<!-- Secondary Control Row -->
+<div class="flex items-center space-x-md">
+<button class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 active:scale-90 transition-all">
+<span class="material-symbols-outlined">present_to_all</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 active:scale-90 transition-all">
+<span class="material-symbols-outlined">volume_up</span>
+</button>
+</div>
+<!-- Primary Control Bar -->
+<div class="flex items-center justify-center space-x-lg px-xl py-sm bg-white/10 backdrop-blur-xl rounded-full border border-white/20">
+<!-- Toggle Camera -->
+<button class="group flex flex-col items-center space-y-1 px-md py-xs rounded-full transition-all duration-200" onclick="toggleActive(this)">
+<div class="w-14 h-14 rounded-full flex items-center justify-center bg-white/20 group-active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-white text-[28px]">videocam</span>
+</div>
+</button>
+<!-- Mute Microphone -->
+<button class="group flex flex-col items-center space-y-1 px-md py-xs rounded-full transition-all duration-200" onclick="toggleActive(this)">
+<div class="w-14 h-14 rounded-full flex items-center justify-center bg-white/20 group-active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-white text-[28px]">mic</span>
+</div>
+</button>
+<!-- End Call Button -->
+<button class="group flex flex-col items-center space-y-1 px-md py-xs">
+<div class="w-16 h-16 rounded-full flex items-center justify-center bg-error shadow-lg shadow-error/30 active:scale-90 transition-all">
+<span class="material-symbols-outlined text-white text-[32px]">call_end</span>
+</div>
+</button>
+</div>
+</div>
+</div>
+<!-- Interactive Layer / Micro-interactions -->
+<script>
+        function toggleActive(btn) {
+            const iconContainer = btn.querySelector('div');
+            const icon = btn.querySelector('span');
+            
+            if (iconContainer.classList.contains('bg-white')) {
+                // Return to inactive state
+                iconContainer.classList.remove('bg-white');
+                iconContainer.classList.add('bg-white/20');
+                icon.classList.remove('text-surface-dark');
+                icon.classList.add('text-white');
+                
+                // If it was a mute button, update icon
+                if (icon.innerText === 'mic_off') icon.innerText = 'mic';
+                if (icon.innerText === 'videocam_off') icon.innerText = 'videocam';
+            } else {
+                // Set to active/muted state
+                iconContainer.classList.remove('bg-white/20');
+                iconContainer.classList.add('bg-white');
+                icon.classList.remove('text-white');
+                icon.classList.add('text-surface-dark');
+
+                // If it was a mute button, update icon
+                if (icon.innerText === 'mic') icon.innerText = 'mic_off';
+                if (icon.innerText === 'videocam') icon.innerText = 'videocam_off';
+            }
+        }
+
+        // Simple timer logic
+        let seconds = 252; // Start at 04:12
+        const timerElement = document.getElementById('call-timer');
+        
+        setInterval(() => {
+            seconds++;
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            timerElement.innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }, 1000);
+    </script>
+</body></html>

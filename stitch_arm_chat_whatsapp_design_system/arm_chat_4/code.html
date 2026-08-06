@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Arm Chat - ห้องแชท</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#f7f0e6",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "ink-muted": "#5e5e5e",
+                    "surface-variant": "#e8e2d8",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "on-secondary": "#ffffff",
+                    "outline": "#6c7b6b",
+                    "secondary-container": "#d1eac6",
+                    "on-primary-fixed": "#002109",
+                    "inverse-surface": "#33302a",
+                    "surface-dark": "#000000",
+                    "surface-dim": "#e0d9d0",
+                    "background": "#fff8f0",
+                    "ink": "#1c1e21",
+                    "on-secondary-fixed": "#0d200a",
+                    "on-background": "#1e1b16",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "secondary": "#4f6448",
+                    "surface-white": "#ffffff",
+                    "surface-container-high": "#eee7dd",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#66ff8e",
+                    "primary": "#006d2f",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#faf3e9",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#25d366",
+                    "on-tertiary-container": "#004694",
+                    "tertiary-container": "#93b8ff",
+                    "inverse-primary": "#3de273",
+                    "on-surface": "#1e1b16",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "surface-container": "#f4ede3",
+                    "surface-bright": "#fff8f0",
+                    "tertiary-fixed": "#d7e2ff",
+                    "on-primary-container": "#005523",
+                    "secondary-fixed": "#d1eac6",
+                    "surface": "#fff8f0",
+                    "surface-container-highest": "#e8e2d8",
+                    "tertiary": "#005cbd",
+                    "on-surface-variant": "#3c4a3d",
+                    "primary-fixed-dim": "#3de273",
+                    "on-secondary-container": "#556a4d",
+                    "outline-variant": "#bbcbb9",
+                    "surface-tint": "#006d2f",
+                    "on-primary-fixed-variant": "#005322",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "on-tertiary-fixed": "#001b3f",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "xxl": "32px",
+                    "huge": "80px",
+                    "md": "16px",
+                    "xl": "24px",
+                    "base": "4px",
+                    "sm": "12px",
+                    "lg": "20px"
+            },
+            "fontFamily": {
+                    "button-md": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"],
+                    "display-md": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "label-sm": ["Prompt"]
+            },
+            "fontSize": {
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #fff8f0; /* surface-bright */
+            color: #1e1b16; /* on-surface */
+            overflow: hidden;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+
+        /* Chat Bubble Geometric Tail */
+        .bubble-in::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -8px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 12px 12px;
+            border-color: transparent transparent #ffffff transparent;
+        }
+
+        .bubble-out::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: -8px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 12px 0 0 12px;
+            border-color: transparent transparent transparent #e6ffda;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e8e2d8;
+            border-radius: 10px;
+        }
+        
+        /* Typing Animation */
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="flex h-screen w-full">
+<!-- Sidebar (Shared Component) -->
+<nav class="fixed left-0 top-0 h-full flex flex-col py-xl px-md z-40 bg-surface-container-low border-r border-outline hidden md:flex w-64">
+<div class="mb-huge">
+<span class="text-display-md font-display-md text-primary">Arm Chat</span>
+<p class="font-body-md text-body-md text-ink-muted">แชทที่เงียบสงบ</p>
+</div>
+<div class="flex flex-col gap-sm flex-1">
+<a class="flex items-center gap-md bg-primary-container text-on-primary-container rounded-xl px-md py-sm transition-all scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-sm text-label-sm">แชท</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-sm text-label-sm">กลุ่ม</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined">call</span>
+<span class="font-label-sm text-label-sm">โทร</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">การตั้งค่า</span>
+</a>
+</div>
+<div class="mt-auto pt-xl">
+<button class="w-full bg-primary-container border border-ink text-ink py-sm rounded-full font-button-md flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined">add</span>
+                เริ่มแชทใหม่
+            </button>
+<div class="mt-md flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest transition-all cursor-pointer">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-sm text-label-sm">ความช่วยเหลือ</span>
+</div>
+</div>
+</nav>
+<!-- Main Chat Content -->
+<main class="flex-1 flex flex-col h-full md:ml-64 relative bg-surface-bright">
+<!-- Top Toolbar (Shared Component Logic) -->
+<header class="h-[64px] w-full px-xl flex justify-between items-center z-50 bg-surface-white border-b border-outline-variant">
+<div class="flex items-center gap-md">
+<div class="relative w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-ink">
+<img class="w-full h-full object-cover" data-alt="A portrait of a friendly Thai man in his late 20s, smiling warmly at the camera. He is sitting in a sunlit modern cafe with lush green plants in the background. The style is clean, editorial, and professional with high-contrast, bright lighting that complements the light-mode UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5fLbjBs0-8kxCHeRywp-sz0Z3WUDB5B0UURCtzFK2VXLzLAN-kRLjWh_aNJ8cjo14xhGNPbcFnswzuybswny3Iq-kZ-4cdMNtNCzZjw_lwn4vRuayMY9hVOiO8H29YWr5-HGBAaXIywOVxBARJiuEWmJlOi8pK7m4XZu1TZePqby5Pe9NPm2oHkErA18UWdVhQt4WPAa5EWKoGN2WQwEwy1Ft8PnPZXMU6rFQpTJNkmF8ZmJsyhs"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-[#25d366] rounded-full border-2 border-surface-white"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-ink font-semibold">คุณอาร์ม (Arm)</span>
+<span class="font-label-xs text-label-xs text-primary flex items-center gap-1">
+                        กำลังใช้งานออนไลน์
+                    </span>
+</div>
+</div>
+<div class="flex items-center gap-xs md:gap-md">
+<button class="p-xs md:p-sm rounded-full hover:bg-surface-container transition-colors text-ink">
+<span class="material-symbols-outlined">call</span>
+</button>
+<button class="p-xs md:p-sm rounded-full hover:bg-surface-container transition-colors text-ink">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+<button class="p-xs md:p-sm rounded-full hover:bg-surface-container transition-colors text-ink">
+<span class="material-symbols-outlined">screen_share</span>
+</button>
+<div class="w-px h-6 bg-outline-variant mx-1 hidden md:block"></div>
+<button class="p-xs md:p-sm rounded-full hover:bg-surface-container transition-colors text-ink">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="p-xs md:p-sm rounded-full hover:bg-surface-container transition-colors text-ink">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Chat History -->
+<section class="flex-1 overflow-y-auto p-xl md:px-huge custom-scrollbar flex flex-col gap-xl">
+<!-- Date Divider -->
+<div class="flex justify-center my-md">
+<span class="px-md py-1 bg-surface-container-high rounded-full font-label-sm text-label-sm text-ink-muted">วันนี้</span>
+</div>
+<!-- Incoming Message -->
+<div class="flex flex-col items-start max-w-[85%] md:max-w-[60%]">
+<div class="relative bg-surface-white text-ink p-md rounded-[25px] border border-outline-variant bubble-in">
+<p class="font-body-md text-body-md">สวัสดีครับ ยินดีที่ได้รู้จักนะครับ วันนี้เป็นอย่างไรบ้าง?</p>
+</div>
+<span class="mt-xs ml-sm font-label-xs text-label-xs text-ink-muted">10:30 น.</span>
+</div>
+<!-- Outgoing Message -->
+<div class="flex flex-col items-end self-end max-w-[85%] md:max-w-[60%]">
+<div class="relative bg-[#e6ffda] text-ink p-md rounded-[25px] border border-ink bubble-out">
+<p class="font-body-md text-body-md">สวัสดีครับคุณอาร์ม! วันนี้อากาศดีมากเลยครับ กำลังนั่งออกแบบ UI ตัวใหม่อยู่ครับ</p>
+</div>
+<div class="flex items-center gap-xs mt-xs mr-sm">
+<span class="font-label-xs text-label-xs text-ink-muted">10:32 น.</span>
+<span class="font-label-xs text-label-xs text-primary font-medium">อ่านแล้ว</span>
+</div>
+</div>
+<!-- Incoming Typing -->
+<div class="flex flex-col items-start">
+<div class="bg-surface-white border border-outline-variant px-md py-sm rounded-full flex items-center gap-1">
+<div class="w-2 h-2 bg-outline rounded-full typing-dot"></div>
+<div class="w-2 h-2 bg-outline rounded-full typing-dot"></div>
+<div class="w-2 h-2 bg-outline rounded-full typing-dot"></div>
+<span class="ml-2 font-label-sm text-label-sm text-ink-muted">คุณอาร์มกำลังพิมพ์...</span>
+</div>
+</div>
+<!-- Image Message -->
+<div class="flex flex-col items-end self-end max-w-[85%] md:max-w-[60%]">
+<div class="p-xs bg-[#e6ffda] rounded-[25px] border border-ink overflow-hidden">
+<img class="w-full h-48 md:h-64 object-cover rounded-[20px]" data-alt="A minimalist UI design layout displayed on a sleek digital tablet screen. The interface features soft cream backgrounds, vibrant green accent buttons, and elegant Thai typography. The tablet is placed on a clean wooden desk with soft morning shadows, capturing a peaceful work-from-home atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuWKoIFCz7Y_t4dFZMbv7OVaFAZACHsAtbWt9UzwLemAwxiex_l3bM-J8tU8dXjaernIVfmKfvD9-2ai6nf-yDTzYSEfwRTe4FhuoqktjNdftXMk_Fqt3K04Lil7xN1T1ZR3WpG-WiuwGAQdZUB9LLFq6_c_EQb_ZtVAsbtT654Y4rO06p66jQ3yc50_kvNWkaOx3eH94QApYfmsoVDkn-KSxH5AqARLQurvW6EGQs36PF0wQGylg"/>
+<div class="p-sm">
+<p class="font-body-md text-body-md">นี่คือตัวอย่างหน้าจอที่ผมกำลังทำอยู่ครับ</p>
+</div>
+</div>
+<span class="mt-xs mr-sm font-label-xs text-label-xs text-ink-muted">10:35 น.</span>
+</div>
+</section>
+<!-- Bottom Toolbar (Pill Input) -->
+<footer class="p-xl md:px-huge bg-surface-bright">
+<div class="flex items-center gap-sm">
+<div class="flex gap-xs">
+<button class="w-10 h-10 rounded-full border border-ink flex items-center justify-center hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-10 h-10 rounded-full border border-ink flex items-center justify-center hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined">image</span>
+</button>
+</div>
+<div class="flex-1 relative">
+<input class="w-full h-[50px] bg-surface-white border border-ink rounded-full px-xl focus:outline-none focus:ring-2 focus:ring-primary-container font-body-md text-body-md" placeholder="พิมพ์ข้อความของคุณที่นี่..." type="text"/>
+<button class="absolute right-xl top-1/2 -translate-y-1/2 text-ink-muted hover:text-ink">
+<span class="material-symbols-outlined">mood</span>
+</button>
+</div>
+<div class="flex gap-sm">
+<button class="w-[50px] h-[50px] rounded-full border border-ink flex items-center justify-center hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="w-[50px] h-[50px] rounded-full bg-primary-container border border-ink flex items-center justify-center hover:opacity-80 transition-all shadow-sm">
+<span class="material-symbols-outlined text-ink">send</span>
+</button>
+</div>
+</div>
+<div class="mt-md text-center">
+<p class="font-label-xs text-label-xs text-ink-muted">© 2024 Arm Chat. พัฒนาด้วยความใส่ใจในประเทศไทย</p>
+</div>
+</footer>
+</main>
+<!-- Mobile Bottom Nav -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full h-16 bg-surface-white border-t border-outline-variant flex justify-around items-center z-50">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-xs text-label-xs">แชท</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-ink-muted">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-xs text-label-xs">กลุ่ม</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-ink-muted">
+<span class="material-symbols-outlined">call</span>
+<span class="font-label-xs text-label-xs">โทร</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-ink-muted">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-xs text-label-xs">ตั้งค่า</span>
+</button>
+</nav>
+<script>
+        // Simple Interaction Logic
+        document.querySelector('input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter' && this.value.trim() !== '') {
+                const message = this.value;
+                const history = document.querySelector('section');
+                
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'flex flex-col items-end self-end max-w-[85%] md:max-w-[60%] animate-in fade-in slide-in-from-bottom-2 duration-300';
+                msgDiv.innerHTML = `
+                    <div class="relative bg-[#e6ffda] text-ink p-md rounded-[25px] border border-ink bubble-out">
+                        <p class="font-body-md text-body-md">${message}</p>
+                    </div>
+                    <div class="flex items-center gap-xs mt-xs mr-sm">
+                        <span class="font-label-xs text-label-xs text-ink-muted">เพิ่งส่ง</span>
+                    </div>
+                `;
+                
+                history.appendChild(msgDiv);
+                this.value = '';
+                history.scrollTop = history.scrollHeight;
+            }
+        });
+    </script>
+</body></html>

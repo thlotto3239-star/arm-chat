@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ดูตัวอย่างสื่อ - Arm Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #000000;
+            margin: 0;
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ui-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .media-zoom {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e8e2d8",
+                    "inverse-primary": "#3de273",
+                    "surface-dim": "#e0d9d0",
+                    "on-primary-fixed": "#002109",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#d1eac6",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1e1b16",
+                    "surface-container": "#f4ede3",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-tint": "#006d2f",
+                    "primary-container": "#25d366",
+                    "on-tertiary-container": "#004694",
+                    "surface-container-highest": "#e8e2d8",
+                    "background": "#fff8f0",
+                    "on-primary-container": "#005523",
+                    "tertiary-fixed-dim": "#abc7ff",
+                    "on-tertiary-fixed-variant": "#004590",
+                    "outline-variant": "#bbcbb9",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#001b3f",
+                    "inverse-surface": "#33302a",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#d1eac6",
+                    "surface-dark": "#000000",
+                    "primary": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "outline": "#6c7b6b",
+                    "error": "#ba1a1a",
+                    "ink-muted": "#5e5e5e",
+                    "secondary": "#4f6448",
+                    "on-background": "#1e1b16",
+                    "tertiary": "#005cbd",
+                    "surface": "#fff8f0",
+                    "surface-container-high": "#eee7dd",
+                    "surface-container-lowest": "#ffffff",
+                    "ink": "#1c1e21",
+                    "tertiary-fixed": "#d7e2ff",
+                    "primary-fixed-dim": "#3de273",
+                    "secondary-fixed-dim": "#b5cdab",
+                    "on-secondary-container": "#556a4d",
+                    "surface-white": "#ffffff",
+                    "on-primary-fixed-variant": "#005322",
+                    "on-secondary-fixed-variant": "#384c32",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#93b8ff",
+                    "on-secondary-fixed": "#0d200a",
+                    "surface-bright": "#fff8f0",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "huge": "80px",
+                    "xxl": "32px",
+                    "xs": "8px",
+                    "xl": "24px",
+                    "md": "16px",
+                    "lg": "20px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "display-md": ["Prompt"],
+                    "label-sm": ["Prompt"],
+                    "display-xl": ["Prompt"],
+                    "body-lg": ["Prompt"],
+                    "label-xs": ["Prompt"],
+                    "button-md": ["Prompt"],
+                    "body-md": ["Prompt"],
+                    "display-lg": ["Prompt"],
+                    "display-xl-mobile": ["Prompt"]
+            },
+            "fontSize": {
+                    "display-md": ["48px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "15.6px", "fontWeight": "400"}],
+                    "display-xl": ["80px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "25px", "fontWeight": "400"}],
+                    "label-xs": ["11px", {"lineHeight": "12px", "fontWeight": "400"}],
+                    "button-md": ["16px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "display-lg": ["60px", {"lineHeight": "60px", "fontWeight": "400"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface-dark text-surface-white">
+<!-- Main Preview Canvas -->
+<main class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+<!-- Background Ambient Glow (Subtle Shader-like Effect) -->
+<div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-gradient-to-tr from-primary/10 via-surface-dark to-tertiary/10 blur-[120px]"></div>
+</div>
+<!-- The Media Item -->
+<div class="relative z-10 w-full h-full flex items-center justify-center p-md md:p-huge">
+<img class="media-zoom max-w-full max-h-full object-contain shadow-2xl rounded-sm cursor-zoom-in" data-alt="A breathtaking, cinematic high-resolution photograph of a pristine tropical beach at sunset. The sand is brilliant white, meeting crystal-clear turquoise waters that gently lap at the shore. Tall, slender palm trees lean gracefully over the ocean under a sky painted in deep oranges, soft pinks, and vibrant purples. The lighting is warm and golden, casting long, soft shadows and creating a serene, paradise-like atmosphere for the Arm Chat media preview." id="main-image" onclick="toggleZoom(this)" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkyzaS_HgfrEjpfL68KRLcvmxKSvxban8MqqMislzD8vfpt-UfzFVduxxY6b75T9DOE0qpBXhyZt_hCdH1upcv6vXfzEBPaXxblOYxwI5v73XBuolx64se08X9ZoW2sEqnanG9F-jz6HQVoydsT1c2eyavIxIwidH3Em_GUgXFOHjVwfDVhLxsAH10WNO7Kgfjcp_kknQihLboAj3c5JwJJUD4V_pLj2D47AEjcnF9Eo2t8r1-u2g"/>
+</div>
+<!-- Top Bar (Header UI) -->
+<nav class="absolute top-0 left-0 w-full z-20 bg-gradient-to-b from-black/80 to-transparent pt-xl pb-huge px-xl flex justify-between items-start ui-fade-in">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full border border-surface-white/20 overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a friendly Thai man in his late 20s with a warm smile and modern haircut. He is wearing a clean, minimalist green polo shirt that matches the Arm Chat brand colors. The lighting is soft and even, set against a neutral, high-key studio background that emphasizes clarity and professionalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALKQDOsihoo_VVi6rUM4rQI2Q5n-z2Sn7PDEoaDJcOmdnwVfApDRdPSLQKfusaL-QCp-5MmfJoOyt9bBHOjgrsOusdZ4WGjihYpH6Csbxw7Y9JMcmp6vor3EAqkrOZPPRUiXZSc1cT6KmX6xQkCP1WrTy1FojZxIr044Fkx40qhXzgNkXKmmTaqwwPL4l5vrW3vwAXEXF2oaewe9Lx-DHFeYOQ-3xcf2lDLAvH3__o-dba1qNnd-c"/>
+</div>
+<div>
+<h1 class="font-body-lg text-body-lg text-surface-white">พงศธร สมบูรณ์</h1>
+<p class="font-label-sm text-label-sm text-surface-white/60">วันนี้, 14:32</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<!-- Action Buttons -->
+<button class="w-11 h-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-surface-white transition-all active:scale-95" title="ดาวน์โหลด">
+<span class="material-symbols-outlined">download</span>
+</button>
+<button class="w-11 h-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-surface-white transition-all active:scale-95" title="แชร์">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="w-11 h-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-surface-white transition-all active:scale-95 ml-base" title="ตัวเลือกเพิ่มเติม">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+<!-- Close Button -->
+<button class="w-11 h-11 flex items-center justify-center rounded-full bg-primary hover:bg-primary-container border border-ink text-ink transition-all active:scale-90 ml-md" onclick="window.history.back()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</nav>
+<!-- Bottom Caption Bar -->
+<footer class="absolute bottom-0 left-0 w-full z-20 bg-gradient-to-t from-black/90 to-transparent pt-huge pb-xl px-xl ui-fade-in">
+<div class="max-w-3xl mx-auto flex flex-col items-center gap-md">
+<div class="bg-black/40 backdrop-blur-md px-xl py-lg rounded-xl border border-white/10 w-full">
+<p class="font-body-md text-body-md text-surface-white leading-relaxed text-center">
+                        หาดทรายขาวที่เกาะล้านวันนี้สวยมากครับ อากาศกำลังดีเลย ไม่ร้อนจนเกินไป อยากให้ทุกคนมาเห็นด้วยตาตัวเองจริงๆ 🏝️✨
+                    </p>
+</div>
+<!-- Interaction Bar -->
+<div class="flex items-center gap-xxl mt-sm">
+<button class="flex items-center gap-xs text-surface-white/70 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-label-sm text-label-sm">24</span>
+</button>
+<button class="flex items-center gap-xs text-surface-white/70 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-sm text-label-sm">5</span>
+</button>
+<button class="flex items-center gap-xs text-surface-white/70 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">reply</span>
+<span class="font-label-sm text-label-sm">ตอบกลับ</span>
+</button>
+</div>
+</div>
+</footer>
+</main>
+<!-- Micro-interaction Script -->
+<script>
+        let isZoomed = false;
+        const uiElements = document.querySelectorAll('.ui-fade-in');
+        let uiVisible = true;
+        let hideTimeout;
+
+        function toggleZoom(img) {
+            isZoomed = !isZoomed;
+            if (isZoomed) {
+                img.style.transform = 'scale(1.5)';
+                img.classList.remove('cursor-zoom-in');
+                img.classList.add('cursor-zoom-out');
+                hideUI();
+            } else {
+                img.style.transform = 'scale(1)';
+                img.classList.remove('cursor-zoom-out');
+                img.classList.add('cursor-zoom-in');
+                showUI();
+            }
+        }
+
+        function showUI() {
+            uiElements.forEach(el => {
+                el.style.opacity = '1';
+                el.style.pointerEvents = 'auto';
+            });
+            uiVisible = true;
+            clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(hideUI, 4000);
+        }
+
+        function hideUI() {
+            if (isZoomed) return; // Optional: keep UI hidden when zoomed
+            uiElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.pointerEvents = 'none';
+            });
+            uiVisible = false;
+        }
+
+        // Interaction to show UI on mouse move or tap
+        document.addEventListener('mousemove', () => {
+            if (!uiVisible) showUI();
+        });
+
+        document.addEventListener('touchstart', () => {
+            if (!uiVisible) showUI();
+        });
+
+        // Initialize auto-hide
+        hideTimeout = setTimeout(hideUI, 3000);
+
+        // Simple ESC key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (isZoomed) toggleZoom(document.getElementById('main-image'));
+                else console.log('Exit Preview');
+            }
+        });
+    </script>
+</body></html>
